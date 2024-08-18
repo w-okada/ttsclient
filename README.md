@@ -1,5 +1,6 @@
 TTSClient
 ---
+[日本語](./README.md) [English](./README_en.md) [한국어](./README_ko.md) [中文简体](./README_cn.md)
 
 Text To Speech(TTS)のクライアントソフトウェアです。
 各種AIに対応していく計画です。(現時点ではGPT-SoVITSのみ)
@@ -47,3 +48,7 @@ GPT-SoVITSでは、モデルと参照音声と参照テキストを選択して�
 ### 参照音声、テキストの登録
 
 参照音声選択エリアで未登録のスロットを選択して登録してください。
+
+# Acknowledgements
+- [JVNVコーパス](https://sites.google.com/site/shinnosuketakamichi/research-topics/jvnv_corpus)
+
