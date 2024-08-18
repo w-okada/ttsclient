@@ -9,6 +9,9 @@ Text To Speech(TTS)のクライアントソフトウェアです。
   - [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)
   - coming soon...
 
+https://github.com/user-attachments/assets/cdf33212-3077-4ff0-9fa2-8635ee5417f4
+
+
 ## 関連ソフトウェア
 - [リアルタイムボイスチェンジャ VCClient](https://github.com/w-okada/voice-changer)
 

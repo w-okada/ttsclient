@@ -9,6 +9,9 @@ Text To Speech(TTS) 클라이언트 소프트웨어입니다.
   - [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)
   - coming soon...
 
+https://github.com/user-attachments/assets/cdf33212-3077-4ff0-9fa2-8635ee5417f4
+
+
 ## 관련 소프트웨어
 - [실시간 음성 변조기 VCClient](https://github.com/w-okada/voice-changer)
 

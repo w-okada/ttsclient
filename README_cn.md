@@ -9,6 +9,11 @@ TTSClient
   - [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)
   - 敬请期待...
 
+
+https://github.com/user-attachments/assets/cdf33212-3077-4ff0-9fa2-8635ee5417f4
+
+
+
 ## 相关软件
 - [实时语音变换器 VCClient](https://github.com/w-okada/voice-changer)
 
