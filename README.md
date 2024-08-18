@@ -6,7 +6,7 @@ Text To Speech(TTS)のクライアントソフトウェアです。
 
 - 対応 AI
   - [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)
-  - comming soon...
+  - coming soon...
 
 # ダウンロード
 [Hugging Faceのリポジトリ](https://huggingface.co/wok000/ttsclient000/tree/main)よりダウンロードしてください。
@@ -28,11 +28,13 @@ note: macエディションは.batを.commandで読み替えてください。
 
 GPT-SoVITSでは、モデルと参照音声と参照テキストを選択してから、音声生成を行います。TTSClientでは参照話者という概念があり、参照話者に複数の参照音声と参照テキストを持たせることができます。
 
+![image](https://github.com/user-attachments/assets/032a65ed-b9d5-4f8a-8efe-73bd10b66593)
+
 ### 音声生成
 
-1. モデルと、参照話者を選択します。
-2. 参照話者に登録された参照音声と参照テキストを選択します。
-3. 生成したいテキストを入力して音声を生成します。
+1. モデルと、参照話者を選択します((1), (2))。
+2. 参照話者に登録された参照音声と参照テキストを選択します(3)。
+3. 生成したいテキストを入力して音声を生成します(4)。
 
 ### モデルの登録
 
