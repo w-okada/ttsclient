@@ -1,6 +1,6 @@
 TTSClient
 ---
-[日本語](./README.md) [English](./README_en.md) [한국어](./README_ko.md) [中文简体](./README_cn.md)
+  [[日本語]](./README.md) [[English]](./README_en.md) [[한국어]](./README_ko.md) [[中文简体](./README_cn.md)
 
 Text To Speech(TTS) 클라이언트 소프트웨어입니다.
 각종 AI에 대응할 계획입니다. (현재는 GPT-SoVITS만 지원합니다)

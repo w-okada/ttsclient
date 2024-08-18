@@ -1,6 +1,6 @@
 TTSClient
 ---
-[日本語](./README.md) [English](./README_en.md) [한국어](./README_ko.md) [中文简体](./README_cn.md)
+  [[日本語]](./README.md) [[English]](./README_en.md) [[한국어]](./README_ko.md) [[中文简体](./README_cn.md)
 
 
 This is client software for Text To Speech (TTS).

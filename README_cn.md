@@ -1,6 +1,6 @@
 TTSClient
 ---
-[日本語](./README.md) [English](./README_en.md) [한국어](./README_ko.md) [中文简体](./README_cn.md)
+  [[日本語]](./README.md) [[English]](./README_en.md) [[한국어]](./README_ko.md) [[中文简体](./README_cn.md)
 
 这是一个文本转语音（TTS）的客户端软件。
 计划支持各种AI。（目前仅支持GPT-SoVITS）
