@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "ttsclient"
+version = "0.1.0"
+description = ""
+authors = ["wok <test@test.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fire = "^0.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+[tool.poetry.scripts]
+main = "ttsclient.main:main"
