@@ -1,6 +1,6 @@
 TTSClient
 ---
-  [[日本語]](./README.md) [[English]](./README_en.md) [[한국어]](./README_ko.md) [[中文简体](./README_cn.md)
+  [[日本語]](./README.md) [[English]](./README_en.md) [[한국어]](./README_ko.md) [[中文简体]](./README_cn.md)
 
 这是一个文本转语音（TTS）的客户端软件。
 计划支持各种AI。（目前仅支持GPT-SoVITS）
@@ -8,6 +8,9 @@ TTSClient
 - 支持的AI
   - [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)
   - 敬请期待...
+
+# 相关软件
+- [实时语音变换器 VCClient](https://github.com/w-okada/voice-changer)
 
 # 下载
 请从[Hugging Face的仓库](https://huggingface.co/wok000/ttsclient000/tree/main)下载。

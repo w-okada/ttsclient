@@ -1,6 +1,6 @@
 TTSClient
 ---
-  [[日本語]](./README.md) [[English]](./README_en.md) [[한국어]](./README_ko.md) [[中文简体](./README_cn.md)
+  [[日本語]](./README.md) [[English]](./README_en.md) [[한국어]](./README_ko.md) [[中文简体]](./README_cn.md)
 
 
 This is client software for Text To Speech (TTS).
@@ -9,6 +9,9 @@ We plan to support various AIs (currently, only GPT-SoVITS is supported).
 - Supported AIs
   - [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)
   - coming soon...
+
+# Related Software
+- [Real-Time Voice Changer VCClient](https://github.com/w-okada/voice-changer)
 
 # Download
 Please download from the [Hugging Face repository](https://huggingface.co/wok000/ttsclient000/tree/main).

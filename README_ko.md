@@ -1,6 +1,6 @@
 TTSClient
 ---
-  [[日本語]](./README.md) [[English]](./README_en.md) [[한국어]](./README_ko.md) [[中文简体](./README_cn.md)
+  [[日本語]](./README.md) [[English]](./README_en.md) [[한국어]](./README_ko.md) [[中文简体]](./README_cn.md)
 
 Text To Speech(TTS) 클라이언트 소프트웨어입니다.
 각종 AI에 대응할 계획입니다. (현재는 GPT-SoVITS만 지원합니다)
@@ -8,6 +8,9 @@ Text To Speech(TTS) 클라이언트 소프트웨어입니다.
 - 지원 AI
   - [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)
   - coming soon...
+
+# 관련 소프트웨어
+- [실시간 음성 변조기 VCClient](https://github.com/w-okada/voice-changer)
 
 # 다운로드
 [Hugging Face 리포지토리](https://huggingface.co/wok000/ttsclient000/tree/main)에서 다운로드해주세요.
