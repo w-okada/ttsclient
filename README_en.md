@@ -20,7 +20,7 @@ Please download from the [Hugging Face repository](https://huggingface.co/wok000
 
 - win_std Edition: This is the edition for Windows that runs on a CPU. It is slower compared to the CUDA version, but should work on recent CPUs with decent specs.
 - win_cuda Edition: This is the edition for Windows that runs on an NVIDIA GPU. It operates faster due to GPU hardware acceleration.
-- mac Edition: This is the edition for Mac.
+- mac Edition: This is the edition for Mac(Apple silicon(M1, M2, M3, etc)).
 
 ## Usage
 - After extracting the zip file, execute `start_http.bat`. Then, access the displayed URL in a browser.

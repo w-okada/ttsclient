@@ -22,7 +22,7 @@ https://github.com/user-attachments/assets/cdf33212-3077-4ff0-9fa2-8635ee5417f4
 
 - win_std版：适用于Windows的版本，运行在CPU上。虽然比cuda版慢，但在现代规格较高的CPU上也可以运行。
 - win_cuda版：适用于Windows的版本，运行在NVIDIA的GPU上。利用GPU硬件加速，可以快速运行。
-- mac版：适用于Mac的版本。
+- mac版：适用于Mac(Apple silicon(M1, M2, M3, etc))的版本。
 
 ## 使用方法
 - 解压缩文件后，运行`start_http.bat`。在浏览器中访问显示的URL。

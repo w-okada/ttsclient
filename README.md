@@ -20,7 +20,7 @@ https://github.com/user-attachments/assets/cdf33212-3077-4ff0-9fa2-8635ee5417f4
 
 - win_stdエディション：Windows向けのCPUで動作するエディションです。cuda版と比較して低速ですが、最近のそれなりのスペックのCPUであれば動きます。
 - win_cudaエディション：Windows向けのNVIDIAのGPUで動作するエディションです。GPUのハードウェアアクセラレーションにより高速に動きます。
-- macエディション：Mac向けのエディションです。
+- macエディション：Mac(Apple silicon(M1, M2, M3, etc))向けのエディションです。
 
 ## 使用方法
 - zipファイルを展開後、`start_http.bat`を実行してください。表示された、URLにブラウザでアクセスしてください。
