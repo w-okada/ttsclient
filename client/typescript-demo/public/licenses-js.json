@@ -26,13 +26,23 @@
       "licenseURL": ""
     },
     {
+      "name": "@humanfs/core@0.19.0",
+      "repository": "https://github.com/humanwhocodes/humanfs",
+      "licenseURL": ""
+    },
+    {
+      "name": "@humanfs/node@0.16.5",
+      "repository": "https://github.com/humanwhocodes/humanfs",
+      "licenseURL": ""
+    },
+    {
       "name": "@humanwhocodes/module-importer@1.0.1",
       "repository": "https://github.com/humanwhocodes/module-importer",
       "licenseURL": ""
     },
     {
-      "name": "@humanwhocodes/retry@0.3.0",
-      "repository": "https://github.com/humanwhocodes/retrier",
+      "name": "@humanwhocodes/retry@0.3.1",
+      "repository": "https://github.com/humanwhocodes/retry",
       "licenseURL": ""
     },
     {
@@ -76,8 +86,8 @@
       "licenseURL": ""
     },
     {
-      "name": "eslint-visitor-keys@4.0.0",
-      "repository": "https://github.com/eslint/eslint-visitor-keys",
+      "name": "eslint-visitor-keys@4.1.0",
+      "repository": "https://github.com/eslint/js",
       "licenseURL": ""
     },
     {
@@ -738,7 +748,7 @@
       "licenseURL": ""
     },
     {
-      "name": "@eslint/js@9.11.1",
+      "name": "@eslint/js@9.12.0",
       "repository": "https://github.com/eslint/eslint",
       "licenseURL": ""
     },
@@ -1813,7 +1823,7 @@
       "licenseURL": ""
     },
     {
-      "name": "eslint@9.11.1",
+      "name": "eslint@9.12.0",
       "repository": "https://github.com/eslint/eslint",
       "licenseURL": ""
     },
@@ -2285,11 +2295,6 @@
     {
       "name": "is-number@7.0.0",
       "repository": "https://github.com/jonschlinkert/is-number",
-      "licenseURL": ""
-    },
-    {
-      "name": "is-path-inside@3.0.3",
-      "repository": "https://github.com/sindresorhus/is-path-inside",
       "licenseURL": ""
     },
     {
@@ -3860,7 +3865,7 @@
       "licenseURL": ""
     },
     {
-      "name": "tts-client-typescript-client-lib@1.0.20",
+      "name": "tts-client-typescript-client-lib@1.0.21",
       "repository": "",
       "licenseURL": ""
     },
@@ -3937,13 +3942,13 @@
       "licenseURL": ""
     },
     {
-      "name": "eslint-scope@8.0.2",
-      "repository": "https://github.com/eslint/eslint-scope",
+      "name": "eslint-scope@8.1.0",
+      "repository": "https://github.com/eslint/js",
       "licenseURL": ""
     },
     {
-      "name": "espree@10.1.0",
-      "repository": "https://github.com/eslint/espree",
+      "name": "espree@10.2.0",
+      "repository": "https://github.com/eslint/js",
       "licenseURL": ""
     },
     {

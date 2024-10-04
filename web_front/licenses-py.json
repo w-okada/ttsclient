@@ -1,0 +1,1059 @@
+{
+  "GNU General Public License (GPL)": [
+    {
+      "name": "Distance",
+      "version": "0.1.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": "excluded by pyinstaller"
+    }
+  ],
+  "BSD License": [
+    {
+      "name": "Jinja2",
+      "version": "3.1.4",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "LangSegment",
+      "version": "0.3.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "MarkupSafe",
+      "version": "2.1.5",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "Pygments",
+      "version": "2.18.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "aioquic",
+      "version": "1.2.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "click",
+      "version": "8.1.7",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "contourpy",
+      "version": "1.3.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "decorator",
+      "version": "5.1.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "fsspec",
+      "version": "2024.9.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "idna",
+      "version": "3.10",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "joblib",
+      "version": "1.4.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.4.7",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "lazy_loader",
+      "version": "0.4",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "networkx",
+      "version": "3.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "numba",
+      "version": "0.60.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.4",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pooch",
+      "version": "1.8.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "psutil",
+      "version": "6.0.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "py3langid",
+      "version": "0.2.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pyasn1",
+      "version": "0.6.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pyasn1_modules",
+      "version": "0.4.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pycparser",
+      "version": "2.22",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pylsqpack",
+      "version": "0.3.18",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pyreadline3",
+      "version": "3.5.4",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "python-dotenv",
+      "version": "1.0.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "scikit-learn",
+      "version": "1.5.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "scipy",
+      "version": "1.14.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "soundfile",
+      "version": "0.12.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "starlette",
+      "version": "0.37.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "sympy",
+      "version": "1.13.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "threadpoolctl",
+      "version": "3.5.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "torch",
+      "version": "2.3.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.30.5",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "Apache Software License": [
+    {
+      "name": "OpenCC",
+      "version": "1.1.9",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "aiohttp",
+      "version": "3.10.8",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "aiosignal",
+      "version": "1.3.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "fire",
+      "version": "0.6.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "flatbuffers",
+      "version": "24.3.25",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "frozenlist",
+      "version": "1.4.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "g2p-en",
+      "version": "2.1.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "g2pk2",
+      "version": "0.0.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "g2pw",
+      "version": "0.1.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "huggingface-hub",
+      "version": "0.25.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "jamo",
+      "version": "0.4.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "msgpack",
+      "version": "1.1.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "multidict",
+      "version": "6.1.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "nltk",
+      "version": "3.9.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "onnxsim",
+      "version": "0.4.36",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "portpicker",
+      "version": "1.6.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pyOpenSSL",
+      "version": "24.2.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "python-multipart",
+      "version": "0.0.9",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pytorch-lightning",
+      "version": "2.4.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "regex",
+      "version": "2024.9.11",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "requests",
+      "version": "2.32.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "safetensors",
+      "version": "0.4.5",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "tokenizers",
+      "version": "0.19.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "torchmetrics",
+      "version": "1.4.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "transformers",
+      "version": "4.44.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "types-cffi",
+      "version": "1.16.0.20240331",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "types-pyOpenSSL",
+      "version": "24.1.0.20240722",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "types-pycurl",
+      "version": "7.45.3.20240421",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "types-requests",
+      "version": "2.32.0.20240914",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "types-setuptools",
+      "version": "75.1.0.20240917",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "types-toml",
+      "version": "0.10.8.20240310",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "types-tqdm",
+      "version": "4.66.0.20240417",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "wordsegment",
+      "version": "1.3.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "yarl",
+      "version": "1.13.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "MIT License": [
+    {
+      "name": "PyYAML",
+      "version": "6.0.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "annotated-types",
+      "version": "0.7.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "anyio",
+      "version": "4.6.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "attrs",
+      "version": "24.2.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "cffi",
+      "version": "1.17.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.3.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "clr-loader",
+      "version": "0.2.6",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "cn2an",
+      "version": "0.5.22",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "coloredlogs",
+      "version": "15.0.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "einops",
+      "version": "0.8.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "environs",
+      "version": "11.0.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "fastapi",
+      "version": "0.112.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "fastapi_cors",
+      "version": "0.0.6",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "fonttools",
+      "version": "4.54.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "h11",
+      "version": "0.14.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "humanfriendly",
+      "version": "10.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "inflect",
+      "version": "7.4.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.0.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "jieba_fast",
+      "version": "0.53",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "markdown-it-py",
+      "version": "3.0.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "marshmallow",
+      "version": "3.22.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "mdurl",
+      "version": "0.1.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "more-itertools",
+      "version": "10.5.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "ngrok",
+      "version": "1.4.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "onnxruntime",
+      "version": "1.19.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "onnxruntime-directml",
+      "version": "1.19.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "platformdirs",
+      "version": "4.3.6",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pluggy",
+      "version": "1.5.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "proces",
+      "version": "0.1.7",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pydantic",
+      "version": "2.9.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pydantic_core",
+      "version": "2.23.4",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pyjyutping",
+      "version": "1.0.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pyopenjtalk",
+      "version": "0.3.4",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.1.4",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pypinyin",
+      "version": "0.52.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pytest",
+      "version": "8.3.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "python-engineio",
+      "version": "4.9.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "python-socketio",
+      "version": "5.11.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "pythonnet",
+      "version": "3.0.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "rich",
+      "version": "13.9.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "service-identity",
+      "version": "24.1.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "simple-websocket",
+      "version": "1.0.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "six",
+      "version": "1.16.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "termcolor",
+      "version": "2.4.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "toml",
+      "version": "0.10.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "typeguard",
+      "version": "4.3.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "urllib3",
+      "version": "2.2.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "wsproto",
+      "version": "1.2.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "Other/Proprietary License; Python Software Foundation License": [
+    {
+      "name": "aiohappyeyeballs",
+      "version": "2.4.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "UNKNOWN": [
+    {
+      "name": "audioread",
+      "version": "3.0.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "simple_performance_timer",
+      "version": "0.1.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "ttsclient",
+      "version": "1.0.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "uuid",
+      "version": "1.30",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "Mozilla Public License 2.0 (MPL 2.0)": [
+    {
+      "name": "bidict",
+      "version": "0.23.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "certifi",
+      "version": "2024.8.30",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "Apache Software License; BSD License": [
+    {
+      "name": "cryptography",
+      "version": "43.0.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "packaging",
+      "version": "24.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "python-dateutil",
+      "version": "2.9.0.post0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "The Unlicense (Unlicense)": [
+    {
+      "name": "filelock",
+      "version": "3.16.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "Other/Proprietary License": [
+    {
+      "name": "intel-openmp",
+      "version": "2021.4.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "mkl",
+      "version": "2021.4.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "tbb",
+      "version": "2021.13.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "MIT": [
+    {
+      "name": "ko-pron",
+      "version": "1.3",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "ISC License (ISCL)": [
+    {
+      "name": "librosa",
+      "version": "0.10.2.post1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "Apache-2.0": [
+    {
+      "name": "lightning-utilities",
+      "version": "0.11.7",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "BSD": [
+    {
+      "name": "llvmlite",
+      "version": "0.43.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "Python Software Foundation License": [
+    {
+      "name": "matplotlib",
+      "version": "3.9.1.post1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.12.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "Apache License v2.0": [
+    {
+      "name": "onnx",
+      "version": "1.16.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "Historical Permission Notice and Disclaimer (HPND)": [
+    {
+      "name": "pillow",
+      "version": "10.4.0",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "3-Clause BSD License": [
+    {
+      "name": "protobuf",
+      "version": "5.28.2",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "Apache Software License; MIT License": [
+    {
+      "name": "sniffio",
+      "version": "1.3.1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "GNU Lesser General Public License v2 or later (LGPLv2+)": [
+    {
+      "name": "soxr",
+      "version": "0.5.0.post1",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ],
+  "MIT License; Mozilla Public License 2.0 (MPL 2.0)": [
+    {
+      "name": "tqdm",
+      "version": "4.66.5",
+      "licenseURL": "http://SHOULD_BE_WRITTEN",
+      "repositry": "",
+      "note": ""
+    }
+  ]
+}

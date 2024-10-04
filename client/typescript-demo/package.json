@@ -31,7 +31,7 @@
     "babel-loader": "^9.2.1",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
-    "eslint": "^9.11.1",
+    "eslint": "^9.12.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.1",
@@ -64,6 +64,6 @@
     "react-i18next": "^15.0.2",
     "react-icons": "^5.3.0",
     "react-toastify": "^10.0.5",
-    "tts-client-typescript-client-lib": "^1.0.20"
+    "tts-client-typescript-client-lib": "^1.0.21"
   }
 }
