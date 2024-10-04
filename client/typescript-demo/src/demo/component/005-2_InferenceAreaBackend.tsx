@@ -111,7 +111,7 @@ export const InferenceAreaBackend = () => {
         // DirectMLは次のようなエラーが出るので使えなさそう。
         // DirectML scatter doesn't allow partially modified dimensions. Please update the dimension so that the indices and input only differ in the provided dimension.
 
-        if (["cuda", "colab", "dml"].includes(guiSetting.edition || "") == false) {
+        if (["cuda", "colab", "dml", ""].includes(guiSetting.edition || "") == false) {
             return <></>
         }
 
