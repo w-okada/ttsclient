@@ -1,0 +1,17 @@
+__pycache__
+*.pyc
+build
+dist
+
+/modules/
+/models/*
+/upload_dir/
+/voice_characters
+ttsclient.log
+ssl_key/*
+node_modules
+tts_config.json
+ttsclient/tts/tts_manager/text/G2PWModel/
+ext_lib/*
+eunjeon-0.4.0-cp312-cp312-win_amd64.zip
+G2PWModel_1.1.zip
