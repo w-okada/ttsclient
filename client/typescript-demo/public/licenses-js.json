@@ -11,12 +11,17 @@
       "licenseURL": ""
     },
     {
+      "name": "@eslint/core@0.6.0",
+      "repository": "https://github.com/eslint/rewrite",
+      "licenseURL": ""
+    },
+    {
       "name": "@eslint/object-schema@2.1.4",
       "repository": "https://github.com/eslint/rewrite",
       "licenseURL": ""
     },
     {
-      "name": "@eslint/plugin-kit@0.1.0",
+      "name": "@eslint/plugin-kit@0.2.0",
       "repository": "https://github.com/eslint/rewrite",
       "licenseURL": ""
     },
@@ -123,47 +128,47 @@
   ],
   "MIT": [
     {
-      "name": "@babel/code-frame@7.24.7",
+      "name": "@babel/code-frame@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/compat-data@7.25.4",
+      "name": "@babel/compat-data@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/core@7.25.2",
+      "name": "@babel/core@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/generator@7.25.5",
+      "name": "@babel/generator@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-annotate-as-pure@7.24.7",
+      "name": "@babel/helper-annotate-as-pure@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-builder-binary-assignment-operator-visitor@7.24.7",
+      "name": "@babel/helper-builder-binary-assignment-operator-visitor@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-compilation-targets@7.25.2",
+      "name": "@babel/helper-compilation-targets@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-create-class-features-plugin@7.25.4",
+      "name": "@babel/helper-create-class-features-plugin@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-create-regexp-features-plugin@7.25.2",
+      "name": "@babel/helper-create-regexp-features-plugin@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
@@ -173,107 +178,107 @@
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-member-expression-to-functions@7.24.8",
+      "name": "@babel/helper-member-expression-to-functions@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-module-imports@7.24.7",
+      "name": "@babel/helper-module-imports@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-module-transforms@7.25.2",
+      "name": "@babel/helper-module-transforms@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-optimise-call-expression@7.24.7",
+      "name": "@babel/helper-optimise-call-expression@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-plugin-utils@7.24.8",
+      "name": "@babel/helper-plugin-utils@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-remap-async-to-generator@7.25.0",
+      "name": "@babel/helper-remap-async-to-generator@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-replace-supers@7.25.0",
+      "name": "@babel/helper-replace-supers@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-simple-access@7.24.7",
+      "name": "@babel/helper-simple-access@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-skip-transparent-expression-wrappers@7.24.7",
+      "name": "@babel/helper-skip-transparent-expression-wrappers@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-string-parser@7.24.8",
+      "name": "@babel/helper-string-parser@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-validator-identifier@7.24.7",
+      "name": "@babel/helper-validator-identifier@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-validator-option@7.24.8",
+      "name": "@babel/helper-validator-option@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helper-wrap-function@7.25.0",
+      "name": "@babel/helper-wrap-function@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/helpers@7.25.0",
+      "name": "@babel/helpers@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/highlight@7.24.7",
+      "name": "@babel/highlight@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/parser@7.25.4",
+      "name": "@babel/parser@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-bugfix-firefox-class-in-computed-class-key@7.25.3",
+      "name": "@babel/plugin-bugfix-firefox-class-in-computed-class-key@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-bugfix-safari-class-field-initializer-scope@7.25.0",
+      "name": "@babel/plugin-bugfix-safari-class-field-initializer-scope@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@7.25.0",
+      "name": "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@7.24.7",
+      "name": "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly@7.25.0",
+      "name": "@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
@@ -308,12 +313,12 @@
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-syntax-import-assertions@7.24.7",
+      "name": "@babel/plugin-syntax-import-assertions@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-syntax-import-attributes@7.24.7",
+      "name": "@babel/plugin-syntax-import-attributes@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
@@ -328,7 +333,7 @@
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-syntax-jsx@7.24.7",
+      "name": "@babel/plugin-syntax-jsx@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
@@ -373,7 +378,7 @@
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-syntax-typescript@7.24.7",
+      "name": "@babel/plugin-syntax-typescript@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
@@ -383,282 +388,282 @@
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-arrow-functions@7.24.7",
+      "name": "@babel/plugin-transform-arrow-functions@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-async-generator-functions@7.25.4",
+      "name": "@babel/plugin-transform-async-generator-functions@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-async-to-generator@7.24.7",
+      "name": "@babel/plugin-transform-async-to-generator@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-block-scoped-functions@7.24.7",
+      "name": "@babel/plugin-transform-block-scoped-functions@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-block-scoping@7.25.0",
+      "name": "@babel/plugin-transform-block-scoping@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-class-properties@7.25.4",
+      "name": "@babel/plugin-transform-class-properties@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-class-static-block@7.24.7",
+      "name": "@babel/plugin-transform-class-static-block@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-classes@7.25.4",
+      "name": "@babel/plugin-transform-classes@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-computed-properties@7.24.7",
+      "name": "@babel/plugin-transform-computed-properties@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-destructuring@7.24.8",
+      "name": "@babel/plugin-transform-destructuring@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-dotall-regex@7.24.7",
+      "name": "@babel/plugin-transform-dotall-regex@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-duplicate-keys@7.24.7",
+      "name": "@babel/plugin-transform-duplicate-keys@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-duplicate-named-capturing-groups-regex@7.25.0",
+      "name": "@babel/plugin-transform-duplicate-named-capturing-groups-regex@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-dynamic-import@7.24.7",
+      "name": "@babel/plugin-transform-dynamic-import@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-exponentiation-operator@7.24.7",
+      "name": "@babel/plugin-transform-exponentiation-operator@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-export-namespace-from@7.24.7",
+      "name": "@babel/plugin-transform-export-namespace-from@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-for-of@7.24.7",
+      "name": "@babel/plugin-transform-for-of@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-function-name@7.25.1",
+      "name": "@babel/plugin-transform-function-name@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-json-strings@7.24.7",
+      "name": "@babel/plugin-transform-json-strings@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-literals@7.25.2",
+      "name": "@babel/plugin-transform-literals@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-logical-assignment-operators@7.24.7",
+      "name": "@babel/plugin-transform-logical-assignment-operators@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-member-expression-literals@7.24.7",
+      "name": "@babel/plugin-transform-member-expression-literals@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-modules-amd@7.24.7",
+      "name": "@babel/plugin-transform-modules-amd@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-modules-commonjs@7.24.8",
+      "name": "@babel/plugin-transform-modules-commonjs@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-modules-systemjs@7.25.0",
+      "name": "@babel/plugin-transform-modules-systemjs@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-modules-umd@7.24.7",
+      "name": "@babel/plugin-transform-modules-umd@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-named-capturing-groups-regex@7.24.7",
+      "name": "@babel/plugin-transform-named-capturing-groups-regex@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-new-target@7.24.7",
+      "name": "@babel/plugin-transform-new-target@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-nullish-coalescing-operator@7.24.7",
+      "name": "@babel/plugin-transform-nullish-coalescing-operator@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-numeric-separator@7.24.7",
+      "name": "@babel/plugin-transform-numeric-separator@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-object-rest-spread@7.24.7",
+      "name": "@babel/plugin-transform-object-rest-spread@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-object-super@7.24.7",
+      "name": "@babel/plugin-transform-object-super@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-optional-catch-binding@7.24.7",
+      "name": "@babel/plugin-transform-optional-catch-binding@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-optional-chaining@7.24.8",
+      "name": "@babel/plugin-transform-optional-chaining@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-parameters@7.24.7",
+      "name": "@babel/plugin-transform-parameters@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-private-methods@7.25.4",
+      "name": "@babel/plugin-transform-private-methods@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-private-property-in-object@7.24.7",
+      "name": "@babel/plugin-transform-private-property-in-object@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-property-literals@7.24.7",
+      "name": "@babel/plugin-transform-property-literals@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-react-display-name@7.24.7",
+      "name": "@babel/plugin-transform-react-display-name@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-react-jsx-development@7.24.7",
+      "name": "@babel/plugin-transform-react-jsx-development@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-react-jsx@7.25.2",
+      "name": "@babel/plugin-transform-react-jsx@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-react-pure-annotations@7.24.7",
+      "name": "@babel/plugin-transform-react-pure-annotations@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-regenerator@7.24.7",
+      "name": "@babel/plugin-transform-regenerator@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-reserved-words@7.24.7",
+      "name": "@babel/plugin-transform-reserved-words@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-runtime@7.25.4",
+      "name": "@babel/plugin-transform-runtime@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-shorthand-properties@7.24.7",
+      "name": "@babel/plugin-transform-shorthand-properties@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-spread@7.24.7",
+      "name": "@babel/plugin-transform-spread@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-sticky-regex@7.24.7",
+      "name": "@babel/plugin-transform-sticky-regex@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-template-literals@7.24.7",
+      "name": "@babel/plugin-transform-template-literals@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-typeof-symbol@7.24.8",
+      "name": "@babel/plugin-transform-typeof-symbol@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-typescript@7.25.2",
+      "name": "@babel/plugin-transform-typescript@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-unicode-escapes@7.24.7",
+      "name": "@babel/plugin-transform-unicode-escapes@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-unicode-property-regex@7.24.7",
+      "name": "@babel/plugin-transform-unicode-property-regex@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-unicode-regex@7.24.7",
+      "name": "@babel/plugin-transform-unicode-regex@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/plugin-transform-unicode-sets-regex@7.25.4",
+      "name": "@babel/plugin-transform-unicode-sets-regex@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/preset-env@7.25.4",
+      "name": "@babel/preset-env@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
@@ -668,37 +673,32 @@
       "licenseURL": ""
     },
     {
-      "name": "@babel/preset-react@7.24.7",
+      "name": "@babel/preset-react@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/preset-typescript@7.24.7",
+      "name": "@babel/preset-typescript@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/regjsgen@0.8.0",
-      "repository": "https://github.com/bnjmnt4n/regjsgen",
-      "licenseURL": ""
-    },
-    {
-      "name": "@babel/runtime@7.25.6",
+      "name": "@babel/runtime@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/template@7.25.0",
+      "name": "@babel/template@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/traverse@7.25.4",
+      "name": "@babel/traverse@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
     {
-      "name": "@babel/types@7.25.4",
+      "name": "@babel/types@7.25.7",
       "repository": "https://github.com/babel/babel",
       "licenseURL": ""
     },
@@ -738,7 +738,7 @@
       "licenseURL": ""
     },
     {
-      "name": "@eslint/js@9.10.0",
+      "name": "@eslint/js@9.11.1",
       "repository": "https://github.com/eslint/eslint",
       "licenseURL": ""
     },
@@ -948,7 +948,7 @@
       "licenseURL": ""
     },
     {
-      "name": "@types/react@18.3.5",
+      "name": "@types/react@18.3.11",
       "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
       "licenseURL": ""
     },
@@ -993,42 +993,42 @@
       "licenseURL": ""
     },
     {
-      "name": "@typescript-eslint/eslint-plugin@8.5.0",
+      "name": "@typescript-eslint/eslint-plugin@8.8.0",
       "repository": "https://github.com/typescript-eslint/typescript-eslint",
       "licenseURL": ""
     },
     {
-      "name": "@typescript-eslint/scope-manager@8.5.0",
+      "name": "@typescript-eslint/scope-manager@8.8.0",
       "repository": "https://github.com/typescript-eslint/typescript-eslint",
       "licenseURL": ""
     },
     {
-      "name": "@typescript-eslint/type-utils@8.5.0",
+      "name": "@typescript-eslint/type-utils@8.8.0",
       "repository": "https://github.com/typescript-eslint/typescript-eslint",
       "licenseURL": ""
     },
     {
-      "name": "@typescript-eslint/types@8.5.0",
+      "name": "@typescript-eslint/types@8.8.0",
       "repository": "https://github.com/typescript-eslint/typescript-eslint",
       "licenseURL": ""
     },
     {
-      "name": "@typescript-eslint/utils@8.5.0",
+      "name": "@typescript-eslint/utils@8.8.0",
       "repository": "https://github.com/typescript-eslint/typescript-eslint",
       "licenseURL": ""
     },
     {
-      "name": "@typescript-eslint/visitor-keys@8.5.0",
+      "name": "@typescript-eslint/visitor-keys@8.8.0",
       "repository": "https://github.com/typescript-eslint/typescript-eslint",
       "licenseURL": ""
     },
     {
-      "name": "@vanilla-extract/babel-plugin-debug-ids@1.0.6",
+      "name": "@vanilla-extract/babel-plugin-debug-ids@1.1.0",
       "repository": "https://github.com/vanilla-extract-css/vanilla-extract",
       "licenseURL": ""
     },
     {
-      "name": "@vanilla-extract/css@1.15.5",
+      "name": "@vanilla-extract/css@1.16.0",
       "repository": "https://github.com/vanilla-extract-css/vanilla-extract",
       "licenseURL": ""
     },
@@ -1038,7 +1038,7 @@
       "licenseURL": ""
     },
     {
-      "name": "@vanilla-extract/integration@7.1.9",
+      "name": "@vanilla-extract/integration@7.1.10",
       "repository": "https://github.com/vanilla-extract-css/vanilla-extract",
       "licenseURL": ""
     },
@@ -1058,7 +1058,7 @@
       "licenseURL": ""
     },
     {
-      "name": "@vanilla-extract/webpack-plugin@2.3.13",
+      "name": "@vanilla-extract/webpack-plugin@2.3.14",
       "repository": "https://github.com/vanilla-extract-css/vanilla-extract",
       "licenseURL": ""
     },
@@ -1263,7 +1263,7 @@
       "licenseURL": ""
     },
     {
-      "name": "babel-loader@9.1.3",
+      "name": "babel-loader@9.2.1",
       "repository": "https://github.com/babel/babel-loader",
       "licenseURL": ""
     },
@@ -1328,7 +1328,7 @@
       "licenseURL": ""
     },
     {
-      "name": "browserslist@4.23.3",
+      "name": "browserslist@4.24.0",
       "repository": "https://github.com/browserslist/browserslist",
       "licenseURL": ""
     },
@@ -1508,7 +1508,7 @@
       "licenseURL": ""
     },
     {
-      "name": "core-js-compat@3.38.0",
+      "name": "core-js-compat@3.38.1",
       "repository": "https://github.com/zloirock/core-js",
       "licenseURL": ""
     },
@@ -1693,8 +1693,8 @@
       "licenseURL": ""
     },
     {
-      "name": "engine.io-client@6.5.4",
-      "repository": "https://github.com/socketio/engine.io-client",
+      "name": "engine.io-client@6.6.1",
+      "repository": "https://github.com/socketio/socket.io",
       "licenseURL": ""
     },
     {
@@ -1803,7 +1803,7 @@
       "licenseURL": ""
     },
     {
-      "name": "eslint-plugin-react@7.35.2",
+      "name": "eslint-plugin-react@7.37.1",
       "repository": "https://github.com/jsx-eslint/eslint-plugin-react",
       "licenseURL": ""
     },
@@ -1813,7 +1813,7 @@
       "licenseURL": ""
     },
     {
-      "name": "eslint@9.10.0",
+      "name": "eslint@9.11.1",
       "repository": "https://github.com/eslint/eslint",
       "licenseURL": ""
     },
@@ -2123,7 +2123,7 @@
       "licenseURL": ""
     },
     {
-      "name": "i18next-http-backend@2.6.1",
+      "name": "i18next-http-backend@2.6.2",
       "repository": "https://github.com/i18next/i18next-http-backend",
       "licenseURL": ""
     },
@@ -2403,12 +2403,7 @@
       "licenseURL": ""
     },
     {
-      "name": "jsesc@0.5.0",
-      "repository": "https://github.com/mathiasbynens/jsesc",
-      "licenseURL": ""
-    },
-    {
-      "name": "jsesc@2.5.2",
+      "name": "jsesc@3.0.2",
       "repository": "https://github.com/mathiasbynens/jsesc",
       "licenseURL": ""
     },
@@ -2973,7 +2968,7 @@
       "licenseURL": ""
     },
     {
-      "name": "react-i18next@15.0.1",
+      "name": "react-i18next@15.0.2",
       "repository": "https://github.com/i18next/react-i18next",
       "licenseURL": ""
     },
@@ -3028,7 +3023,7 @@
       "licenseURL": ""
     },
     {
-      "name": "regenerate-unicode-properties@10.1.1",
+      "name": "regenerate-unicode-properties@10.2.0",
       "repository": "https://github.com/mathiasbynens/regenerate-unicode-properties",
       "licenseURL": ""
     },
@@ -3053,8 +3048,13 @@
       "licenseURL": ""
     },
     {
-      "name": "regexpu-core@5.3.2",
+      "name": "regexpu-core@6.1.1",
       "repository": "https://github.com/mathiasbynens/regexpu-core",
+      "licenseURL": ""
+    },
+    {
+      "name": "regjsgen@0.8.0",
+      "repository": "https://github.com/bnjmnt4n/regjsgen",
       "licenseURL": ""
     },
     {
@@ -3243,8 +3243,8 @@
       "licenseURL": ""
     },
     {
-      "name": "socket.io-client@4.7.5",
-      "repository": "https://github.com/socketio/socket.io-client",
+      "name": "socket.io-client@4.8.0",
+      "repository": "https://github.com/socketio/socket.io",
       "licenseURL": ""
     },
     {
@@ -3488,7 +3488,7 @@
       "licenseURL": ""
     },
     {
-      "name": "unicode-canonical-property-names-ecmascript@2.0.0",
+      "name": "unicode-canonical-property-names-ecmascript@2.0.1",
       "repository": "https://github.com/mathiasbynens/unicode-canonical-property-names-ecmascript",
       "licenseURL": ""
     },
@@ -3498,7 +3498,7 @@
       "licenseURL": ""
     },
     {
-      "name": "unicode-match-property-value-ecmascript@2.1.0",
+      "name": "unicode-match-property-value-ecmascript@2.2.0",
       "repository": "https://github.com/mathiasbynens/unicode-match-property-value-ecmascript",
       "licenseURL": ""
     },
@@ -3598,7 +3598,7 @@
       "licenseURL": ""
     },
     {
-      "name": "webpack@5.94.0",
+      "name": "webpack@5.95.0",
       "repository": "https://github.com/webpack/webpack",
       "licenseURL": ""
     },
@@ -3658,7 +3658,7 @@
       "licenseURL": ""
     },
     {
-      "name": "xmlhttprequest-ssl@2.0.0",
+      "name": "xmlhttprequest-ssl@2.1.1",
       "repository": "https://github.com/mjwwit/node-XMLHttpRequest",
       "licenseURL": ""
     },
@@ -3695,7 +3695,7 @@
       "licenseURL": ""
     },
     {
-      "name": "electron-to-chromium@1.5.6",
+      "name": "electron-to-chromium@1.5.32",
       "repository": "https://github.com/kilian/electron-to-chromium",
       "licenseURL": ""
     },
@@ -3860,7 +3860,7 @@
       "licenseURL": ""
     },
     {
-      "name": "tts-client-typescript-client-lib@1.0.19",
+      "name": "tts-client-typescript-client-lib@1.0.20",
       "repository": "",
       "licenseURL": ""
     },
@@ -3887,12 +3887,12 @@
   ],
   "BSD-2-Clause": [
     {
-      "name": "@typescript-eslint/parser@8.5.0",
+      "name": "@typescript-eslint/parser@8.8.0",
       "repository": "https://github.com/typescript-eslint/typescript-eslint",
       "licenseURL": ""
     },
     {
-      "name": "@typescript-eslint/typescript-estree@8.5.0",
+      "name": "@typescript-eslint/typescript-estree@8.8.0",
       "repository": "https://github.com/typescript-eslint/typescript-eslint",
       "licenseURL": ""
     },
@@ -3982,7 +3982,7 @@
       "licenseURL": ""
     },
     {
-      "name": "regjsparser@0.9.1",
+      "name": "regjsparser@0.11.0",
       "repository": "https://github.com/jviereck/regjsparser",
       "licenseURL": ""
     },
@@ -4053,7 +4053,7 @@
   ],
   "CC-BY-4.0": [
     {
-      "name": "caniuse-lite@1.0.30001651",
+      "name": "caniuse-lite@1.0.30001667",
       "repository": "https://github.com/browserslist/caniuse-lite",
       "licenseURL": ""
     }
