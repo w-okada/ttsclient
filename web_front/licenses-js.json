@@ -813,7 +813,7 @@
       "licenseURL": ""
     },
     {
-      "name": "@rollup/rollup-win32-x64-msvc@4.21.0",
+      "name": "@rollup/rollup-win32-x64-msvc@4.24.0",
       "repository": "https://github.com/rollup/rollup",
       "licenseURL": ""
     },
@@ -858,7 +858,7 @@
       "licenseURL": ""
     },
     {
-      "name": "@types/estree@1.0.5",
+      "name": "@types/estree@1.0.6",
       "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
       "licenseURL": ""
     },
@@ -1303,7 +1303,7 @@
       "licenseURL": ""
     },
     {
-      "name": "body-parser@1.20.2",
+      "name": "body-parser@1.20.3",
       "repository": "https://github.com/expressjs/body-parser",
       "licenseURL": ""
     },
@@ -1688,6 +1688,11 @@
       "licenseURL": ""
     },
     {
+      "name": "encodeurl@2.0.0",
+      "repository": "https://github.com/pillarjs/encodeurl",
+      "licenseURL": ""
+    },
+    {
       "name": "engine.io-client@6.5.4",
       "repository": "https://github.com/socketio/engine.io-client",
       "licenseURL": ""
@@ -1833,7 +1838,7 @@
       "licenseURL": ""
     },
     {
-      "name": "express@4.19.2",
+      "name": "express@4.21.0",
       "repository": "https://github.com/expressjs/express",
       "licenseURL": ""
     },
@@ -1878,7 +1883,7 @@
       "licenseURL": ""
     },
     {
-      "name": "finalhandler@1.2.0",
+      "name": "finalhandler@1.3.1",
       "repository": "https://github.com/pillarjs/finalhandler",
       "licenseURL": ""
     },
@@ -2538,8 +2543,8 @@
       "licenseURL": ""
     },
     {
-      "name": "merge-descriptors@1.0.1",
-      "repository": "https://github.com/component/merge-descriptors",
+      "name": "merge-descriptors@1.0.3",
+      "repository": "https://github.com/sindresorhus/merge-descriptors",
       "licenseURL": ""
     },
     {
@@ -2558,7 +2563,7 @@
       "licenseURL": ""
     },
     {
-      "name": "micromatch@4.0.7",
+      "name": "micromatch@4.0.8",
       "repository": "https://github.com/micromatch/micromatch",
       "licenseURL": ""
     },
@@ -2818,8 +2823,8 @@
       "licenseURL": ""
     },
     {
-      "name": "path-to-regexp@0.1.7",
-      "repository": "https://github.com/component/path-to-regexp",
+      "name": "path-to-regexp@0.1.10",
+      "repository": "https://github.com/pillarjs/path-to-regexp",
       "licenseURL": ""
     },
     {
@@ -2888,7 +2893,7 @@
       "licenseURL": ""
     },
     {
-      "name": "postcss@8.4.41",
+      "name": "postcss@8.4.47",
       "repository": "https://github.com/postcss/postcss",
       "licenseURL": ""
     },
@@ -3108,7 +3113,7 @@
       "licenseURL": ""
     },
     {
-      "name": "rollup@4.21.0",
+      "name": "rollup@4.24.0",
       "repository": "https://github.com/rollup/rollup",
       "licenseURL": ""
     },
@@ -3173,7 +3178,7 @@
       "licenseURL": ""
     },
     {
-      "name": "send@0.18.0",
+      "name": "send@0.19.0",
       "repository": "https://github.com/pillarjs/send",
       "licenseURL": ""
     },
@@ -3183,7 +3188,7 @@
       "licenseURL": ""
     },
     {
-      "name": "serve-static@1.15.0",
+      "name": "serve-static@1.16.2",
       "repository": "https://github.com/expressjs/serve-static",
       "licenseURL": ""
     },
@@ -3548,7 +3553,7 @@
       "licenseURL": ""
     },
     {
-      "name": "vite@5.4.2",
+      "name": "vite@5.4.8",
       "repository": "https://github.com/vitejs/vite",
       "licenseURL": ""
     },
@@ -3800,7 +3805,7 @@
       "licenseURL": ""
     },
     {
-      "name": "picocolors@1.0.1",
+      "name": "picocolors@1.1.0",
       "repository": "https://github.com/alexeyraspopov/picocolors",
       "licenseURL": ""
     },
@@ -4019,7 +4024,7 @@
       "licenseURL": ""
     },
     {
-      "name": "qs@6.11.0",
+      "name": "qs@6.13.0",
       "repository": "https://github.com/ljharb/qs",
       "licenseURL": ""
     },
@@ -4029,7 +4034,7 @@
       "licenseURL": ""
     },
     {
-      "name": "source-map-js@1.2.0",
+      "name": "source-map-js@1.2.1",
       "repository": "https://github.com/7rulnik/source-map-js",
       "licenseURL": ""
     },
