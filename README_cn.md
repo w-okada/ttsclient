@@ -56,7 +56,36 @@ https://github.com/user-attachments/assets/cdf33212-3077-4ff0-9fa2-8635ee5417f4
 #### 注册参考音频和文本
 
 在参考音频选择区域选择未注册的插槽进行注册。
+## 从存储库启动（高级）
 
+```
+$ git clone https://github.com/w-okada/ttsclient.git
+$ cd ttsclient/
+$ poetry install
+$ poetry run main cui
+```
+
+如果需要从远程访问，请添加 `--https true`。
+
+```
+$ poetry run main cui --https true
+```
+
+### 如果使用 CUDA
+请替换模块。
+
+```
+$ poetry add onnxruntime-gpu==1.19.2
+$ poetry remove torch
+$ poetry add torch==2.3.1 --source torch_cuda12
+```
+
+### 如果使用 DirectML
+请替换模块。
+
+```
+$ poetry add onnxruntime-directml==1.19.2
+```
 
 ## Acknowledgements
 - [JVNV corpus](https://sites.google.com/site/shinnosuketakamichi/research-topics/jvnv_corpus)

@@ -54,6 +54,35 @@ GPT-SoVITS에서는 모델과 참조 음성 및 참조 텍스트를 선택한 �
 #### 참조 음성, 텍스트 등록
 
 참조 음성 선택 영역에서 미등록 슬롯을 선택하여 등록하십시오.
+## 리포지토리에서 시작하기 (고급)
 
+```
+$ git clone https://github.com/w-okada/ttsclient.git
+$ cd ttsclient/
+$ poetry install
+$ poetry run main cui
+```
+
+원격에서 접근할 경우, `--https true`를 추가하세요.
+
+```
+$ poetry run main cui --https true
+```
+
+### CUDA를 사용하는 경우
+모듈을 교체하세요.
+
+```
+$ poetry add onnxruntime-gpu==1.19.2
+$ poetry remove torch
+$ poetry add torch==2.3.1 --source torch_cuda12
+```
+
+### DirectML을 사용하는 경우
+모듈을 교체하세요.
+
+```
+$ poetry add onnxruntime-directml==1.19.2
+```
 ## Acknowledgements
 - [JVNV corpus](https://sites.google.com/site/shinnosuketakamichi/research-topics/jvnv_corpus)

@@ -55,6 +55,34 @@ GPT-SoVITSでは、モデルと参照音声と参照テキストを選択して�
 
 参照音声選択エリアで未登録のスロットを選択して登録してください。
 
+## リポジトリからの起動(Advanced)
+
+```
+$ git clone https://github.com/w-okada/ttsclient.git
+$ cd ttsclient/
+$ poetry install
+$ poetry run main cui
+---
+
+リモートからアクセスする場合は`--https true`を付与してください。
+---
+$ poetry run main cui --https true
+```
+
+### cudaを使用する場合
+モジュールを入れ替えてください。
+```
+$ poetry add onnxruntime-gpu==1.19.2
+$ poetry remove torch
+$ poetry add torch==2.3.1 --source torch_cuda12
+```
+
+### directmlを使用する場合
+モジュールを入れ替えてください。
+```
+$ poetry add onnxruntime-directml==1.19.2
+```
+
+
 ## Acknowledgements
 - [JVNVコーパス](https://sites.google.com/site/shinnosuketakamichi/research-topics/jvnv_corpus)
-
