@@ -88,14 +88,14 @@ REGISTERD_MODULES: list[ModuleInfo] = [
         id="GPT-SoVITS_FT_JVNV_semantice",
         display_name="PT-SoVITS_FT_JVNV_semantice",
         url="https://huggingface.co/wok000/gpt-sovits-models/resolve/main/fine-tune-by-JVNV-F1/jvnv_f1-e15.ckpt",
-        save_to=UPLOAD_DIR / Path("jvnv_f1_e8_s480.pth"),
+        save_to=UPLOAD_DIR / Path("jvnv_f1-e15.ckpt"),
         hash="2ea6105d2dab14a0df28dc4d79077cf06ea41e28ff72cf47914fe78751ffe910",
     ),
     ModuleInfo(
         id="GPT-SoVITS_FT_JVNV_synthesizer",
         display_name="GPT-SoVITS_FT_JVNV_synthesize",
         url="https://huggingface.co/wok000/gpt-sovits-models/resolve/main/fine-tune-by-JVNV-F1/jvnv_f1_e8_s480.pth",
-        save_to=UPLOAD_DIR / Path("jvnv_f1-e15.ckpt"),
+        save_to=UPLOAD_DIR / Path("jvnv_f1_e8_s480.pth"),
         hash="d47a7070039a3327b760f27122b9ccc9d3bbd5a59b72ec1b5ed9c1ae75194b6b",
     ),
     ModuleInfo(
