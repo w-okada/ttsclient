@@ -45,7 +45,8 @@ torch = "2.3.1"
 onnx = "1.16.2"
 torchmetrics = "1.4.2"
 onnxsim = "0.4.36"
-onnxruntime-directml = "1.19.2"
+onnxruntime ="1.19.2"
+
 
 [tool.poetry.group.dev.dependencies]
 pip-licenses = "^4.4.0"
