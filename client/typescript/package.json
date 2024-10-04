@@ -1,7 +1,7 @@
 {
   "name": "tts-client-typescript-client-lib",
   "type": "module",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
