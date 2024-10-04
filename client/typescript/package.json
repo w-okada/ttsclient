@@ -1,0 +1,39 @@
+{
+  "name": "tts-client-typescript-client-lib",
+  "type": "module",
+  "version": "1.0.19",
+  "description": "",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rimraf dist/",
+    "webpack:dev": "webpack --config webpack.dev.cjs",
+    "webpack:prod": "webpack --config webpack.prod.cjs",
+    "build:dev": "npm-run-all clean webpack:dev",
+    "build:prod": "npm-run-all clean webpack:prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.5.0",
+    "@typescript-eslint/parser": "^8.5.0",
+    "eslint": "^9.10.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.35.2",
+    "eslint-webpack-plugin": "^4.2.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.3.3",
+    "raw-loader": "^4.0.2",
+    "rimraf": "^6.0.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.2",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "idb": "^8.0.0",
+    "socket.io-client": "^4.7.5"
+  }
+}

@@ -1,0 +1,9 @@
+src
+worklet
+node_modules
+webpack.*
+tsconfig.*
+.eslintrc.js
+.prettierrc
+.npmignore
+package-lock.json
