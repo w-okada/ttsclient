@@ -23,7 +23,7 @@ copy licenses_by_license.json web_front\licenses-py.json
 
 @REM バージョン番号のインクリメントとタグの作成
 poetry version patch
-poetry run generate_version_file
+poetry run generate_version_file --alpha False
 git add pyproject.toml
 git add ttsclient\version.txt
 git add web_front\
