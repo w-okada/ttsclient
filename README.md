@@ -42,6 +42,7 @@ https://youtu.be/Fy7qifNB5T0
 - v.1.0.21
   - new feature:
     - zundamon-speech-webuiの[ずんだもん](https://github.com/zunzun999/zundamon-speech-webui)をサンプルからダウンロードできるようになりました。
+    - Documentation improvements.
 
 - v.1.0.20
   - new feature:
