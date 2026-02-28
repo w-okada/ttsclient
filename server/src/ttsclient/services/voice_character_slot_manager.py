@@ -1,6 +1,7 @@
 import io
 
 from ttsclient.models.common import MoveModelParam, SetIconParam
+from ttsclient.models.tts import OpenJTalkUserDictRecord
 from ttsclient.models.voice_character import (
     ReferenceVoice,
     ReferenceVoiceImportParam,
@@ -77,8 +78,8 @@ class VoiceCharacterSlotManager:
         # TODO: 参照音声アイコン設定
         pass
 
-    def add_user_dict_record(self, index: int, param: object) -> None:
-        # TODO: ユーザー辞書レコード追加 (OpenJTalkUserDictRecord はステップ6で定義)
+    def add_user_dict_record(self, index: int, param: OpenJTalkUserDictRecord) -> None:
+        # TODO: ユーザー辞書レコード追加
         pass
 
     def zip_and_download(self, index: int) -> tuple[str, io.BytesIO]:

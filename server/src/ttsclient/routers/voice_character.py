@@ -2,6 +2,7 @@ from fastapi import APIRouter, Response
 
 from ttsclient.const import UPLOAD_DIR
 from ttsclient.models.common import MoveModelParam, SetIconParam
+from ttsclient.models.tts import OpenJTalkUserDictRecord
 from ttsclient.models.voice_character import (
     ReferenceVoice,
     ReferenceVoiceImportParam,
@@ -122,8 +123,7 @@ async def set_voice_icon_file(index: int, voice_index: int, param: SetIconParam)
 
 
 @router.post("/slots/{index}/voices/operation/add_user_dict_record")
-async def add_user_dict_record(index: int, param: dict):
-    # OpenJTalkUserDictRecord はステップ6で正式な型に置き換え
+async def add_user_dict_record(index: int, param: OpenJTalkUserDictRecord):
     manager = VoiceCharacterSlotManager.get_instance()
     manager.add_user_dict_record(index, param)
     return {"message": "ok"}
