@@ -104,3 +104,14 @@ MAX_REFERENCE_VOICE_SLOT_INDEX = 100
 SLOT_PARAM_FILE = "params.json"
 VOICE_CHARACTER_SLOT_PARAM_FILE = "params.json"
 USER_DICT_CSV_FILE = "user_dict.csv"
+
+# v1 互換エイリアス（推論エンジンコード用）
+_PROJECT_ROOT = Path(__file__).resolve().parents[3]
+ModelDir = MODEL_DIR
+VoiceCharacterDir = VOICE_CHARACTER_DIR
+ModuleDir = MODULE_DIR
+LOGGER_NAME = "ttsclient"
+GPT_SOVITS_USER_DICT_PATH = _PROJECT_ROOT / "third_party" / "GPT-SoVITS" / "GPT_SoVITS" / "text" / "ja_userdic" / "userdict.csv"
+OPENJTALK_USER_DICT_CSV_FILE = "user_dict.csv"
+OPENJTALK_USER_DICT_TEMP_CSV_FILE = "user_dict_tmp.csv"
+OPENJTALK_USER_DICT_FILE = "user_dict.dict"

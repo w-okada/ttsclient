@@ -91,3 +91,26 @@ v1 のビジネスロジックを移植しつつ、推論エンジン系（Pipel
 
 - [x] `POST /api/operation/initialize` で全ディレクトリ初期化 + 全マネージャー reload
 - [x] エンドツーエンド: 初期化 → モジュール確認 → モデルインポート → キャラ登録 → 参照音声追加 → 設定変更
+
+---
+
+# v2 残タスク
+
+## 推論エンジン統合（GPT-SoVITS 本体との結合が必要）
+
+- [x] `TTSManager.run()` — 音声生成（PipelineManager 依存）→ v1 コード移植完了
+- [x] `TTSManager.get_phones()` — 音素抽出（PipelineManager + pyopenjtalk 依存）→ v1 コード移植完了
+- [x] `TTSManager.jp_text_to_user_dict_records()` — ユーザー辞書生成（pyopenjtalk 依存）→ v1 コード移植完了
+- [ ] `SlotManager.generate_onnx()` — ONNX 生成（PyTorch/ONNX 依存）
+- [ ] v2 パイプライン対応 — ONNX / Faster / v2 Pipeline は後日
+- [x] v3/v4 パイプライン — PipelineManager 統合完了（import テスト OK）
+
+## 未実装機能
+
+- [ ] 参照音声の録音 — UI/API/バックエンド 全て未実装
+- [ ] 自動テキスト化 (Whisper) — 設定UIはあるが faster-whisper 統合なし
+
+## 改善
+
+- [ ] エラーハンドリングの標準化
+- [ ] テスト基盤整備（ユニットテスト / E2E）

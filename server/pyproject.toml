@@ -6,9 +6,42 @@ requires-python = ">=3.13"
 dependencies = [
     "cryptography>=44.0",
     "fastapi[standard]>=0.115",
-    "numpy>=2.0",
+    "numpy<2",
     "requests>=2.31",
-    "torch>=2.10.0",
+    # 推論エンジン
+    "torch>=2.4",
+    "torchaudio>=2.4",
+    "torchcodec>=0.1",
+    "pytorch-lightning>=2.4",
+    "transformers>=4.44",
+    "librosa>=0.10",
+    "scipy>=1.14",
+    "einops>=0.8",
+    "x-transformers>=2.1",
+    "peft>=0.14",
+    # テキスト処理
+    "pyopenjtalk>=0.3",
+    "cn2an>=0.5",
+    "pypinyin>=0.52",
+    "jieba>=0.42",
+    "jieba-fast>=0.53",
+    "g2p-en>=2.1",
+    "g2pw>=0.1",
+    "jamo>=0.4",
+    "ko-pron>=1.3",
+    "g2pk2>=0.0.3",
+    "opencc>=1.1",
+    "split-lang>=2.1",
+    "nltk>=3.8",
+    "pyjyutping>=1.0",
+    "tojyutping>=3.2",
+    # GPT-SoVITS サブモジュール依存
+    "onnxruntime>=1.17",
+    "onnxsim>=0.4",
+    "onnx>=1.15",
+    "matplotlib>=3.8",
+    # パフォーマンス
+    "simple-performance-timer>=0.1",
 ]
 
 [dependency-groups]
@@ -26,6 +59,7 @@ testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 160
+exclude = ["src/ttsclient/tts/tts_manager/"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]
