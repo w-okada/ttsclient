@@ -6,6 +6,7 @@ from ttsclient.const import CONFIG_FILE, MODEL_DIR, MODULE_DIR, UPLOAD_DIR, VOIC
 from ttsclient.services.configuration_manager import ConfigurationManager
 from ttsclient.services.gpu_device_manager import GPUDeviceManager
 from ttsclient.services.module_manager import ModuleManager
+from ttsclient.services.sample_manager import SampleManager
 from ttsclient.services.slot_manager import SlotManager
 from ttsclient.services.voice_character_slot_manager import VoiceCharacterSlotManager
 
@@ -26,5 +27,6 @@ async def initialize():
     ModuleManager.get_instance().reload()
     SlotManager.get_instance().reload()
     VoiceCharacterSlotManager.get_instance().reload()
+    SampleManager.get_instance().reload()
 
     return {"message": "initialized."}
