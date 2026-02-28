@@ -5,10 +5,10 @@ from fastapi.responses import FileResponse
 
 from ttsclient.const import MODEL_DIR, VOICE_CHARACTER_DIR
 
-router = APIRouter()
+router = APIRouter(prefix="/api/proxy")
 
 
-@router.get("/get_proxy")
+@router.get("/get")
 async def get_proxy(path: str):
     if path.startswith("/"):
         path = path[1:]

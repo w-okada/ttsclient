@@ -15,10 +15,6 @@ export default defineConfig({
         target: "http://localhost:18000",
         changeOrigin: true,
       },
-      "/get_proxy": {
-        target: "http://localhost:18000",
-        changeOrigin: true,
-      },
     },
   },
 });

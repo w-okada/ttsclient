@@ -39,7 +39,7 @@ export const ReferenceVoiceArea = ({ voiceCharacter }: Props) => {
       stop();
       return;
     }
-    const url = `/get_proxy?path=${encodeURIComponent(selectedVoice.wav_file)}`;
+    const url = `/api/proxy/get?path=${encodeURIComponent(`voice_characters/${voiceCharacter.slot_index}/${selectedVoice.wav_file}`)}`;
     playUrl(url);
   }, [selectedVoice, isPlaying, stop, playUrl]);
 

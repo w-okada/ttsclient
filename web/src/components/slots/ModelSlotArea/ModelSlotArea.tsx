@@ -11,7 +11,7 @@ import styles from "./ModelSlotArea.module.css";
 
 const getIconUrl = (slot: SlotInfoMember): string | null => {
   if (!slot.icon_file) return null;
-  return `/get_proxy?path=${encodeURIComponent(slot.icon_file)}`;
+  return `/api/proxy/get?path=${encodeURIComponent(`models/${slot.slot_index}/${slot.icon_file}`)}`;
 };
 
 type SortMode = "index" | "name";

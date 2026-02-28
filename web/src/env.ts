@@ -24,13 +24,13 @@ export const useFlatPath = (): boolean =>
 
 /**
  * Generates the correct proxy path for file access.
- * In Colab environments, all file access goes through /get_proxy.
+ * In Colab environments, all file access goes through /api/proxy/get.
  * In normal environments, files are accessed directly.
  */
 export const getProxyPath = (path: string): string => {
   const base = getServerBaseUrl();
   if (useFlatPath()) {
-    return `${base}/get_proxy?path=${encodeURIComponent(path)}`;
+    return `${base}/api/proxy/get?path=${encodeURIComponent(path)}`;
   }
-  return `${base}/get_proxy?path=${encodeURIComponent(path)}`;
+  return `${base}/api/proxy/get?path=${encodeURIComponent(path)}`;
 };

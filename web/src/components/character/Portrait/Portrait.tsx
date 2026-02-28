@@ -21,7 +21,7 @@ export const Portrait = ({ voiceCharacter }: Props) => {
   const reloadVoiceCharacters = useServerStore((s) => s.reloadVoiceCharacters);
 
   const iconUrl = voiceCharacter.icon_file
-    ? `/get_proxy?path=${encodeURIComponent(voiceCharacter.icon_file)}`
+    ? `/api/proxy/get?path=${encodeURIComponent(`voice_characters/${voiceCharacter.slot_index}/${voiceCharacter.icon_file}`)}`
     : null;
 
   const handleIconDrop = useCallback(

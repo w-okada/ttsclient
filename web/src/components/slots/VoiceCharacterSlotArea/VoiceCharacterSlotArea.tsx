@@ -11,7 +11,7 @@ import styles from "./VoiceCharacterSlotArea.module.css";
 
 const getIconUrl = (vc: VoiceCharacter): string | null => {
   if (!vc.icon_file) return null;
-  return `/get_proxy?path=${encodeURIComponent(vc.icon_file)}`;
+  return `/api/proxy/get?path=${encodeURIComponent(`voice_characters/${vc.slot_index}/${vc.icon_file}`)}`;
 };
 
 type SortMode = "index" | "name";
