@@ -17,7 +17,7 @@ class CNHubertEmbedder(Embedder):
         if self.is_half is True:
             self.ssl_model = self.ssl_model.half().to(self.device)
         else:
-            self.ssl_model = self.ssl_model.to(self.device)
+            self.ssl_model = self.ssl_model.float().to(self.device)
 
         self.info = EmbedderInfo(
             embedder_type="cnhubert",
@@ -28,5 +28,9 @@ class CNHubertEmbedder(Embedder):
         return self.info
 
     def get_content(self, wav16k: torch.Tensor) -> torch.Tensor:
+        if self.is_half:
+            wav16k = wav16k.half().to(self.device)
+        else:
+            wav16k = wav16k.float().to(self.device)
         ssl_content = self.ssl_model.model(wav16k.unsqueeze(0))["last_hidden_state"].transpose(1, 2)
         return ssl_content

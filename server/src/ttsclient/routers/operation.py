@@ -183,6 +183,36 @@ def _setup_initial_models() -> dict:
 
     results: dict[str, list[str]] = {"model_slots": [], "voice_characters": [], "errors": []}
 
+    # Pretrained v2Pro (GPT は v2 と共有)
+    try:
+        _setup_pretrained_slot(
+            mod_mgr,
+            slot_mgr,
+            name="GPT-SoVITS Pretrained v2Pro",
+            gpt_module_id="gpt_model",
+            sovits_module_id="sovits_model_v2pro",
+            icon_module_id="GPT-SoVITS_icon_v2pro",
+        )
+        results["model_slots"].append("Pretrained v2Pro")
+    except Exception as e:
+        logger.error("Pretrained v2Pro スロット作成失敗: %s", e, exc_info=True)
+        results["errors"].append(f"Pretrained v2Pro: {e}")
+
+    # Pretrained v2ProPlus (GPT は v2 と共有)
+    try:
+        _setup_pretrained_slot(
+            mod_mgr,
+            slot_mgr,
+            name="GPT-SoVITS Pretrained v2ProPlus",
+            gpt_module_id="gpt_model",
+            sovits_module_id="sovits_model_v2proplus",
+            icon_module_id="GPT-SoVITS_icon_v2proplus",
+        )
+        results["model_slots"].append("Pretrained v2ProPlus")
+    except Exception as e:
+        logger.error("Pretrained v2ProPlus スロット作成失敗: %s", e, exc_info=True)
+        results["errors"].append(f"Pretrained v2ProPlus: {e}")
+
     # Pretrained v3
     try:
         _setup_pretrained_slot(
