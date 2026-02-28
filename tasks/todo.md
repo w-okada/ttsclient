@@ -32,14 +32,14 @@ v1 のビジネスロジックを移植しつつ、推論エンジン系（Pipel
 
 ## ステップ 3: ModuleManager (~300行)
 
-- [ ] `services/module_manager.py`
-  - [ ] `REGISTERED_MODULES` 定数: v1 の全モジュール定義移植
-  - [ ] `reload()`: 存在確認 + SHA256 ハッシュ検証
-  - [ ] `_check_hash()`: SHA256 計算・照合
-  - [ ] `download()`: バックグラウンドスレッドで HTTP DL + 進捗コールバック
-  - [ ] `_download()`: requests.get(stream=True) チャンクDL
-  - [ ] `get_module_filepath()`: モジュール保存先パス
-- [ ] `pyproject.toml`: requests>=2.31 追加
+- [x] `services/module_manager.py`
+  - [x] `REGISTERED_MODULES` 定数: v1 の全モジュール定義移植 (25件)
+  - [x] `reload()`: 存在確認 + SHA256 ハッシュ検証
+  - [x] `_check_hash()`: SHA256 計算・照合
+  - [x] `download()`: バックグラウンドスレッドで HTTP DL + 進捗コールバック
+  - [x] `_download()`: requests.get(stream=True) チャンクDL
+  - [x] `get_module_filepath()`: モジュール保存先パス
+- [x] `pyproject.toml`: requests>=2.31 追加
 
 ---
 
