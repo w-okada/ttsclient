@@ -1,8 +1,9 @@
-import { get, post, put, del, postBlob, postFormData } from "./client";
+import { get, post, put, del, postBlob, postFormData, connectSSE } from "./client";
 import type {
   TTSConfiguration,
   GPUInfo,
   ModuleStatus,
+  ModuleDownloadStatus,
   SlotInfoMember,
   ModelImportParamMember,
   MoveModelParam,
@@ -30,6 +31,12 @@ type MessageResponse = { message: string };
 // =============================================================
 
 export const initialize = () => post<MessageResponse>("/api/operation/initialize");
+
+export const downloadModulesSSE = (onProgress: (s: ModuleDownloadStatus[]) => void) =>
+  connectSSE<ModuleDownloadStatus[]>("/api/operation/download-modules", onProgress);
+
+export const downloadModelsSSE = (onProgress: (s: ModuleDownloadStatus[]) => void) =>
+  connectSSE<ModuleDownloadStatus[]>("/api/operation/download-models", onProgress);
 
 // =============================================================
 // Configuration

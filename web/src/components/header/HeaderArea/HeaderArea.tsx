@@ -15,6 +15,8 @@ export const HeaderArea = () => {
   const theme = useUIStore((s) => s.theme);
   const toggleTheme = useUIStore((s) => s.toggleTheme);
   const openDialog = useUIStore((s) => s.openDialog);
+  const updateDialogProps = useUIStore((s) => s.updateDialogProps);
+  const closeDialog = useUIStore((s) => s.closeDialog);
   const loadAll = useServerStore((s) => s.loadAll);
 
   const handleInitialize = async () => {
@@ -24,9 +26,46 @@ export const HeaderArea = () => {
       onConfirm: async () => {
         try {
           await api.initialize();
+
+          // モジュールダウンロード
+          openDialog("progress", {
+            title: t("header_initialize_downloading_modules"),
+            message: "",
+            progress: 0,
+          });
+          await api.downloadModulesSSE((statuses) => {
+            const progress = statuses.reduce((sum, s) => sum + s.progress, 0) / statuses.length;
+            const doneCount = statuses.filter((s) => s.status === "done").length;
+            const errorCount = statuses.filter((s) => s.status === "error").length;
+            const msg =
+              errorCount > 0
+                ? `${doneCount} / ${statuses.length} (${errorCount} errors)`
+                : `${doneCount} / ${statuses.length}`;
+            updateDialogProps({ progress, message: msg });
+          });
+
+          // 初期モデルダウンロード
+          openDialog("progress", {
+            title: t("header_initialize_downloading_models"),
+            message: "",
+            progress: 0,
+          });
+          await api.downloadModelsSSE((statuses) => {
+            const progress = statuses.reduce((sum, s) => sum + s.progress, 0) / statuses.length;
+            const doneCount = statuses.filter((s) => s.status === "done").length;
+            const errorCount = statuses.filter((s) => s.status === "error").length;
+            const msg =
+              errorCount > 0
+                ? `${doneCount} / ${statuses.length} (${errorCount} errors)`
+                : `${doneCount} / ${statuses.length}`;
+            updateDialogProps({ progress, message: msg });
+          });
+
+          closeDialog();
           await loadAll();
-          toast.success("Initialized");
+          toast.success(t("header_initialize_success"));
         } catch (e) {
+          closeDialog();
           toast.error(`Initialize failed: ${e}`);
         }
       },

@@ -73,3 +73,20 @@ export const postFormData = async <T>(path: string, formData: FormData): Promise
   });
   return handleResponse<T>(response);
 };
+
+export const connectSSE = <T>(path: string, onProgress: (data: T) => void): Promise<void> =>
+  new Promise((resolve, reject) => {
+    const url = `${BASE_URL}${path}`;
+    const source = new EventSource(url);
+    source.addEventListener("progress", (e: MessageEvent) => {
+      onProgress(JSON.parse(e.data) as T);
+    });
+    source.addEventListener("done", () => {
+      source.close();
+      resolve();
+    });
+    source.onerror = () => {
+      source.close();
+      reject(new Error("SSE connection failed"));
+    };
+  });

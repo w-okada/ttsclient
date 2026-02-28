@@ -21,6 +21,7 @@ type UIState = {
   setCurrentVoiceIndexes: (indexes: number[]) => void;
   toggleVoiceIndex: (index: number) => void;
   openDialog: (name: DialogName, props?: DialogProps) => void;
+  updateDialogProps: (props: Partial<DialogProps>) => void;
   closeDialog: () => void;
 };
 
@@ -65,6 +66,8 @@ export const useUIStore = create<UIState>((set, get) => ({
   },
 
   openDialog: (name, props = {}) => set({ dialogName: name, dialogProps: props }),
+
+  updateDialogProps: (props) => set((state) => ({ dialogProps: { ...state.dialogProps, ...props } })),
 
   closeDialog: () => set({ dialogName: "none", dialogProps: {} }),
 }));
