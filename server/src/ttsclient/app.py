@@ -1,3 +1,5 @@
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -18,8 +20,26 @@ from ttsclient.routers import (
     uploader,
     voice_character,
 )
+from ttsclient.services.configuration_manager import ConfigurationManager
+from ttsclient.services.gpu_device_manager import GPUDeviceManager
+from ttsclient.services.module_manager import ModuleManager
+from ttsclient.services.sample_manager import SampleManager
+from ttsclient.services.slot_manager import SlotManager
+from ttsclient.services.voice_character_slot_manager import VoiceCharacterSlotManager
 
-app = FastAPI(title=APP_NAME, version=VERSION)
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
+    ConfigurationManager.get_instance().reload()
+    GPUDeviceManager.get_instance().reload()
+    ModuleManager.get_instance().reload()
+    SlotManager.get_instance().reload()
+    VoiceCharacterSlotManager.get_instance().reload()
+    SampleManager.get_instance().reload()
+    yield
+
+
+app = FastAPI(title=APP_NAME, version=VERSION, lifespan=lifespan)
 
 # CORS 設定
 app.add_middleware(

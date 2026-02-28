@@ -61,6 +61,9 @@ export const HeaderArea = () => {
             updateDialogProps({ progress, message: msg });
           });
 
+          // ダウンロード済みモデルをスロットとして登録
+          await api.setupInitialModels();
+
           closeDialog();
           await loadAll();
           toast.success(t("header_initialize_success"));

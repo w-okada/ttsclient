@@ -38,6 +38,8 @@ export const downloadModulesSSE = (onProgress: (s: ModuleDownloadStatus[]) => vo
 export const downloadModelsSSE = (onProgress: (s: ModuleDownloadStatus[]) => void) =>
   connectSSE<ModuleDownloadStatus[]>("/api/operation/download-models", onProgress);
 
+export const setupInitialModels = () => post<MessageResponse>("/api/operation/setup-initial-models");
+
 // =============================================================
 // Configuration
 // =============================================================
