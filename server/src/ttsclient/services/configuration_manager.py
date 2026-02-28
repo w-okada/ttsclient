@@ -1,4 +1,9 @@
+import logging
+
+from ttsclient.const import CONFIG_FILE, SETTINGS_DIR
 from ttsclient.models.tts_configuration import TTSConfiguration
+
+logger = logging.getLogger(__name__)
 
 
 class ConfigurationManager:
@@ -14,12 +19,22 @@ class ConfigurationManager:
         return cls._instance
 
     def reload(self) -> None:
-        # TODO: CONFIG_FILE から読み込み
-        pass
+        if CONFIG_FILE.exists():
+            json_text = CONFIG_FILE.read_text(encoding="utf-8")
+            self._configuration = TTSConfiguration.model_validate_json(json_text)
+            logger.info("設定ファイルを読み込みました: %s", CONFIG_FILE)
+        else:
+            self._configuration = TTSConfiguration()
+            self._save()
+            logger.info("デフォルト設定を作成しました: %s", CONFIG_FILE)
 
     def get_tts_configuration(self) -> TTSConfiguration:
         return self._configuration
 
     def set_tts_configuration(self, configuration: TTSConfiguration) -> None:
         self._configuration = configuration
-        # TODO: CONFIG_FILE に保存
+        self._save()
+
+    def _save(self) -> None:
+        SETTINGS_DIR.mkdir(parents=True, exist_ok=True)
+        CONFIG_FILE.write_text(self._configuration.model_dump_json(indent=4), encoding="utf-8")
