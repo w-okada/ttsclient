@@ -57,11 +57,15 @@ class TestConfiguration:
         resp = client.get("/api/configuration-manager/configuration")
         assert resp.status_code == 200
         data = resp.json()
+        assert data["current_slot_index"] == -1
+        assert data["current_vc_index"] == -1
         assert data["gpu_device_id_int"] == -1
 
     def test_put_and_persist(self, client):
         client.post("/api/operation/initialize")
         new_config = {
+            "current_slot_index": 3,
+            "current_vc_index": 5,
             "gpu_device_id_int": 0,
             "transcribe_audio": False,
             "transcriber_model_size": "base",
@@ -70,12 +74,14 @@ class TestConfiguration:
         }
         resp = client.put("/api/configuration-manager/configuration", json=new_config)
         assert resp.status_code == 200
-        assert resp.json()["gpu_device_id_int"] == 0
+        assert resp.json()["current_slot_index"] == 3
+        assert resp.json()["current_vc_index"] == 5
         assert resp.json()["transcribe_audio"] is False
 
         # reload して永続化を確認
         resp2 = client.get("/api/configuration-manager/configuration", params={"reload": True})
-        assert resp2.json()["gpu_device_id_int"] == 0
+        assert resp2.json()["current_slot_index"] == 3
+        assert resp2.json()["current_vc_index"] == 5
 
 
 # ============================================================
@@ -356,7 +362,9 @@ class TestEndToEnd:
         resp = client.put(
             "/api/configuration-manager/configuration",
             json={
-                "gpu_device_id_int": 0,
+                "current_slot_index": 0,
+                "current_vc_index": 0,
+                "gpu_device_id_int": -1,
                 "transcribe_audio": False,
                 "transcriber_model_size": "small",
                 "transcriber_device": "cpu",
@@ -364,7 +372,8 @@ class TestEndToEnd:
             },
         )
         assert resp.status_code == 200
-        assert resp.json()["gpu_device_id_int"] == 0
+        assert resp.json()["current_slot_index"] == 0
+        assert resp.json()["current_vc_index"] == 0
 
         # 8. サンプル一覧確認
         samples = client.get("/api/sample-manager/samples").json()
@@ -381,7 +390,8 @@ class TestEndToEnd:
         assert len(used_vcs[0]["reference_voices"]) == 1
 
         config = client.get("/api/configuration-manager/configuration").json()
-        assert config["gpu_device_id_int"] == 0
+        assert config["current_slot_index"] == 0
+        assert config["current_vc_index"] == 0
 
 
 # ============================================================

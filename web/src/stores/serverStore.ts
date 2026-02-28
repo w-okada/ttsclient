@@ -8,6 +8,7 @@ import type {
   VoiceCharacter,
   SampleInfoMember,
 } from "@/types";
+import { useUIStore } from "./uiStore";
 
 type ServerState = {
   slots: SlotInfoMember[];
@@ -50,6 +51,12 @@ export const useServerStore = create<ServerState>((set, get) => ({
         api.getSamples(),
       ]);
       set({ slots, voiceCharacters, modules, configuration, gpuDevices, samples });
+
+      // サーバー設定から UI 選択状態を復元（永続化トリガーを避けて直接セット）
+      useUIStore.setState({
+        ...(configuration.current_slot_index >= 0 && { currentSlotIndex: configuration.current_slot_index }),
+        ...(configuration.current_vc_index >= 0 && { currentVCIndex: configuration.current_vc_index }),
+      });
     } finally {
       set({ loading: false });
     }
