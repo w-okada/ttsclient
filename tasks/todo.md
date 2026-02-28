@@ -74,10 +74,10 @@ v1 のビジネスロジックを移植しつつ、推論エンジン系（Pipel
 
 ## ステップ 6: SampleManager (~150行)
 
-- [ ] `services/sample_manager.py`
-  - [ ] `REGISTERED_SAMPLES` 定数: v1 のサンプルリスト移植
-  - [ ] `reload()`: サンプルリスト設定
-  - [ ] `download()`: スロット予約 → HTTP DL → インポート
+- [x] `services/sample_manager.py`
+  - [x] `REGISTERED_SAMPLES` 定数: v1 のサンプルリスト移植 (2件)
+  - [x] `reload()`: サンプルリスト設定
+  - [x] `download()`: スロット予約 → HTTP DL → インポート (GPT-SoVITS / VoiceCharacter 両対応)
 
 ---
 
