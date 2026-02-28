@@ -1,0 +1,14 @@
+.area {
+  display: flex;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-dialog-border);
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 600px) {
+  .area {
+    flex-direction: column;
+  }
+}

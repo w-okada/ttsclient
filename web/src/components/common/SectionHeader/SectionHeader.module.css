@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-section-header);
+  margin-bottom: var(--spacing-md);
+}
+
+.title {
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+  color: var(--color-section-header);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}

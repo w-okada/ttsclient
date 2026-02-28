@@ -1,0 +1,11 @@
+.message {
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: flex-end;
+}

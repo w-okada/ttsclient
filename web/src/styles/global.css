@@ -1,0 +1,77 @@
+@import "./variables.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  background: linear-gradient(
+    45deg,
+    var(--color-company-1) 0%,
+    var(--color-company-1) 1%,
+    var(--color-company-2) 1%,
+    var(--color-company-2) 5%,
+    var(--color-bg) 5%,
+    var(--color-bg) 90%,
+    var(--color-company-1) 90%,
+    var(--color-company-1) 95%,
+    var(--color-company-2) 95%,
+    var(--color-company-2) 100%
+  );
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100%;
+}
+
+a {
+  color: var(--color-company-1);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+  border-radius: 4px;
+}
+
+/* Toast override */
+.Toastify__toast {
+  font-size: var(--font-size-sm);
+}

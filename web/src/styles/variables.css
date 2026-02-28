@@ -1,0 +1,103 @@
+:root {
+  /* Brand colors */
+  --color-company-1: rgba(64, 119, 187, 1);
+  --color-company-2: rgba(29, 47, 78, 1);
+
+  /* Theme colors (light mode default) */
+  --color-text: rgba(0, 0, 0, 1);
+  --color-bg: rgba(255, 255, 255, 1);
+  --color-title: rgba(70, 70, 70, 1);
+
+  /* Dialog */
+  --color-dialog-bg: rgba(255, 255, 255, 1);
+  --color-dialog-border: rgba(100, 100, 100, 1);
+  --color-dialog-shadow: rgba(0, 0, 0, 0.3);
+
+  /* UI elements */
+  --color-section-header: #666666;
+  --color-button-bg: #ffffff;
+  --color-button-text: #000000;
+  --color-button-border: #000000;
+  --color-button-hover-bg: #e0e0e0;
+  --color-button-active-bg: #fae3f5;
+  --color-button-disabled-bg: #efefef;
+
+  /* Slot tiles */
+  --color-slot-bg: #333333;
+  --color-slot-text: #ffffff;
+  --color-slot-border: #999999;
+  --color-slot-hover-border: #ffaaaa;
+  --color-slot-selected-bg: #43030c;
+  --color-slot-description: navajowhite;
+  --color-slot-tts-badge: rgba(10, 200, 100, 0.6);
+
+  /* Overlay */
+  --color-overlay-hidden: rgba(100, 100, 100, 0.4);
+  --color-overlay-visible: rgba(200, 200, 200, 0.4);
+
+  /* Progress */
+  --color-progress-bar: var(--color-company-1);
+  --color-progress-bg: rgba(200, 200, 200, 0.3);
+
+  /* Tooltip */
+  --color-tooltip-bg: #444;
+  --color-tooltip-text: #fff;
+
+  /* Scrollbar */
+  --color-scrollbar-thumb: #f7cfec80;
+  --color-scrollbar-track: #eee;
+
+  /* Portrait */
+  --color-portrait-border: rgb(0, 0, 0);
+  --color-portrait-focus-border: rgb(110, 188, 240);
+
+  /* Status badge */
+  --color-status-badge-bg: rgba(100, 100, 100, 0.5);
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-size-xs: 10px;
+  --font-size-sm: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 24px;
+
+  /* Spacing */
+  --spacing-xs: 2px;
+  --spacing-sm: 4px;
+  --spacing-md: 8px;
+  --spacing-lg: 12px;
+  --spacing-xl: 16px;
+  --spacing-xxl: 24px;
+
+  /* Border radius */
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --radius-lg: 10px;
+  --radius-xl: 15px;
+  --radius-round: 50%;
+}
+
+[data-theme="dark"] {
+  --color-text: rgba(255, 255, 255, 1);
+  --color-bg: rgba(5, 5, 10, 1);
+  --color-title: rgba(200, 200, 200, 1);
+
+  --color-dialog-bg: #1a1a2e;
+  --color-dialog-border: rgba(100, 100, 100, 1);
+
+  --color-section-header: #aaaaaa;
+
+  --color-button-bg: #2a2a3e;
+  --color-button-text: #ffffff;
+  --color-button-border: #555555;
+  --color-button-hover-bg: #3a3a4e;
+  --color-button-active-bg: #4a2a3e;
+  --color-button-disabled-bg: #1a1a2e;
+
+  --color-portrait-border: rgb(100, 100, 100);
+
+  --color-scrollbar-track: #222;
+}

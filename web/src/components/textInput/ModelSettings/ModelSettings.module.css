@@ -1,0 +1,34 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-dialog-border);
+  border-radius: var(--radius-sm);
+}
+
+.title {
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+  color: var(--color-section-header);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.input {
+  width: 80px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-button-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
+  font-size: var(--font-size-sm);
+  text-align: right;
+}

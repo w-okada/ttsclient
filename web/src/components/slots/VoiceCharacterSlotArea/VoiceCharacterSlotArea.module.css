@@ -1,0 +1,22 @@
+.area {
+  background: var(--color-company-1);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.tileContainer {
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
+  padding: var(--spacing-sm) 0;
+}
+
+.tileContainer::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+}
+
+.empty {
+  color: #ddd;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-lg);
+}

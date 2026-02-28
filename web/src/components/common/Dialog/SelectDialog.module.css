@@ -1,0 +1,11 @@
+.message {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-md);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: flex-end;
+  margin-top: var(--spacing-lg);
+}

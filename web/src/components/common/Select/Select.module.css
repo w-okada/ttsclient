@@ -1,0 +1,22 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  color: var(--color-title);
+  white-space: nowrap;
+}
+
+.select {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-button-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  min-width: 80px;
+}

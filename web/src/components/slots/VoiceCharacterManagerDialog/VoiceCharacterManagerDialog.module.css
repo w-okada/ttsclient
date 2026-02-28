@@ -1,0 +1,117 @@
+.instruction {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-title);
+}
+
+.toolbar {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.vcList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.vcItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-dialog-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+}
+
+.vcIndex {
+  min-width: 30px;
+  color: var(--color-section-header);
+}
+
+.vcName {
+  flex: 1;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vcType {
+  font-size: var(--font-size-xs);
+  color: var(--color-section-header);
+  min-width: 80px;
+}
+
+.vcVoiceCount {
+  font-size: var(--font-size-xs);
+  color: var(--color-section-header);
+  min-width: 60px;
+}
+
+.vcActions {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: flex-end;
+  margin-top: var(--spacing-lg);
+}
+
+.uploadRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.nameInput {
+  flex: 1;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-button-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
+  font-size: var(--font-size-sm);
+}
+
+.sampleList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.sampleItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-dialog-border);
+  border-radius: var(--radius-sm);
+}
+
+.sampleInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sampleName {
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+}
+
+.sampleDesc {
+  font-size: var(--font-size-xs);
+  color: var(--color-section-header);
+}

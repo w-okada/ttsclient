@@ -1,0 +1,12 @@
+.area {
+  padding: var(--spacing-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-dialog-border);
+  border-radius: var(--radius-md);
+}
+
+.buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}

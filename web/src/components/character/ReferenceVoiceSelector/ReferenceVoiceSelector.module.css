@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.emotionButtons {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.emotionBtn {
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #999;
+  color: #333;
+  min-width: auto;
+}
+
+.grid {
+  display: grid;
+  gap: 1px;
+}
+
+.cell {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background: #eee;
+  cursor: default;
+  padding: 0;
+  transition: transform 0.1s;
+}
+
+.occupied {
+  cursor: pointer;
+}
+
+.occupied:hover {
+  transform: scale(1.3);
+  z-index: 1;
+}
+
+.selected {
+  outline: 2px solid #ff0000;
+  outline-offset: -1px;
+  z-index: 2;
+}
+
+[data-theme="dark"] .cell {
+  background: #333;
+  border-color: #555;
+}

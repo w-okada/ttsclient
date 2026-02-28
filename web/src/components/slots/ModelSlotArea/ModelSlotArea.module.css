@@ -1,0 +1,26 @@
+.area {
+  background: var(--color-company-2);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.area :global(.section-header) {
+  color: #dee;
+}
+
+.tileContainer {
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
+  padding: var(--spacing-sm) 0;
+}
+
+.tileContainer::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+}
+
+.empty {
+  color: #aaa;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-lg);
+}

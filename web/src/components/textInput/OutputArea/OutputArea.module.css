@@ -1,0 +1,19 @@
+.output {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-dialog-border);
+  border-radius: var(--radius-sm);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  color: var(--color-section-header);
+  white-space: nowrap;
+}
+
+.audio {
+  flex: 1;
+  height: 32px;
+}

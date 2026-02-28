@@ -1,0 +1,24 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.speedLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-title);
+}
+
+.slider {
+  flex: 1;
+  cursor: pointer;
+}
+
+.speedValue {
+  min-width: 30px;
+  text-align: right;
+  font-size: var(--font-size-sm);
+}

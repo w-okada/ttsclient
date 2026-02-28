@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-company-2);
+  border-radius: var(--radius-md);
+  color: white;
+}
+
+.titleArea {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+}
+
+.version {
+  font-size: var(--font-size-sm);
+  opacity: 0.7;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.langSelect {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid #999;
+  border-radius: var(--radius-xl);
+  background: #666;
+  color: white;
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+}
+
+.langSelect option {
+  background: #333;
+  color: white;
+}

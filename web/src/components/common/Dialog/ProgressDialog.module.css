@@ -1,0 +1,26 @@
+.message {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-md);
+}
+
+.barOuter {
+  width: 100%;
+  height: 20px;
+  background: var(--color-progress-bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.barInner {
+  height: 100%;
+  background: var(--color-progress-bar);
+  transition: width 0.3s;
+}
+
+.percent {
+  display: block;
+  text-align: center;
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-title);
+}

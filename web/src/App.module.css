@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+  gap: var(--spacing-md);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+  min-height: 200px;
+  color: var(--color-title);
+  font-size: var(--font-size-lg);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--color-progress-bg);
+  border-top-color: var(--color-company-1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  min-height: 200px;
+  justify-content: center;
+  color: var(--color-title);
+  font-size: var(--font-size-lg);
+}
+
+.retryBtn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  background: var(--color-company-1);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+}
+
+.retryBtn:hover {
+  background: var(--color-company-2);
+}
