@@ -13,6 +13,9 @@ type UIState = {
   currentVoiceIndexes: number[];
   dialogName: DialogName;
   dialogProps: DialogProps;
+  outputDeviceId: string;
+  monitorDeviceId: string;
+  inputDeviceId: string;
 
   // Actions
   setTheme: (theme: Theme) => void;
@@ -24,6 +27,9 @@ type UIState = {
   openDialog: (name: DialogName, props?: DialogProps) => void;
   updateDialogProps: (props: Partial<DialogProps>) => void;
   closeDialog: () => void;
+  setOutputDeviceId: (id: string) => void;
+  setMonitorDeviceId: (id: string) => void;
+  setInputDeviceId: (id: string) => void;
 };
 
 const getInitialTheme = (): Theme => {
@@ -39,6 +45,9 @@ export const useUIStore = create<UIState>((set, get) => ({
   currentVoiceIndexes: [],
   dialogName: "none",
   dialogProps: {},
+  outputDeviceId: localStorage.getItem("audioOutputDeviceId") ?? "",
+  monitorDeviceId: localStorage.getItem("audioMonitorDeviceId") ?? "",
+  inputDeviceId: localStorage.getItem("audioInputDeviceId") ?? "",
 
   setTheme: (theme) => {
     localStorage.setItem("theme", theme);
@@ -85,4 +94,19 @@ export const useUIStore = create<UIState>((set, get) => ({
   updateDialogProps: (props) => set((state) => ({ dialogProps: { ...state.dialogProps, ...props } })),
 
   closeDialog: () => set({ dialogName: "none", dialogProps: {} }),
+
+  setOutputDeviceId: (id) => {
+    localStorage.setItem("audioOutputDeviceId", id);
+    set({ outputDeviceId: id });
+  },
+
+  setMonitorDeviceId: (id) => {
+    localStorage.setItem("audioMonitorDeviceId", id);
+    set({ monitorDeviceId: id });
+  },
+
+  setInputDeviceId: (id) => {
+    localStorage.setItem("audioInputDeviceId", id);
+    set({ inputDeviceId: id });
+  },
 }));

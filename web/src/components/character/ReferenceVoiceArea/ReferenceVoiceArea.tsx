@@ -20,13 +20,14 @@ type Props = {
 export const ReferenceVoiceArea = ({ voiceCharacter }: Props) => {
   const { t } = useTranslation();
   const currentVoiceIndexes = useUIStore((s) => s.currentVoiceIndexes);
+  const outputDeviceId = useUIStore((s) => s.outputDeviceId);
   const reloadVoiceCharacters = useServerStore((s) => s.reloadVoiceCharacters);
   const [editMode, setEditMode] = useState(false);
   const [editText, setEditText] = useState("");
   const [editVoiceType, setEditVoiceType] = useState("");
   const [editLanguage, setEditLanguage] = useState<LanguageType>("all_ja");
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { isPlaying, playUrl, stop } = useAudioPlayer();
+  const { isPlaying, playUrl, stop } = useAudioPlayer({ outputDeviceId });
 
   const selectedVoice: ReferenceVoice | null =
     currentVoiceIndexes.length === 1

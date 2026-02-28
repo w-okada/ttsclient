@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SectionHeader } from "@/components/common/SectionHeader/SectionHeader";
 import { Select } from "@/components/common/Select/Select";
+import { useUIStore } from "@/stores/uiStore";
 import { useServerStore } from "@/stores/serverStore";
 import { useAudioDevices } from "@/hooks/useAudioDevices";
 import styles from "./DeviceSettingArea.module.css";
@@ -13,9 +13,12 @@ export const DeviceSettingArea = () => {
   const updateConfiguration = useServerStore((s) => s.updateConfiguration);
   const { outputDevices, inputDevices } = useAudioDevices();
 
-  const [outputDeviceId, setOutputDeviceId] = useState("");
-  const [monitorDeviceId, setMonitorDeviceId] = useState("");
-  const [inputDeviceId, setInputDeviceId] = useState("");
+  const outputDeviceId = useUIStore((s) => s.outputDeviceId);
+  const monitorDeviceId = useUIStore((s) => s.monitorDeviceId);
+  const inputDeviceId = useUIStore((s) => s.inputDeviceId);
+  const setOutputDeviceId = useUIStore((s) => s.setOutputDeviceId);
+  const setMonitorDeviceId = useUIStore((s) => s.setMonitorDeviceId);
+  const setInputDeviceId = useUIStore((s) => s.setInputDeviceId);
 
   const gpuOptions = gpuDevices.map((g) => ({
     value: String(g.device_id_int),

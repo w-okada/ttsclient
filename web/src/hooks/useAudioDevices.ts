@@ -12,6 +12,10 @@ export const useAudioDevices = () => {
   useEffect(() => {
     const enumerate = async () => {
       try {
+        // Request microphone permission first so that device labels are available
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        stream.getTracks().forEach((t) => t.stop());
+
         const mediaDevices = await navigator.mediaDevices.enumerateDevices();
         setDevices(
           mediaDevices
