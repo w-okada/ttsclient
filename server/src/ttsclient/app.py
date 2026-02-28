@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from ttsclient.const import APP_NAME, VERSION
-from ttsclient.routers import configuration, gpu_device, hello, module, proxy, slot, uploader
+from ttsclient.routers import configuration, gpu_device, hello, module, proxy, slot, uploader, voice_character
 
 app = FastAPI(title=APP_NAME, version=VERSION)
 
@@ -31,7 +31,8 @@ app.include_router(module.router)
 
 app.include_router(slot.router)
 
+app.include_router(voice_character.router)
+
 # 以降のステップで追加
-# from ttsclient.routers import voice_character
 # from ttsclient.routers import tts, sample
 # from ttsclient.routers import operation
