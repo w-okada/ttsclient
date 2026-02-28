@@ -1,0 +1,97 @@
+{
+    "workbench.colorCustomizations": {
+        "tab.activeBackground": "#65952acc",
+        "tab.hoverForeground": "#ffffff",
+        "tab.hoverBackground": "#2f3233",
+        "titleBar.activeBackground": "#1f44a0",
+        "titleBar.activeForeground": "#b4b9cd",
+        "titleBar.inactiveBackground": "#183170",
+        "titleBar.inactiveForeground": "#868fa7",
+        "statusBar.background": "#26244d",
+        "statusBar.foreground": "#848484",
+        "editorHoverWidget.background": "#26244d",
+        "editorHoverWidget.border": "#848484"
+    },
+    // --- エディタ共通 ---
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "never",
+        "source.fixAll": "explicit",
+        "source.fixAll.eslint": "explicit"
+    },
+    "editor.rulers": [120],
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.eol": "\n",
+
+    // --- Python ---
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports.ruff": "explicit",
+            "source.fixAll.ruff": "explicit"
+        }
+    },
+    // --- TypeScript/JavaScript ---
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.preferences.quoteStyle": "single",
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.includePackageJsonAutoImports": "on",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.referencesCodeLens.enabled": true,
+    "javascript.referencesCodeLens.enabled": true,
+    "typescript.reportStyleChecksAsWarnings": true,
+
+    // --- ESLint & Prettier ---
+    "eslint.workingDirectories": [{ "mode": "auto" }],
+    "eslint.validate": ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    "eslint.format.enable": false, // Prettier に任せる
+    "prettier.requireConfig": true,
+
+    // --- テスト/デバッグ ---
+    "jest.runMode": "on-demand",
+
+    // --- Web 関連（LiveKit / WebRTC 調整時に便利） ---
+    "livePreview.defaultPreviewPath": "apps/web-client/index.html",
+    "debug.javascript.autoAttachFilter": "onlyWithFlag", // Node デバッグ時に任意で変更
+
+    // --- ファイル除外・検索除外 ---
+    "files.exclude": {
+        // "**/dist": true,
+        "**/.turbo": true,
+        "**/.pnpm-store": true,
+        // "**/node_modules": true,
+        "**/.idea": true
+    },
+    "search.exclude": {
+        "**/dist": true,
+        "**/.turbo": true,
+        "**/.pnpm-store": true,
+        "**/node_modules": true
+    },
+
+    // --- ターミナル / PNPM / Windows 開発支援 ---
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": ["C:\\\\Windows\\\\System32\\\\cmd.exe"],
+            "icon": "terminal-cmd"
+        }
+    },
+    "npm.packageManager": "pnpm",
+
+    // --- その他 ---
+    "workbench.startupEditor": "readme",
+    "window.zoomLevel": 0
+}

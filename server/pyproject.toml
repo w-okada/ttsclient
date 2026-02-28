@@ -1,0 +1,17 @@
+[project]
+name = "ttsclient"
+version = "2.0.0"
+description = "GPT-SoVITS TTS client server"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["fastapi>=0.115"]
+
+[dependency-groups]
+dev = ["ruff>=0.9"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E402"]
