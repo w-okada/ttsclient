@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from ttsclient.const import APP_NAME, VERSION
+from ttsclient.routers import configuration, gpu_device, hello, module, proxy, uploader
 
 app = FastAPI(title=APP_NAME, version=VERSION)
 
@@ -21,14 +22,14 @@ async def health():
 
 
 # ルーター登録
-from ttsclient.routers import hello, proxy, uploader
-
 app.include_router(hello.router)
 app.include_router(proxy.router)
 app.include_router(uploader.router)
+app.include_router(configuration.router)
+app.include_router(gpu_device.router)
+app.include_router(module.router)
 
 # 以降のステップで追加
-# from ttsclient.routers import configuration, gpu_device, module
 # from ttsclient.routers import slot
 # from ttsclient.routers import voice_character
 # from ttsclient.routers import tts, sample
