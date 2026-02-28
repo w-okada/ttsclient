@@ -30,6 +30,8 @@
     "files.eol": "\n",
 
     // --- Python ---
+    "python.defaultInterpreterPath": "${workspaceFolder}/server/.venv/bin/python",
+    "python.analysis.extraPaths": ["${workspaceFolder}/server/src"],
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.codeActionsOnSave": {
