@@ -60,15 +60,15 @@ v1 のビジネスロジックを移植しつつ、推論エンジン系（Pipel
 
 ## ステップ 5: VoiceCharacterSlotManager + vc_importer (~410行)
 
-- [ ] `services/voice_character_importer.py` (新規)
-  - [ ] `import_voice_character()`: Dir作成、ZIP展開 or 新規作成、params.json書き込み
-- [ ] `services/voice_character_slot_manager.py`
-  - [ ] CRUD: reload, set_new_slot, update_slot_info, delete_slot, move, set_icon
-  - [ ] 参照音声: add_voice_audio, update, delete, move, set_voice_icon_file
-  - [ ] `add_user_dict_record()`: CSV ファイル追記
-  - [ ] `zip_and_download()`: ZIP 化 → BytesIO
-  - [ ] `reserve_slot_for_sample()` / `release_slot_from_reserved_for_sample()`
-- [ ] `pyproject.toml`: オプショナル依存 (librosa, soundfile, faster-whisper)
+- [x] `services/voice_character_importer.py` (新規)
+  - [x] `import_voice_character()`: Dir作成、ZIP展開 or 新規作成、params.json書き込み
+- [x] `services/voice_character_slot_manager.py`
+  - [x] CRUD: reload, set_new_slot, update_slot_info, delete_slot, move, set_icon
+  - [x] 参照音声: add_voice_audio, update, delete, move, set_voice_icon_file
+  - [x] `add_user_dict_record()`: CSV ファイル追記
+  - [x] `zip_and_download()`: ZIP 化 → BytesIO
+  - [x] `reserve_slot_for_sample()` / `release_slot_from_reserved_for_sample()`
+- [x] librosa, soundfile, faster-whisper はオプショナル import（pyproject.toml 変更不要）
 
 ---
 
