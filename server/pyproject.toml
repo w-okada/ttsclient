@@ -4,7 +4,11 @@ version = "2.0.0"
 description = "GPT-SoVITS TTS client server"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = ["fastapi[standard]>=0.115", "numpy>=2.0"]
+dependencies = [
+    "fastapi[standard]>=0.115",
+    "numpy>=2.0",
+    "torch>=2.10.0",
+]
 
 [dependency-groups]
 dev = ["ruff>=0.9"]

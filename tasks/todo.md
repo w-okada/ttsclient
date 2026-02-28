@@ -22,11 +22,11 @@ v1 のビジネスロジックを移植しつつ、推論エンジン系（Pipel
 
 ## ステップ 2: GPUDeviceManager (~100行)
 
-- [ ] `services/gpu_device_manager.py`
-  - [ ] `reload()`: CPU エントリ先頭追加 + CUDA 検出（torch オプショナル）
-  - [ ] `is_cuda_available()`: try import torch
-  - [ ] `_reload_cuda_info()`: torch.cuda で GPU 情報取得
-  - [ ] `_reload_gpu_info_win()`: Windows WMI（ImportError 時スキップ）
+- [x] `services/gpu_device_manager.py`
+  - [x] `reload()`: CPU エントリ先頭追加 + CUDA 検出（torch オプショナル）
+  - [x] `is_cuda_available()`: try import torch
+  - [x] `_reload_cuda_info()`: torch.cuda で GPU 情報取得
+  - [x] `_reload_gpu_info_win()`: Windows WMI（ImportError 時スキップ）
 
 ---
 
