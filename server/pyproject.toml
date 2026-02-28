@@ -4,6 +4,7 @@ version = "2.0.0"
 description = "GPT-SoVITS TTS client server"
 requires-python = ">=3.13"
 dependencies = [
+    "cryptography>=44.0",
     "fastapi[standard]>=0.115",
     "numpy>=2.0",
     "requests>=2.31",

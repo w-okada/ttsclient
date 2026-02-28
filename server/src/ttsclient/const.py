@@ -86,6 +86,7 @@ TranscriberComputeType: TypeAlias = Literal[
 DownloadState: TypeAlias = Literal["processing", "validating", "done", "error"]
 
 # ディレクトリ設定
+SSL_KEY_DIR = Path("./ssl_key")
 MODULE_DIR = Path("./modules")
 MODEL_DIR = Path("./models")
 VOICE_CHARACTER_DIR = Path("./voice_characters")

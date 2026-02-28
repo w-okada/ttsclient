@@ -19,6 +19,7 @@ dist/
 server/models/
 server/modules/
 server/settings/
+server/ssl_key/
 server/upload_dir/
 server/voice_characters/
 
