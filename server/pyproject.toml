@@ -10,8 +10,9 @@ dependencies = ["fastapi[standard]>=0.115", "numpy>=2.0"]
 dev = ["ruff>=0.9"]
 
 [tool.ruff]
-line-length = 120
+line-length = 160
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]
 ignore = ["E402"]
+
