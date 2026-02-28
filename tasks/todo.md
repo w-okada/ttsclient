@@ -45,15 +45,16 @@ v1 のビジネスロジックを移植しつつ、推論エンジン系（Pipel
 
 ## ステップ 4: SlotManager + model_importer (~320行)
 
-- [ ] `services/model_importer.py` (新規)
-  - [ ] `import_model()`: スロットDir作成、ファイルコピー/移動、SlotInfo生成、params.json書き込み
-- [ ] `services/slot_manager.py`
-  - [ ] `_load_slot_info()` / `_reload_slot_infos()`: params.json 読み込み
-  - [ ] `reload()`, `get_blank_slot_index()`
-  - [ ] `set_new_slot()`, `update_slot_info()`, `delete_slot()`
-  - [ ] `move_model_slot()`, `set_icon_file()`
-  - [ ] `reserve_slot_for_sample()` / `release_slot_from_reserved_for_sample()`
-  - [ ] `generate_onnx()`: raise NotImplementedError
+- [x] `services/model_importer.py` (新規)
+  - [x] `import_model()`: スロットDir作成、ファイルコピー/移動、SlotInfo生成、params.json書き込み
+  - [x] `get_sovits_version_from_path_fast()`: ヘッダー/ハッシュ/サイズでバージョン検出 (v2Pro/v2ProPlus対応)
+- [x] `services/slot_manager.py`
+  - [x] `_load_slot_info()` / `_reload_slot_infos()`: params.json 読み込み
+  - [x] `reload()`, `get_blank_slot_index()`
+  - [x] `set_new_slot()`, `update_slot_info()`, `delete_slot()`
+  - [x] `move_model_slot()`, `set_icon_file()`
+  - [x] `reserve_slot_for_sample()` / `release_slot_from_reserved_for_sample()`
+  - [x] `generate_onnx()`: raise NotImplementedError
 
 ---
 
