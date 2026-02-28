@@ -142,8 +142,8 @@ v1 (master) のサーバーサイド API を v2 ブランチで再構築する�
 **目的**: システム初期化エンドポイントと全体の動作確認
 
 **ファイル**:
-- [ ] `server/src/ttsclient/routers/operation.py` — `POST /api/operation/initialize`
-- [ ] `server/src/ttsclient/app.py` — 全ルーター登録の最終確認
+- [x] `server/src/ttsclient/routers/operation.py` — `POST /api/operation/initialize`
+- [x] `server/src/ttsclient/app.py` — 全ルーター登録の最終確認
 
 **検証**:
 - `uv run fastapi dev` で起動

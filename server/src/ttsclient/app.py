@@ -7,6 +7,7 @@ from ttsclient.routers import (
     gpu_device,
     hello,
     module,
+    operation,
     proxy,
     sample,
     slot,
@@ -46,6 +47,4 @@ app.include_router(voice_character.router)
 
 app.include_router(tts.router)
 app.include_router(sample.router)
-
-# 以降のステップで追加
-# from ttsclient.routers import operation
+app.include_router(operation.router)
