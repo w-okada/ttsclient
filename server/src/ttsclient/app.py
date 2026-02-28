@@ -20,8 +20,14 @@ async def health():
     return {"status": "ok"}
 
 
-# ルーター登録 (各ステップで追加していく)
-# from ttsclient.routers import hello, proxy, uploader
+# ルーター登録
+from ttsclient.routers import hello, proxy, uploader
+
+app.include_router(hello.router)
+app.include_router(proxy.router)
+app.include_router(uploader.router)
+
+# 以降のステップで追加
 # from ttsclient.routers import configuration, gpu_device, module
 # from ttsclient.routers import slot
 # from ttsclient.routers import voice_character
