@@ -10,7 +10,7 @@ TTSType: TypeAlias = Literal["GPT-SoVITS", "BROKEN", "RESERVED_FOR_SAMPLE", "Voi
 
 # GPT-SoVITS バージョン
 GPTSoVITSVersion: TypeAlias = Literal["v1", "v2"]
-GPTSoVITSModelVersion: TypeAlias = Literal["v1", "v2", "v3", "v4"]
+GPTSoVITSModelVersion: TypeAlias = Literal["v1", "v2", "v2Pro", "v2ProPlus", "v3", "v4"]
 
 # 構成要素タイプ
 SemanticPredictorType: TypeAlias = Literal["GPTSemanticPredictor"]
