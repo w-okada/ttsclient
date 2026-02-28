@@ -4,7 +4,6 @@ from ttsclient.const import TranscriberComputeType, TranscriberDevice, Transcrib
 
 
 class TTSConfiguration(BaseModel):
-    current_slot_index: int = -1
     gpu_device_id_int: int = -1
     transcribe_audio: bool = True
     transcriber_model_size: TranscriberModelSize = "small"

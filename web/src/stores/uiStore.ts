@@ -31,10 +31,17 @@ const getInitialTheme = (): Theme => {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 };
 
+const getStoredInt = (key: string, fallback: number): number => {
+  const v = localStorage.getItem(key);
+  if (v === null) return fallback;
+  const n = Number(v);
+  return Number.isFinite(n) ? n : fallback;
+};
+
 export const useUIStore = create<UIState>((set, get) => ({
   theme: getInitialTheme(),
-  currentSlotIndex: -1,
-  currentVCIndex: -1,
+  currentSlotIndex: getStoredInt("currentSlotIndex", -1),
+  currentVCIndex: getStoredInt("currentVCIndex", -1),
   currentVoiceIndexes: [],
   dialogName: "none",
   dialogProps: {},
@@ -50,9 +57,15 @@ export const useUIStore = create<UIState>((set, get) => ({
     setTheme(theme === "light" ? "dark" : "light");
   },
 
-  setCurrentSlotIndex: (index) => set({ currentSlotIndex: index }),
+  setCurrentSlotIndex: (index) => {
+    localStorage.setItem("currentSlotIndex", String(index));
+    set({ currentSlotIndex: index });
+  },
 
-  setCurrentVCIndex: (index) => set({ currentVCIndex: index, currentVoiceIndexes: [] }),
+  setCurrentVCIndex: (index) => {
+    localStorage.setItem("currentVCIndex", String(index));
+    set({ currentVCIndex: index, currentVoiceIndexes: [] });
+  },
 
   setCurrentVoiceIndexes: (indexes) => set({ currentVoiceIndexes: indexes }),
 

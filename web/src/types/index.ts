@@ -95,7 +95,6 @@ export const MAX_REFERENCE_VOICE_SLOT_INDEX = 100;
 // =============================================================
 
 export type TTSConfiguration = {
-  current_slot_index: number;
   gpu_device_id_int: number;
   transcribe_audio: boolean;
   transcriber_model_size: TranscriberModelSize;
