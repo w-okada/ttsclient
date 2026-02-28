@@ -7,9 +7,9 @@ from pathlib import Path
 from threading import Thread
 
 from fastapi import APIRouter
-from fastapi.responses import StreamingResponse
+from fastapi.responses import PlainTextResponse, StreamingResponse
 
-from ttsclient.const import CONFIG_FILE, MODEL_DIR, MODULE_DIR, SLOT_PARAM_FILE, UPLOAD_DIR, VOICE_CHARACTER_DIR
+from ttsclient.const import CONFIG_FILE, LOG_FILE, MODEL_DIR, MODULE_DIR, SLOT_PARAM_FILE, UPLOAD_DIR, VOICE_CHARACTER_DIR
 from ttsclient.models.module import ModuleDownloadStatus
 from ttsclient.models.slot import GPTSoVITSModelImportParam, GPTSoVITSSlotInfo
 from ttsclient.models.voice_character import VoiceCharacterImportParam
@@ -24,6 +24,14 @@ from ttsclient.services.voice_character_slot_manager import VoiceCharacterSlotMa
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/operation")
+
+
+@router.get("/log")
+async def get_log():
+    if not LOG_FILE.exists():
+        return PlainTextResponse("(ログファイルがありません)", status_code=200)
+    content = LOG_FILE.read_text(encoding="utf-8", errors="replace")
+    return PlainTextResponse(content)
 
 
 @router.post("/initialize")

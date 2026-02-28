@@ -85,6 +85,9 @@ TranscriberComputeType: TypeAlias = Literal[
 # ダウンロード状態
 DownloadState: TypeAlias = Literal["processing", "validating", "done", "error"]
 
+# ログ
+LOG_FILE = Path("./ttsclient.log")
+
 # ディレクトリ設定
 SSL_KEY_DIR = Path("./ssl_key")
 MODULE_DIR = Path("./modules")

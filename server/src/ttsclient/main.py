@@ -1,9 +1,23 @@
 import argparse
+import logging
+from logging.handlers import RotatingFileHandler
 
 import uvicorn
 
+from ttsclient.const import LOG_FILE
+
+
+def _setup_logging() -> None:
+    handler = RotatingFileHandler(LOG_FILE, maxBytes=2 * 1024 * 1024, backupCount=3, encoding="utf-8")
+    handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s"))
+    root = logging.getLogger()
+    root.setLevel(logging.INFO)
+    root.addHandler(handler)
+
 
 def main() -> None:
+    _setup_logging()
+
     parser = argparse.ArgumentParser(description="TTSClient server")
     parser.add_argument("--https", action="store_true", help="HTTPS モードで起動 (自己署名証明書を生成)")
     parser.add_argument("--port", type=int, default=18000, help="リッスンポート (default: 18000)")
