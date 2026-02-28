@@ -83,7 +83,7 @@ v1 のビジネスロジックを移植しつつ、推論エンジン系（Pipel
 
 ## ステップ 7: TTSManager (スタブ整理のみ)
 
-- [ ] `services/tts_manager.py` — コメント整理のみ
+- [x] `services/tts_manager.py` — コメント整理のみ
 
 ---
 

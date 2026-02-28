@@ -9,6 +9,16 @@ from ttsclient.models.tts import (
 
 
 class TTSManager:
+    """TTS 推論マネージャー。
+
+    以下のメソッドは PipelineManager / pyopenjtalk 等の推論エンジンに依存するため、
+    現時点ではスタブとして実装している。推論エンジン統合時に実装する。
+
+    - run(): PipelineManager 経由で音声合成を実行
+    - get_phones(): PipelineManager + pyopenjtalk で音素列を取得
+    - jp_text_to_user_dict_records(): pyopenjtalk でテキストを解析しユーザー辞書レコードを生成
+    """
+
     _instance: "TTSManager | None" = None
 
     @classmethod
@@ -18,15 +28,13 @@ class TTSManager:
         return cls._instance
 
     def run(self, param: GenerateVoiceParam) -> tuple[int, np.ndarray]:
-        # TODO: 音声合成エンジン呼び出し
-        sample_rate = 32000
-        audio_data = np.zeros(sample_rate, dtype=np.int16)
-        return sample_rate, audio_data
+        """音声合成を実行する。(スタブ: PipelineManager 依存)"""
+        raise NotImplementedError("PipelineManager 統合後に実装")
 
     def get_phones(self, param: GetPhonesParam) -> tuple[list[int], list[str]]:
-        # TODO: 音素解析
-        return [], []
+        """テキストから音素列を取得する。(スタブ: PipelineManager + pyopenjtalk 依存)"""
+        raise NotImplementedError("PipelineManager + pyopenjtalk 統合後に実装")
 
     def jp_text_to_user_dict_records(self, param: GetJpTextToUserDictRecordsParam) -> list[OpenJTalkUserDictRecord]:
-        # TODO: 日本語テキスト → ユーザー辞書レコード変換
-        return []
+        """日本語テキストからユーザー辞書レコードを生成する。(スタブ: pyopenjtalk 依存)"""
+        raise NotImplementedError("pyopenjtalk 統合後に実装")
