@@ -1,5 +1,8 @@
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from ttsclient.const import APP_NAME, VERSION
 from ttsclient.routers import (
@@ -48,3 +51,8 @@ app.include_router(voice_character.router)
 app.include_router(tts.router)
 app.include_router(sample.router)
 app.include_router(operation.router)
+
+# web/dist/ が存在する場合のみ静的ファイルを配信
+_WEB_DIST = Path(__file__).resolve().parents[3] / "web" / "dist"
+if _WEB_DIST.is_dir():
+    app.mount("/", StaticFiles(directory=_WEB_DIST, html=True), name="static")
