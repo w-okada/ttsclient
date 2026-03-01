@@ -5,7 +5,7 @@ import re
 # import cn2an
 
 from pyjyutping import jyutping
-from .symbols import punctuation
+from .symbols2 import punctuation
 from .zh_normalization.text_normlization import TextNormalizer
 
 # normalizer = lambda x: cn2an.transform(x, "an2cn")

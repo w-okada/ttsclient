@@ -4,7 +4,7 @@ import numpy as np
 import torch
 from tqdm import tqdm
 
-from AR.models.t2s_lightning_module import Text2SemanticLightningModule
+from ttsclient.tts.tts_manager.models.ar.t2s_lightning_module import Text2SemanticLightningModule
 
 from ttsclient.tts.tts_manager.semantic_predictor.semantic_predictor_info import SemanticPredictorInfo
 from ttsclient.tts.tts_manager.semantic_predictor.smantic_predictor import SemanticPredictor

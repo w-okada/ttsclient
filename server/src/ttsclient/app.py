@@ -1,12 +1,6 @@
-import sys
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from pathlib import Path
-
-# GPT-SoVITS サブモジュールのパスを追加（推論エンジンが依存）
-_PROJECT_ROOT = Path(__file__).resolve().parents[3]
-sys.path.append(str(_PROJECT_ROOT / "third_party" / "GPT-SoVITS" / "GPT_SoVITS"))
-sys.path.append(str(_PROJECT_ROOT / "third_party" / "GPT-SoVITS"))
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware

@@ -8,7 +8,7 @@ from torch.nn.functional import (
 import torch
 
 # Tensor = torch.Tensor
-# from typing import Callable, List, Optional, Tuple, Union
+from typing import Optional, Tuple
 
 
 def multi_head_attention_forward_patched(

@@ -1,6 +1,6 @@
 import re
 import torch
-from module.mel_processing import spectrogram_torch
+from ttsclient.tts.tts_manager.utils.mel_processing import spectrogram_torch
 import librosa
 
 splits = {

@@ -5,7 +5,7 @@ import re
 from pypinyin import lazy_pinyin, Style
 from pypinyin.contrib.tone_convert import to_finals_tone3, to_initials
 
-from .symbols import punctuation
+from .symbols2 import punctuation
 from .tone_sandhi import ToneSandhi
 from .zh_normalization.text_normlization import TextNormalizer
 

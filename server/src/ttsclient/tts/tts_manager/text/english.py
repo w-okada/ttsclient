@@ -4,7 +4,7 @@ import re
 import wordsegment
 from g2p_en import G2p
 
-from .symbols import punctuation
+from .symbols2 import punctuation
 
 from .symbols2 import symbols
 

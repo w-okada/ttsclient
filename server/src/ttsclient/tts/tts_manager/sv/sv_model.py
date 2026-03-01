@@ -1,15 +1,9 @@
-import sys
 from pathlib import Path
 
 import torch
 
-# eres2net ソースへのパス追加（オリジナル sv.py と同じ方式）
-_eres2net_dir = str(Path(__file__).resolve().parents[6] / "third_party" / "GPT-SoVITS" / "GPT_SoVITS" / "eres2net")
-if _eres2net_dir not in sys.path:
-    sys.path.insert(0, _eres2net_dir)
-
-from ERes2NetV2 import ERes2NetV2
-import kaldi as Kaldi
+from ttsclient.tts.tts_manager.sv.eres2net.ERes2NetV2 import ERes2NetV2
+from ttsclient.tts.tts_manager.sv.eres2net import kaldi as Kaldi
 
 from ttsclient.tts.tts_manager.device_manager.device_manager import DeviceManager
 

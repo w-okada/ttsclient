@@ -5,9 +5,10 @@ import pyopenjtalk
 import torch
 
 # from inference_webui import get_phones_and_bert as get_phones_and_bert_webui
-from text import chinese
-from text.cleaner import clean_text, cleaned_text_to_sequence
-from text.LangSegmenter.langsegmenter import LangSegmenter
+from ttsclient.tts.tts_manager.text import chinese
+from ttsclient.tts.tts_manager.text.cleaner import clean_text
+from ttsclient.tts.tts_manager.text import cleaned_text_to_sequence
+from ttsclient.tts.tts_manager.text.LangSegmenter.langsegmenter import LangSegmenter
 from transformers import AutoModelForMaskedLM, AutoTokenizer
 
 from ttsclient.services.module_manager import ModuleManager
