@@ -536,6 +536,11 @@ class Text2SemanticDecoder(nn.Module):
 
         causal_mask = causal_lower_right(y_len, x_len + y_len)
 
+        # PE 事前計算（alpha * pe、正しい dtype/device で）
+        pe_cache = (self.ar_audio_position.alpha * self.ar_audio_position.pe).to(
+            dtype=y_emb.dtype, device=y_emb.device
+        )
+
         print("Second Stage Decoding")
         for idx in tqdm(range(1500)):
             if idx == 0:
@@ -567,7 +572,7 @@ class Text2SemanticDecoder(nn.Module):
 
             ####################### update next step ###################################
             y_emb = self.ar_audio_embedding(y[:, -1:])
-            xy_pos = y_emb * self.ar_audio_position.x_scale + self.ar_audio_position.alpha * self.ar_audio_position.pe[:, y_len + idx].to(dtype=y_emb.dtype, device=y_emb.device)
+            xy_pos = y_emb * self.ar_audio_position.x_scale + pe_cache[:, y_len + idx]
 
         print("Second Stage Decoding Done")
         return y[:, :-1], idx - 1
@@ -605,6 +610,11 @@ class Text2SemanticDecoder(nn.Module):
 
         causal_mask = causal_lower_right(y_len, x_len + y_len)
 
+        # PE 事前計算（alpha * pe、正しい dtype/device で）
+        pe_cache = (self.ar_audio_position.alpha * self.ar_audio_position.pe).to(
+            dtype=y_emb.dtype, device=y_emb.device
+        )
+
         print("Second Stage Decoding (CUDA Graph)")
         for idx in tqdm(range(1500)):
             if idx == 0:
@@ -612,9 +622,7 @@ class Text2SemanticDecoder(nn.Module):
                 logits = self.ar_predict_layer(xy_dec[:, -1])
             else:
                 y_emb = self.ar_audio_embedding(y[:, -1:])
-                pe_idx = y_len + idx - 1
-                pe = self.ar_audio_position.pe[:, pe_idx].to(dtype=y_emb.dtype, device=y_emb.device)
-                xy_pos = y_emb * self.ar_audio_position.x_scale + self.ar_audio_position.alpha * pe
+                xy_pos = y_emb * self.ar_audio_position.x_scale + pe_cache[:, y_len + idx - 1]
                 pos = prompt_len + idx - 1
                 logits = self._cuda_graph_runner.decode(xy_pos, pos)
 

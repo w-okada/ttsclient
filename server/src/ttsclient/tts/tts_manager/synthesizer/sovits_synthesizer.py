@@ -56,6 +56,7 @@ class SovitsSynthesizer(Synthesizer):
                 self.vq_model = self.vq_model.to(self.device)
             self.vq_model.eval()
             self.vq_model.load_state_dict(dict_s2["weight"], strict=False)
+            self.vq_model.dec.remove_weight_norm()  # 推論時の不要な weight_norm 計算を除去
 
             self.info = SynthesizerInfo(
                 synthesizer_type="SovitsSynthesizer",
