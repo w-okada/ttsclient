@@ -73,7 +73,7 @@ class Encoder(nn.Module):
                 x = self.cond_pre(x)
                 cond_offset = i * 2 * self.hidden_channels
                 g_l = g[:, cond_offset : cond_offset + 2 * self.hidden_channels, :]
-                x = commons.fused_add_tanh_sigmoid_multiply(x, g_l, self.n_channels_tensor)
+                x = commons.fused_add_tanh_sigmoid_multiply(x, g_l)
             y = self.attn_layers[i](x, x, attn_mask)
             y = self.drop(y)
             x = self.norm_layers_1[i](x + y)
@@ -560,7 +560,7 @@ class FFT(nn.Module):
                 x = self.cond_pre(x)
                 cond_offset = i * 2 * self.hidden_channels
                 g_l = g[:, cond_offset : cond_offset + 2 * self.hidden_channels, :]
-                x = commons.fused_add_tanh_sigmoid_multiply(x, g_l, self.n_channels_tensor)
+                x = commons.fused_add_tanh_sigmoid_multiply(x, g_l)
             y = self.self_attn_layers[i](x, x, self_attn_mask)
             y = self.drop(y)
             x = self.norm_layers_0[i](x + y)

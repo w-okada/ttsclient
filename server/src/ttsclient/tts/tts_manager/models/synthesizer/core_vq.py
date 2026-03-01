@@ -375,7 +375,7 @@ class ResidualVectorQuantization(nn.Module):
         return out_indices
 
     def decode(self, q_indices: torch.Tensor, st: int = 0) -> torch.Tensor:
-        quantized_out = torch.tensor(0.0, device=q_indices.device)
+        quantized_out = 0.0
         for i, indices in enumerate(q_indices):
             layer = self.layers[st + i]
             quantized = layer.decode(indices)

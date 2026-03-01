@@ -92,13 +92,10 @@ def subsequent_mask(length):
 
 
 @torch.jit.script
-def fused_add_tanh_sigmoid_multiply(input_a, input_b, n_channels):
-    n_channels_int = n_channels[0]
+def fused_add_tanh_sigmoid_multiply(input_a, input_b):
     in_act = input_a + input_b
-    t_act = torch.tanh(in_act[:, :n_channels_int, :])
-    s_act = torch.sigmoid(in_act[:, n_channels_int:, :])
-    acts = t_act * s_act
-    return acts
+    t_act, s_act = in_act.chunk(2, dim=1)
+    return torch.tanh(t_act) * torch.sigmoid(s_act)
 
 
 def convert_pad_shape(pad_shape):

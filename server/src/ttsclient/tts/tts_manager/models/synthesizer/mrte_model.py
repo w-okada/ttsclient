@@ -136,7 +136,7 @@ class WN(torch.nn.Module):
         for i in range(self.n_layers):
             x_in = self.in_layers[i](x)
 
-            acts = fused_add_tanh_sigmoid_multiply2(x_in, self.n_channels_tensor)
+            acts = fused_add_tanh_sigmoid_multiply2(x_in)
 
             res_skip_acts = self.res_skip_layers[i](acts)
             if i < self.n_layers - 1:
@@ -155,12 +155,9 @@ class WN(torch.nn.Module):
 
 
 @torch.jit.script
-def fused_add_tanh_sigmoid_multiply2(input, n_channels):
-    n_channels_int = n_channels[0]
-    t_act = torch.tanh(input[:, :n_channels_int, :])
-    s_act = torch.sigmoid(input[:, n_channels_int:, :])
-    acts = t_act * s_act
-    return acts
+def fused_add_tanh_sigmoid_multiply2(input):
+    t_act, s_act = input.chunk(2, dim=1)
+    return torch.tanh(t_act) * torch.sigmoid(s_act)
 
 
 if __name__ == "__main__":

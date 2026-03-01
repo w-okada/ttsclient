@@ -110,6 +110,9 @@ class _GraphEntry:
         # lengths (GPU tensors — 値を変更可能、shape は固定)
         self.static_y_lengths = torch.zeros(1, dtype=torch.long, device=device)
         self.static_text_lengths = torch.zeros(1, dtype=torch.long, device=device)
+        # マスク: sequence_mask の GPU→CPU 同期を回避するための静的バッファ
+        self.static_y_mask = torch.ones(1, 1, y_bucket, dtype=dtype, device=device)
+        self.static_text_mask = torch.ones(1, 1, text_bucket, dtype=dtype, device=device)
         # noise: randn_like の代替
         inter_channels = self.model.inter_channels
         self.static_noise = torch.randn(1, inter_channels, y_bucket, dtype=dtype, device=device)
@@ -129,6 +132,7 @@ class _GraphEntry:
         x, m_p, logs_p, y_mask = self.model.enc_p(
             quantized, self.static_y_lengths, self.static_text,
             self.static_text_lengths, ge_for_enc_p,
+            y_mask=self.static_y_mask, text_mask=self.static_text_mask,
         )
 
         z_p = m_p + self.static_noise * torch.exp(logs_p) * 0.5
@@ -144,6 +148,9 @@ class _GraphEntry:
         # warmup 用に lengths をバケットサイズに設定
         self.static_y_lengths.fill_(self.y_bucket)
         self.static_text_lengths.fill_(self.text_bucket)
+        # マスクをバケットサイズで全1に初期化
+        self.static_y_mask.fill_(1.0)
+        self.static_text_mask.fill_(1.0)
 
         side_stream = torch.cuda.Stream(device=self._device)
         side_stream.wait_stream(torch.cuda.current_stream(self._device))
@@ -171,6 +178,13 @@ class _GraphEntry:
         y_len = codes_len * 2
         self.static_y_lengths.fill_(y_len)
         self.static_text_lengths.fill_(text_len)
+
+        # マスクを実データの長さに合わせて更新（パディング領域はゼロ）
+        self.static_y_mask.zero_()
+        self.static_y_mask[:, :, :y_len] = 1.0
+
+        self.static_text_mask.zero_()
+        self.static_text_mask[:, :, :text_len] = 1.0
 
         # 毎回新しいノイズを注入（private generator でデフォルト RNG を汚さない）
         self.static_noise.normal_(generator=self._noise_gen)
