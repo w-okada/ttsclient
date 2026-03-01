@@ -5,6 +5,7 @@ from typing import List, Optional
 import torch
 from torch import nn
 from torch.nn import functional as F
+from torch.nn.attention.bias import causal_lower_right
 from torchmetrics.classification import MulticlassAccuracy
 from tqdm import tqdm
 
@@ -139,6 +140,41 @@ class T2SBlock:
             )
         return x, k_cache, v_cache
 
+    def process_prompt_flash(self, xy: torch.Tensor, x_len: int, causal_mask: Optional[torch.Tensor] = None):
+        q, k, v = F.linear(xy, self.qkv_w, self.qkv_b).chunk(3, dim=-1)
+
+        batch_size = q.shape[0]
+        total_len = q.shape[1]
+
+        k_cache = k
+        v_cache = v
+
+        q = q.view(batch_size, total_len, self.num_heads, -1).transpose(1, 2)
+        k = k.view(batch_size, total_len, self.num_heads, -1).transpose(1, 2)
+        v = v.view(batch_size, total_len, self.num_heads, -1).transpose(1, 2)
+
+        # Text self-attention — bidirectional, no mask → Flash Attention
+        attn_x = F.scaled_dot_product_attention(q[:, :, :x_len], k[:, :, :x_len], v[:, :, :x_len])
+
+        # Audio queries only + causal_lower_right mask → no wasted computation
+        if causal_mask is not None:
+            attn_y = F.scaled_dot_product_attention(q[:, :, x_len:], k, v, causal_mask)
+        else:
+            attn_y = F.scaled_dot_product_attention(q[:, :, x_len:], k, v)
+
+        # Concatenate and output projection
+        attn = torch.cat([attn_x, attn_y], dim=2)
+        attn = attn.permute(2, 0, 1, 3).reshape(batch_size * total_len, self.hidden_dim)
+        attn = attn.view(total_len, batch_size, self.hidden_dim).transpose(1, 0)
+        attn = F.linear(attn, self.out_w, self.out_b)
+
+        xy = xy + attn
+        xy = F.layer_norm(xy, [self.hidden_dim], self.norm_w1, self.norm_b1, self.norm_eps1)
+        xy = xy + self.mlp.forward(xy)
+        xy = F.layer_norm(xy, [self.hidden_dim], self.norm_w2, self.norm_b2, self.norm_eps2)
+
+        return xy, k_cache, v_cache
+
     def decode_next_token(self, x: torch.Tensor, k_cache: torch.Tensor, v_cache: torch.Tensor):
         q, k, v = F.linear(x, self.qkv_w, self.qkv_b).chunk(3, dim=-1)
 
@@ -186,6 +222,15 @@ class T2STransformer:
             k_cache.append(k_cache_)
             v_cache.append(v_cache_)
         return x, k_cache, v_cache
+
+    def process_prompt_flash(self, xy: torch.Tensor, x_len: int, causal_mask: Optional[torch.Tensor] = None):
+        k_cache: List[torch.Tensor] = []
+        v_cache: List[torch.Tensor] = []
+        for i in range(self.num_blocks):
+            xy, k_, v_ = self.blocks[i].process_prompt_flash(xy, x_len, causal_mask)
+            k_cache.append(k_)
+            v_cache.append(v_)
+        return xy, k_cache, v_cache
 
     def decode_next_token(self, x: torch.Tensor, k_cache: List[torch.Tensor], v_cache: List[torch.Tensor]):
         for i in range(self.num_blocks):
@@ -478,9 +523,7 @@ class Text2SemanticDecoder(nn.Module):
         y = prompts
 
         x_len = x.shape[1]
-        x_attn_mask = torch.zeros((x_len, x_len), dtype=torch.bool)
         stop = False
-        # print(1111111,self.num_layers)
 
         k_cache = None
         v_cache = None
@@ -491,31 +534,17 @@ class Text2SemanticDecoder(nn.Module):
         y_pos = self.ar_audio_position(y_emb)
         xy_pos = torch.concat([x, y_pos], dim=1)
 
-        bsz = x.shape[0]
-        src_len = x_len + y_len
-        x_attn_mask_pad = F.pad(
-            x_attn_mask,
-            (0, y_len),  ###xx的纯0扩展到xx纯0+xy纯1，(x,x+y)
-            value=True,
-        )
-        y_attn_mask = F.pad(  ###yy的右上1扩展到左边xy的0,(y,x+y)
-            torch.triu(torch.ones(y_len, y_len, dtype=torch.bool), diagonal=1),
-            (x_len, 0),
-            value=False,
-        )
-        xy_attn_mask = torch.concat([x_attn_mask_pad, y_attn_mask], dim=0).unsqueeze(0).expand(bsz * self.num_head, -1, -1).view(bsz, self.num_head, src_len, src_len).to(device=x.device, dtype=torch.bool)
+        causal_mask = causal_lower_right(y_len, x_len + y_len)
 
         print("Second Stage Decoding")
         for idx in tqdm(range(1500)):
-            if xy_attn_mask is not None:
-                xy_dec, k_cache, v_cache = self.t2s_transformer.process_prompt(xy_pos, xy_attn_mask, None)
+            if idx == 0:
+                xy_dec, k_cache, v_cache = self.t2s_transformer.process_prompt_flash(xy_pos, x_len, causal_mask)
             else:
                 xy_dec, k_cache, v_cache = self.t2s_transformer.decode_next_token(xy_pos, k_cache, v_cache)
 
             logits = self.ar_predict_layer(xy_dec[:, -1])
 
-            if idx == 0:
-                xy_attn_mask = None
             if idx < 11:  # ##至少预测出10个token不然不给停止（0.4s）
                 logits = logits[:, :-1]
 
@@ -556,7 +585,6 @@ class Text2SemanticDecoder(nn.Module):
         y = prompts
 
         x_len = x.shape[1]
-        x_attn_mask = torch.zeros((x_len, x_len), dtype=torch.bool)
         stop = False
 
         y_emb = self.ar_audio_embedding(y)
@@ -575,29 +603,12 @@ class Text2SemanticDecoder(nn.Module):
         if not hasattr(self, "_cuda_graph_runner"):
             self._cuda_graph_runner = T2SCudaGraphDecode(self)
 
-        src_len = x_len + y_len
-        x_attn_mask_pad = F.pad(
-            x_attn_mask,
-            (0, y_len),
-            value=True,
-        )
-        y_attn_mask = F.pad(
-            torch.triu(torch.ones(y_len, y_len, dtype=torch.bool), diagonal=1),
-            (x_len, 0),
-            value=False,
-        )
-        xy_attn_mask = (
-            torch.concat([x_attn_mask_pad, y_attn_mask], dim=0)
-            .unsqueeze(0)
-            .expand(bsz * self.num_head, -1, -1)
-            .view(bsz, self.num_head, src_len, src_len)
-            .to(device=x.device, dtype=torch.bool)
-        )
+        causal_mask = causal_lower_right(y_len, x_len + y_len)
 
         print("Second Stage Decoding (CUDA Graph)")
         for idx in tqdm(range(1500)):
             if idx == 0:
-                xy_dec, k_cache, v_cache = self.t2s_transformer.process_prompt(xy_pos, xy_attn_mask, None)
+                xy_dec, k_cache, v_cache = self.t2s_transformer.process_prompt_flash(xy_pos, x_len, causal_mask)
                 logits = self.ar_predict_layer(xy_dec[:, -1])
             else:
                 y_emb = self.ar_audio_embedding(y[:, -1:])

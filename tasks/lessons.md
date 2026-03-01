@@ -32,3 +32,14 @@
 - `sys.path.append` / `sys.path.insert` の追加・削除
 - パッケージ構成の変更（ディレクトリ移動、リネーム）
 - import 方式の変更（相対→絶対、sys.path→パッケージ内参照）
+
+## L-004: PyTorch Flash Attention の is_causal 制約を把握する
+
+**発生**: `F.scaled_dot_product_attention(q_y, k_all, v_all, None, 0.0, True)` で `q_len != kv_len` の場合、Flash Attention は使えず Efficient/Math バックエンドにフォールバックした。結果、1つの SDPA を2つに分割したことでかえって遅くなった。
+
+**ルール**: PyTorch の Flash Attention は `is_causal=True` 使用時に **`q_len == kv_len` を要求する**（PyTorch 2.10 時点）。非正方行列の因果的マスクが必要な場合は、`q_len == kv_len` になるよう full シーケンスで SDPA を実行し、不要な結果をスライスで捨てる方式を使う。
+
+**適用場面**:
+- SDPA の最適化で `is_causal=True` を使おうとするとき
+- Cross-attention 的な構造（q と kv の長さが異なる）に因果的マスクを適用するとき
+- Flash Attention の有効化を計画で謳うときは、事前にバックエンドの制約をテストで確認する
