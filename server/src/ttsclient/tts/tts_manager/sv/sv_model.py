@@ -43,7 +43,7 @@ class SVModel:
             sv_emb: 1D tensor of shape [20480].
         """
         if self.is_half:
-            wav_16k = wav_16k.float()
+            wav_16k = wav_16k.half()
 
         feat = Kaldi.fbank(
             wav_16k.unsqueeze(0),
@@ -52,11 +52,7 @@ class SVModel:
             dither=0,
         )
         # feat: [T, 80] -> [1, T, 80]
-        feat = feat.unsqueeze(0)
-
-        if self.is_half:
-            feat = feat.half()
-        feat = feat.to(self.device)
+        feat = feat.unsqueeze(0).to(self.device)
 
         sv_emb = self.embedding_model.forward3(feat)
         return sv_emb.squeeze(0)  # [20480]
