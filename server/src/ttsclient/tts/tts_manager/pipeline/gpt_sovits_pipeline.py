@@ -51,7 +51,7 @@ class GPTSoVITSPipeline(Pipeline):
             elif self.slot_info.model_version == "v2ProPlus":
                 sovit_model = module_manager.get_module_filepath("sovits_model_v2proplus")
             else:
-                sovit_model = module_manager.get_module_filepath("sovits_model")
+                raise NotImplementedError(f"Unsupported model version: {self.slot_info.model_version}")
         else:
             sovit_model = ModelDir / f"{self.slot_info.slot_index}" / self.slot_info.synthesizer_model_path
             logging.getLogger(LOGGER_NAME).info(f"use custom synthesizer {sovit_model}")
@@ -204,7 +204,6 @@ class GPTSoVITSPipeline(Pipeline):
         phone_symbols: list[str] | None = None,
     ):
         print("RUN NORMAL PIPELINE!")
-        ref_free: bool = False
         if_freeze: bool = False
 
         # 参照音声とテキストの処理
@@ -213,7 +212,7 @@ class GPTSoVITSPipeline(Pipeline):
             key = f"{prompt_language}_{prompt_text}_{ref_wav_path}"
             if key in self.reference_cache:
                 phones1, bert1, prompt = self.reference_cache[key]
-            elif ref_free is False:
+            else:
                 phones1, bert1, prompt = self._generate_ref_contents(
                     self.ssl_model,
                     self.vq_model,
@@ -244,12 +243,8 @@ class GPTSoVITSPipeline(Pipeline):
                     phones2, bert2 = self.phone_extractor.phone_symbols_to_sequence_and_bert(phone_symbols, version)
                 timer.record("phone_extraction")
 
-                if not ref_free:
-                    bert = torch.cat([bert1, bert2], 1)
-                    all_phoneme_ids = torch.LongTensor(phones1 + phones2).to(self.device).unsqueeze(0)
-                else:
-                    bert = bert2
-                    all_phoneme_ids = torch.LongTensor(phones2).to(self.device).unsqueeze(0)
+                bert = torch.cat([bert1, bert2], 1)
+                all_phoneme_ids = torch.LongTensor(phones1 + phones2).to(self.device).unsqueeze(0)
 
                 bert = bert.to(self.device).unsqueeze(0)
                 all_phoneme_len = torch.tensor([all_phoneme_ids.shape[-1]]).to(self.device)
@@ -266,7 +261,7 @@ class GPTSoVITSPipeline(Pipeline):
                         pred_semantic = self.t2s_model.predict(
                             all_phoneme_ids,
                             all_phoneme_len,
-                            None if ref_free else prompt,
+                            prompt,
                             bert,
                             top_k=top_k,
                             top_p=top_p,
