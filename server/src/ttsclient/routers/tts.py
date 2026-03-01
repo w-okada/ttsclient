@@ -3,6 +3,7 @@ import wave
 
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
+from simple_performance_timer.Timer import Timer
 
 from ttsclient.models.tts import (
     GenerateVoiceParam,
@@ -18,15 +19,16 @@ router = APIRouter(prefix="/api/tts-manager/operation")
 
 @router.post("/generateVoice")
 async def generate_voice(param: GenerateVoiceParam):
-    sample_rate, audio_data = TTSManager.get_instance().run(param)
+    with Timer("generateVoice total"):
+        sample_rate, audio_data = TTSManager.get_instance().run(param)
 
-    audio_buffer = io.BytesIO()
-    with wave.open(audio_buffer, "wb") as wf:
-        wf.setnchannels(1)
-        wf.setsampwidth(2)
-        wf.setframerate(sample_rate)
-        wf.writeframes(audio_data.tobytes())
-    audio_buffer.seek(0)
+        audio_buffer = io.BytesIO()
+        with wave.open(audio_buffer, "wb") as wf:
+            wf.setnchannels(1)
+            wf.setsampwidth(2)
+            wf.setframerate(sample_rate)
+            wf.writeframes(audio_data.tobytes())
+        audio_buffer.seek(0)
 
     return StreamingResponse(
         audio_buffer,

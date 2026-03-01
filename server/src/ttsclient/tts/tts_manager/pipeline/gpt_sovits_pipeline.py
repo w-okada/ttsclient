@@ -209,7 +209,7 @@ class GPTSoVITSPipeline(Pipeline):
 
         # 参照音声とテキストの処理
         version = "v2"  # model_versionとversionの扱いが異なる。影響範囲を見極め切れていないのでとりあえずここはv2で固定。
-        with Timer("generate reference content", False):
+        with Timer("generate reference content"):
             key = f"{prompt_language}_{prompt_text}_{ref_wav_path}"
             if key in self.reference_cache:
                 phones1, bert1, prompt = self.reference_cache[key]
@@ -228,12 +228,12 @@ class GPTSoVITSPipeline(Pipeline):
                 self.reference_cache[key] = (phones1, bert1, prompt)
 
         # ターゲットテキストの処理
-        with Timer("generate target text", False):
+        with Timer("generate target text"):
             texts = self._generate_target_contents(how_to_cut, text, text_language, version)
 
         audio_opt = []
         # ここからターゲットテキストごとの処理⇒音声化
-        with Timer("generate voice", False):
+        with Timer("generate voice") as timer:
             for i_text, text in enumerate(texts):
                 # 途中終了チェック（１）
                 if self.force_stop_flag is True:
@@ -242,6 +242,7 @@ class GPTSoVITSPipeline(Pipeline):
                 if phone_symbols is not None:
                     # only not for zh (bertはゼロ配列で返る)
                     phones2, bert2 = self.phone_extractor.phone_symbols_to_sequence_and_bert(phone_symbols, version)
+                timer.record("phone_extraction")
 
                 if not ref_free:
                     bert = torch.cat([bert1, bert2], 1)
@@ -272,6 +273,7 @@ class GPTSoVITSPipeline(Pipeline):
                             temperature=temperature,
                         )
                         self.cache[i_text] = pred_semantic
+                timer.record("semantic_prediction")
                 refers = []
 
                 # 途中終了チェック（３）
@@ -288,6 +290,7 @@ class GPTSoVITSPipeline(Pipeline):
                             traceback.print_exc()
                 if len(refers) == 0:
                     refers = [get_spepc(self.hps, ref_wav_path).to(self.torch_dtype).to(self.device)]
+                timer.record("spectrogram")
 
                 # sv_emb の計算（v2Pro のみ）
                 sv_emb = None
@@ -298,6 +301,7 @@ class GPTSoVITSPipeline(Pipeline):
                         wav_16k, _ = librosa.load(str(rp), sr=16000)
                         wav_16k_torch = torch.from_numpy(wav_16k).to(self.device)
                         sv_emb.append(self.sv_model.compute_embedding(wav_16k_torch))
+                timer.record("sv_embedding")
 
                 phones2 = torch.LongTensor(phones2).to(self.device).unsqueeze(0)
 
@@ -309,6 +313,7 @@ class GPTSoVITSPipeline(Pipeline):
                     sv_emb=sv_emb,
                     ref_wav_path=ref_wav_path,
                 )
+                timer.record("decode")
 
                 max_audio = np.abs(audio).max()  # 简单防止16bit爆音
                 if max_audio > 1:
