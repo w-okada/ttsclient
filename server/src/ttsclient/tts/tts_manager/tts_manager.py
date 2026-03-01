@@ -37,6 +37,8 @@ class TTSManager:
         self.loaded_model_slot_id = slot_id
         slot_manager = SlotManager.get_instance()
         slot_info = slot_manager.get_slot_info(slot_id)
+        if slot_info is None:
+            raise ValueError(f"Slot {slot_id} not found. Please check the slot configuration.")
         self.pipeline = PipelineManager.get_pipeline(slot_info)
         self.use_faster = slot_info.enable_faster
         self.backend_mode = slot_info.backend_mode
@@ -96,6 +98,8 @@ class TTSManager:
         elif self.loaded_model_slot_id != conf.current_slot_index:
             exec_load = True
         elif self.pipeline.gpu_device_id != conf.gpu_device_id_int:
+            exec_load = True
+        elif slot_info is None:
             exec_load = True
         elif slot_info.enable_faster != self.use_faster:
             exec_load = True
@@ -241,6 +245,8 @@ class TTSManager:
 
         slot_manager = SlotManager.get_instance()
         slot_info = slot_manager.get_slot_info(conf.current_slot_index)
+        if slot_info is None:
+            raise ValueError(f"Slot {conf.current_slot_index} not found. Please check the slot configuration.")
         self.check_and_load_model()
 
         self.check_and_load_voice_character_setting(generarte_voice_param.voice_character_slot_index)

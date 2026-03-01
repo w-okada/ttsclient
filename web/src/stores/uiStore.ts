@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import * as api from "@/api/endpoints";
+import { useServerStore } from "./serverStore";
 import type { DialogName } from "@/types";
 
 type Theme = "light" | "dark";
@@ -64,7 +65,9 @@ export const useUIStore = create<UIState>((set, get) => ({
     set({ currentSlotIndex: index });
     api.getConfiguration().then((config) => {
       if (config.current_slot_index !== index) {
-        api.putConfiguration({ ...config, current_slot_index: index });
+        api.putConfiguration({ ...config, current_slot_index: index }).then((updated) => {
+          useServerStore.setState({ configuration: updated });
+        });
       }
     });
   },
@@ -73,7 +76,9 @@ export const useUIStore = create<UIState>((set, get) => ({
     set({ currentVCIndex: index, currentVoiceIndexes: [] });
     api.getConfiguration().then((config) => {
       if (config.current_vc_index !== index) {
-        api.putConfiguration({ ...config, current_vc_index: index });
+        api.putConfiguration({ ...config, current_vc_index: index }).then((updated) => {
+          useServerStore.setState({ configuration: updated });
+        });
       }
     });
   },
