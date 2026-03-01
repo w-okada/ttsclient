@@ -46,7 +46,6 @@ class GPTSoVITSSlotInfo(SlotInfo):
     tts_type: TTSType = "GPT-SoVITS"
     version: GPTSoVITSVersion = "v2"
     model_version: GPTSoVITSModelVersion = "v2"
-    if_lora_v3: bool = False
     enable_faster: bool | None = False
     semantic_predictor_model_path: Path | None = None
     synthesizer_model_path: Path | None = None

@@ -16,7 +16,6 @@ from .commons import init_weights, get_padding
 from .mrte_model import MRTE
 from .quantize import ResidualVectorQuantizer
 
-from ...text import symbols as symbols_v1
 from ...text import symbols2 as symbols_v2
 from torch.cuda.amp import autocast
 import contextlib
@@ -216,10 +215,8 @@ class TextEncoder(nn.Module):
         )
 
         if self.version == "v1":
-            symbols = symbols_v1.symbols
-        else:
-            symbols = symbols_v2.symbols
-        self.text_embedding = nn.Embedding(len(symbols), hidden_channels)
+            raise NotImplementedError("v1 TextEncoder はサポートされていません")
+        self.text_embedding = nn.Embedding(len(symbols_v2.symbols), hidden_channels)
 
         self.mrte = MRTE()
 
@@ -893,11 +890,9 @@ class SynthesizerTrn(nn.Module):
             inter_channels, hidden_channels, 5, 1, 4, gin_channels=gin_channels
         )
 
-        # self.version=os.environ.get("version","v1")
-        if(self.version=="v1"):
-            self.ref_enc = modules.MelStyleEncoder(spec_channels, style_vector_dim=gin_channels)
-        else:
-            self.ref_enc = modules.MelStyleEncoder(704, style_vector_dim=gin_channels)
+        if self.version == "v1":
+            raise NotImplementedError("v1 モデルはサポートされていません")
+        self.ref_enc = modules.MelStyleEncoder(704, style_vector_dim=gin_channels)
 
         ssl_dim = 768
         assert semantic_frame_rate in ["25hz", "50hz"]
@@ -913,21 +908,17 @@ class SynthesizerTrn(nn.Module):
         # v2Pro/v2ProPlus: sv_emb + ge_to512 + prelu
         v2pro_set = {"v2Pro", "v2ProPlus"}
         self.is_v2pro = self.version in v2pro_set
-        if self.is_v2pro:
-            self.sv_emb = nn.Linear(20480, gin_channels)
-            self.ge_to512 = nn.Linear(gin_channels, 512)
-            self.prelu = nn.PReLU(num_parameters=gin_channels)
-        else:
-            self.ge_to512 = None
+        if not self.is_v2pro:
+            raise NotImplementedError(f"v2 (非Pro) モデルはサポートされていません: version={self.version}")
+        self.sv_emb = nn.Linear(20480, gin_channels)
+        self.ge_to512 = nn.Linear(gin_channels, 512)
+        self.prelu = nn.PReLU(num_parameters=gin_channels)
 
     def forward(self, ssl, y, y_lengths, text, text_lengths):
         y_mask = torch.unsqueeze(commons.sequence_mask(y_lengths, y.size(2)), 1).to(
             y.dtype
         )
-        if(self.version=="v1"):
-            ge = self.ref_enc(y * y_mask, y_mask)
-        else:
-            ge = self.ref_enc(y[:,:704] * y_mask, y_mask)
+        ge = self.ref_enc(y[:,:704] * y_mask, y_mask)
         with autocast(enabled=False):
             maybe_no_grad = torch.no_grad() if self.freeze_quantizer else contextlib.nullcontext()
             with maybe_no_grad:
@@ -944,7 +935,7 @@ class SynthesizerTrn(nn.Module):
                 quantized, size=int(quantized.shape[-1] * 2), mode="nearest"
             )
 
-        ge_for_enc_p = self.ge_to512(ge.squeeze(-1)).unsqueeze(-1) if self.is_v2pro else ge
+        ge_for_enc_p = self.ge_to512(ge.squeeze(-1)).unsqueeze(-1)
         x, m_p, logs_p, y_mask = self.enc_p(
             quantized, y_lengths, text, text_lengths, ge_for_enc_p
         )
@@ -969,10 +960,7 @@ class SynthesizerTrn(nn.Module):
         y_mask = torch.unsqueeze(commons.sequence_mask(y_lengths, y.size(2)), 1).to(
             y.dtype
         )
-        if(self.version=="v1"):
-            ge = self.ref_enc(y * y_mask, y_mask)
-        else:
-            ge = self.ref_enc(y[:,:704] * y_mask, y_mask)
+        ge = self.ref_enc(y[:,:704] * y_mask, y_mask)
 
         ssl = self.ssl_proj(ssl)
         quantized, codes, commit_loss, _ = self.quantizer(ssl, layers=[0])
@@ -981,7 +969,7 @@ class SynthesizerTrn(nn.Module):
                 quantized, size=int(quantized.shape[-1] * 2), mode="nearest"
             )
 
-        ge_for_enc_p = self.ge_to512(ge.squeeze(-1)).unsqueeze(-1) if self.is_v2pro else ge
+        ge_for_enc_p = self.ge_to512(ge.squeeze(-1)).unsqueeze(-1)
         x, m_p, logs_p, y_mask = self.enc_p(
             quantized, y_lengths, text, text_lengths, ge_for_enc_p, test=test
         )
@@ -1001,11 +989,8 @@ class SynthesizerTrn(nn.Module):
                 refer_mask = torch.unsqueeze(
                     commons.sequence_mask(refer_lengths, refer.size(2)), 1
                 ).to(refer.dtype)
-                if (self.version == "v1"):
-                    ge = self.ref_enc(refer * refer_mask, refer_mask)
-                else:
-                    ge = self.ref_enc(refer[:, :704] * refer_mask, refer_mask)
-                if self.is_v2pro and _sv_emb is not None:
+                ge = self.ref_enc(refer[:, :704] * refer_mask, refer_mask)
+                if _sv_emb is not None:
                     sv = self.sv_emb(_sv_emb)          # [20480] -> [gin_channels]
                     ge = ge + sv.unsqueeze(-1)          # [B, gin_channels, 1]
                     ge = self.prelu(ge)
@@ -1013,7 +998,7 @@ class SynthesizerTrn(nn.Module):
         if(type(refer)==list):
             ges=[]
             for idx, _refer in enumerate(refer):
-                _sv = sv_emb[idx] if (self.is_v2pro and sv_emb is not None) else None
+                _sv = sv_emb[idx] if sv_emb is not None else None
                 ge=get_ge(_refer, _sv)
                 ges.append(ge)
             ge=torch.stack(ges,0).mean(0)
@@ -1029,7 +1014,7 @@ class SynthesizerTrn(nn.Module):
                 quantized, size=int(quantized.shape[-1] * 2), mode="nearest"
             )
 
-        ge_for_enc_p = self.ge_to512(ge.transpose(2, 1)).transpose(2, 1) if self.is_v2pro else ge
+        ge_for_enc_p = self.ge_to512(ge.transpose(2, 1)).transpose(2, 1)
         x, m_p, logs_p, y_mask = self.enc_p(
             quantized, y_lengths, text, text_lengths, ge_for_enc_p, speed
         )

@@ -36,11 +36,11 @@ class SovitsSynthesizer(Synthesizer):
         if self.use_onnx is False:
             self.hps.model.semantic_frame_rate = "25hz"
             if dict_s2["weight"]["enc_p.text_embedding.weight"].shape[0] == 322:
-                self.hps.model.version = "v1"
+                raise NotImplementedError("v1 モデルはサポートされていません")
             elif "sv_emb.weight" in dict_s2["weight"]:
                 self.hps.model.version = "v2Pro"
             else:
-                self.hps.model.version = "v2"
+                raise NotImplementedError("v2 (非Pro) モデルはサポートされていません。v2Pro/v2ProPlus のみ対応しています。")
 
             self.vq_model = SynthesizerTrn(
                 self.hps.data.filter_length // 2 + 1,
@@ -165,13 +165,7 @@ class SovitsSynthesizer(Synthesizer):
         dict_s2 = torch.load(model_path, map_location="cpu")
 
         if dict_s2["weight"]["enc_p.text_embedding.weight"].shape[0] == 322:
-            model_version = "v1"
-        else:
-            model_version = "v2"
-
-        if model_version == "v1":
-            logging.getLogger(LOGGER_NAME).warn("sovits version: v1, not support to export onnx")
-            raise RuntimeError("sovits version: v1, not support to export onnx")
+            raise NotImplementedError("v1 モデルの ONNX エクスポートはサポートされていません")
 
         onnx_vq_model_stem = model_path.stem + "_vq_model"
         onnx_vq_model_path = model_path.with_name(onnx_vq_model_stem).with_suffix(".onnx")

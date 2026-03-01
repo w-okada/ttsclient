@@ -1,7 +1,6 @@
 from pathlib import Path
 from ttsclient.const import SynthesizerType
 from ttsclient.tts.tts_manager.synthesizer.sovits_synthesizer import SovitsSynthesizer
-from ttsclient.tts.tts_manager.synthesizer.sovits_synthesizer_v3 import SovitsSynthesizerV3
 from ttsclient.tts.tts_manager.synthesizer.synthesizer import Synthesizer
 
 
@@ -33,19 +32,5 @@ class SynthesizerManager:
         use_onnx: bool,
     ):
         if synthesizer_type == "SovitsSynthesizer":
-            synthesizer = SovitsSynthesizer(model_path, device_id, use_onnx)
-            return synthesizer
-        elif synthesizer_type == "SovitsSynthesizerV3":
-            synthesizer = SovitsSynthesizerV3(model_path, False, device_id, use_onnx, version="v3")
-            return synthesizer
-        elif synthesizer_type == "SovitsSynthesizerV3Lora":
-            synthesizer = SovitsSynthesizerV3(model_path, True, device_id, use_onnx, version="v3")
-            return synthesizer
-        elif synthesizer_type == "SovitsSynthesizerV4":
-            synthesizer = SovitsSynthesizerV3(model_path, False, device_id, use_onnx, version="v4")
-            return synthesizer
-        elif synthesizer_type == "SovitsSynthesizerV4Lora":
-            synthesizer = SovitsSynthesizerV3(model_path, True, device_id, use_onnx, version="v4")
-            return synthesizer
-        else:
-            raise ValueError(f"Unsupported synthesizer type: {synthesizer_type}")
+            return SovitsSynthesizer(model_path, device_id, use_onnx)
+        raise NotImplementedError(f"Unsupported synthesizer type: {synthesizer_type}")

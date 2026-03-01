@@ -9,19 +9,13 @@ VERSION = "2.0.0"
 TTSType: TypeAlias = Literal["GPT-SoVITS", "BROKEN", "RESERVED_FOR_SAMPLE", "VoiceCharacter"]
 
 # GPT-SoVITS バージョン
-GPTSoVITSVersion: TypeAlias = Literal["v1", "v2"]
-GPTSoVITSModelVersion: TypeAlias = Literal["v1", "v2", "v2Pro", "v2ProPlus", "v3", "v4"]
+GPTSoVITSVersion: TypeAlias = Literal["v2"]
+GPTSoVITSModelVersion: TypeAlias = Literal["v2Pro", "v2ProPlus"]
 
 # 構成要素タイプ
 SemanticPredictorType: TypeAlias = Literal["GPTSemanticPredictor"]
 PhoneExtractorType: TypeAlias = Literal["BertPhoneExtractor"]
-SynthesizerType: TypeAlias = Literal[
-    "SovitsSynthesizer",
-    "SovitsSynthesizerV3",
-    "SovitsSynthesizerV3Lora",
-    "SovitsSynthesizerV4",
-    "SovitsSynthesizerV4Lora",
-]
+SynthesizerType: TypeAlias = Literal["SovitsSynthesizer"]
 EmbedderType: TypeAlias = Literal["cnhubert"]
 
 # バックエンドモード

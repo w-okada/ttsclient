@@ -9,7 +9,6 @@ from ttsclient.tts.tts_manager.models.synthesizer import modules
 from ttsclient.tts.tts_manager.models.synthesizer.quantize import ResidualVectorQuantizer
 from ttsclient.tts.tts_manager.utils.dict_to_attr_recursive import DictToAttrRecursive
 from ttsclient.tts.tts_manager.models.synthesizer.onnx import attentions_onnx
-from ttsclient.tts.tts_manager.text import symbols as symbols_v1
 from ttsclient.tts.tts_manager.text import symbols2 as symbols_v2
 from ttsclient.tts.tts_manager.models.synthesizer.commons import init_weights
 
@@ -52,10 +51,8 @@ class TextEncoder(nn.Module):
         self.encoder_text = attentions_onnx.Encoder(hidden_channels, filter_channels, n_heads, n_layers, kernel_size, p_dropout)
 
         if self.version == "v1":
-            symbols = symbols_v1.symbols
-        else:
-            symbols = symbols_v2.symbols
-        self.text_embedding = nn.Embedding(len(symbols), hidden_channels)
+            raise NotImplementedError("v1 ONNX TextEncoder はサポートされていません")
+        self.text_embedding = nn.Embedding(len(symbols_v2.symbols), hidden_channels)
 
         self.mrte = attentions_onnx.MRTE()
 
@@ -350,11 +347,9 @@ class SynthesizerTrn(nn.Module):
         # )
         self.flow = ResidualCouplingBlock(inter_channels, hidden_channels, 5, 1, 4, gin_channels=gin_channels)
 
-        # self.version=os.environ.get("version","v1")
         if self.version == "v1":
-            self.ref_enc = modules.MelStyleEncoder(spec_channels, style_vector_dim=gin_channels)
-        else:
-            self.ref_enc = modules.MelStyleEncoder(704, style_vector_dim=gin_channels)
+            raise NotImplementedError("v1 ONNX モデルはサポートされていません")
+        self.ref_enc = modules.MelStyleEncoder(704, style_vector_dim=gin_channels)
 
         ssl_dim = 768
         self.ssl_dim = ssl_dim
@@ -375,10 +370,7 @@ class SynthesizerTrn(nn.Module):
 
     def forward(self, codes, text, refer):
         refer_mask = torch.ones_like(refer[:1, :1, :])
-        if self.version == "v1":
-            ge = self.ref_enc(refer * refer_mask, refer_mask)
-        else:
-            ge = self.ref_enc(refer[:, :704] * refer_mask, refer_mask)
+        ge = self.ref_enc(refer[:, :704] * refer_mask, refer_mask)
 
         quantized = self.quantizer.decode(codes)
         if self.semantic_frame_rate == "25hz":
@@ -437,9 +429,8 @@ class VitsModel(nn.Module):
         dict_s2 = torch.load(vits_path, map_location="cpu")
         self.hps = dict_s2["config"]
         if dict_s2["weight"]["enc_p.text_embedding.weight"].shape[0] == 322:
-            self.hps["model"]["version"] = "v1"
-        else:
-            self.hps["model"]["version"] = "v2"
+            raise NotImplementedError("v1 ONNX モデルはサポートされていません")
+        self.hps["model"]["version"] = "v2"
 
         self.hps = DictToAttrRecursive(self.hps)
         self.hps.model.semantic_frame_rate = "25hz"

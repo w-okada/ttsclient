@@ -139,13 +139,12 @@ def _setup_pretrained_slot(
     # アイコンはコピー（小さいファイル）
     shutil.copy(icon_path, slot_dir / icon_path.name)
 
-    version, model_version, if_lora_v3 = get_sovits_version_from_path_fast(sovits_path)
+    version, model_version, _if_lora = get_sovits_version_from_path_fast(sovits_path)
     slot_info = GPTSoVITSSlotInfo(
         slot_index=slot_index,
         name=name,
         version=version,
         model_version=model_version,
-        if_lora_v3=if_lora_v3,
         semantic_predictor_model_path=Path(gpt_path.name),
         synthesizer_model_path=Path(sovits_path.name),
         icon_file=Path(icon_path.name),

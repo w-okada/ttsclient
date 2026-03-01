@@ -55,14 +55,11 @@ def get_sovits_version_from_path_fast(sovits_path: Path) -> tuple[str, str, bool
     if head != b"PK" and head in _HEAD_TO_VERSION:
         return tuple(_HEAD_TO_VERSION[head])  # type: ignore[return-value]
 
-    # 3. ファイルサイズで判定 (旧形式)
-    size = os.path.getsize(sovits_path)
-    if size < 82978 * 1024:
-        return "v1", "v1", False
-    elif size < 700 * 1024 * 1024:
-        return "v2", "v2", False
-    else:
-        return "v2", "v3", False
+    # 3. ファイルサイズでの判定は廃止（旧形式のモデルは未サポート）
+    raise NotImplementedError(
+        f"モデルバージョンを検出できません (hash={file_hash}, head={head!r})。"
+        "v2Pro/v2ProPlus 以外のモデルはサポートされていません。"
+    )
 
 
 def import_model(model_dir: Path, param: ModelImportParamMember, remove_src: bool = False) -> None:
@@ -83,8 +80,8 @@ def import_model(model_dir: Path, param: ModelImportParamMember, remove_src: boo
             assert isinstance(param, GPTSoVITSModelImportParam)
             assert param.synthesizer_model_path is not None
 
-            version, model_version, if_lora_v3 = get_sovits_version_from_path_fast(param.synthesizer_model_path)
-            logger.info("モデルバージョン検出: version=%s, model_version=%s, lora=%s", version, model_version, if_lora_v3)
+            version, model_version, _if_lora = get_sovits_version_from_path_fast(param.synthesizer_model_path)
+            logger.info("モデルバージョン検出: version=%s, model_version=%s", version, model_version)
 
             for src in [param.icon_file, param.semantic_predictor_model_path, param.synthesizer_model_path]:
                 if src is not None:
@@ -98,7 +95,6 @@ def import_model(model_dir: Path, param: ModelImportParamMember, remove_src: boo
             slot_info = GPTSoVITSSlotInfo(
                 version=version,
                 model_version=model_version,
-                if_lora_v3=if_lora_v3,
                 slot_index=param.slot_index,
                 name=param.name,
                 terms_of_use_url=param.terms_of_use_url,

@@ -21,28 +21,6 @@ REGISTERED_MODULES: list[ModuleInfo] = [
         save_to=MODULE_DIR / "s1bert25hz-5kh-longer-epoch%3D12-step%3D369668.ckpt",
         hash="732f94e63b148066e24c7f9d2637f3374083e637635f07fbdb695dee20ddbe1f",
     ),
-    ModuleInfo(
-        id="sovits_model",
-        display_name="sovits_model",
-        url="https://huggingface.co/lj1995/GPT-SoVITS/resolve/main/gsv-v2final-pretrained/s2G2333k.pth",
-        save_to=MODULE_DIR / "s2G2333k.pth",
-        hash="924fdccaa3c574bf139c25c9759aa1ed3b3f99e19a7c529ee996c2bc17663695",
-    ),
-    # --- Core models (v3) ---
-    ModuleInfo(
-        id="gpt_model_v3",
-        display_name="gpt_model_v3",
-        url="https://huggingface.co/lj1995/GPT-SoVITS/resolve/main/s1v3.ckpt",
-        save_to=MODULE_DIR / "s1v3.ckpt",
-        hash="87133414860ea14ff6620c483a3db5ed07b44be42e2c3fcdad65523a729a745a",
-    ),
-    ModuleInfo(
-        id="sovits_model_v3",
-        display_name="sovits_model_v3",
-        url="https://huggingface.co/lj1995/GPT-SoVITS/resolve/main/s2Gv3.pth",
-        save_to=MODULE_DIR / "s2Gv3.pth",
-        hash="f33abb1920076d988e1711d5f41b5c9c6d7f92575b4acf0ad4fae6a4ebf0cf19",
-    ),
     # --- Core models (v2Pro) --- (GPT は v2 と共通)
     ModuleInfo(
         id="sovits_model_v2pro",
@@ -66,14 +44,6 @@ REGISTERED_MODULES: list[ModuleInfo] = [
         url="https://huggingface.co/lj1995/GPT-SoVITS/resolve/main/sv/pretrained_eres2netv2w24s4ep4.ckpt",
         save_to=MODULE_DIR / "sv/pretrained_eres2netv2w24s4ep4.ckpt",
         hash="4f5a0bf73c61eb41b174e1bb54e7ee3c83233892be8e0af1f187024e8e581a35",
-    ),
-    # --- Core models (v4) --- (GPT は v3 と共通)
-    ModuleInfo(
-        id="sovits_model_v4",
-        display_name="sovits_model_v4",
-        url="https://huggingface.co/lj1995/GPT-SoVITS/resolve/main/gsv-v4-pretrained/s2Gv4.pth",
-        save_to=MODULE_DIR / "s2Gv4.pth",
-        hash="906fe22f48c3e037a389df291d4d32a9414e15dbb8f9628643e83aaced109ea4",
     ),
     # --- chinese-roberta-wwm-ext-large ---
     ModuleInfo(
@@ -126,51 +96,7 @@ REGISTERED_MODULES: list[ModuleInfo] = [
         save_to=MODULE_DIR / "chinese-hubert-base/preprocessor_config.json",
         hash="dcd684124d06722947939d41ea6ae58dbf10968c60a11a29f23ddc602c64a29b",
     ),
-    # --- bigvgan vocoder (v3) ---
-    ModuleInfo(
-        id="bigvgan_v2_24khz_100band_256x_bigvgan_generator_pt",
-        display_name="bigvgan_v2_24khz_100band_256x_bigvgan_generator_pt",
-        url="https://huggingface.co/lj1995/GPT-SoVITS/resolve/main/models--nvidia--bigvgan_v2_24khz_100band_256x/bigvgan_generator.pt",
-        save_to=MODULE_DIR / "bigvgan_v2_24khz_100band_256x/bigvgan_generator.pt",
-        hash="6f9c5715550c9d0f11159ceb8935638da5aeb19e27d1e63677632df095e376f5",
-    ),
-    ModuleInfo(
-        id="bigvgan_v2_24khz_100band_256x_config.json",
-        display_name="bigvgan_v2_24khz_100band_256x_config_json",
-        url="https://huggingface.co/lj1995/GPT-SoVITS/resolve/main/models--nvidia--bigvgan_v2_24khz_100band_256x/config.json",
-        save_to=MODULE_DIR / "bigvgan_v2_24khz_100band_256x/config.json",
-        hash="d77e2c96583ca2296ac112a56ec7cc6bd5da4bf7681ceff18448bedc4fcf6512",
-    ),
-    # --- v4 vocoder ---
-    ModuleInfo(
-        id="v4_vocoder.pth",
-        display_name="v4_vocoder.pth",
-        url="https://huggingface.co/lj1995/GPT-SoVITS/resolve/main/gsv-v4-pretrained/vocoder.pth",
-        save_to=MODULE_DIR / "gsv-v4-pretrained/v4_vocoder.pth",
-        hash="4d611913df7b12d49e8976c944558d2d096816365edfc6c35a9e85b67dd14ed9",
-    ),
     # --- Initial models (pretrained icons) ---
-    ModuleInfo(
-        id="GPT-SoVITS_icon",
-        display_name="GPT-SoVITS_icon",
-        url="https://huggingface.co/wok000/gpt-sovits-models/resolve/main/pretrained/gpt_sovits_pretrain_v2.png",
-        save_to=UPLOAD_DIR / "gpt_sovits_pretrain_v2.png",
-        hash="fe93ed71bada8098d66620c418ebefe9fd93f22dbfe6f64e03eb55cc11691a72",
-    ),
-    ModuleInfo(
-        id="GPT-SoVITS_icon_v3",
-        display_name="GPT-SoVITS_icon_v3",
-        url="https://huggingface.co/wok000/gpt-sovits-models/resolve/main/pretrained/gpt_sovits_pretrain_v3.png",
-        save_to=UPLOAD_DIR / "gpt_sovits_pretrain_v3.png",
-        hash="248fc10b8ffe495a6470007774d12677507c0486888d38193b01ad39cdda5c03",
-    ),
-    ModuleInfo(
-        id="GPT-SoVITS_icon_v4",
-        display_name="GPT-SoVITS_icon_v4",
-        url="https://huggingface.co/wok000/gpt-sovits-models/resolve/main/pretrained/gpt_sovits_pretrain_v4.png",
-        save_to=UPLOAD_DIR / "gpt_sovits_pretrain_v4.png",
-        hash="25e2692036fc3c19567538ea333656b0d4915b5f1644336c619b514adb86f38e",
-    ),
     ModuleInfo(
         id="GPT-SoVITS_icon_v2pro",
         display_name="GPT-SoVITS_icon_v2pro",
@@ -243,25 +169,17 @@ REQUIRED_MODULES = [
     "sovits_model_v2pro",
     "sovits_model_v2proplus",
     "pretrained_eres2netv2w24s4ep4",
-    "gpt_model_v3",
-    "sovits_model_v3",
-    "sovits_model_v4",
     "chinese-roberta-wwm-ext-large_bin",
     "chinese-roberta-wwm-ext-large_config",
     "chinese-roberta-wwm-ext-large_tokenizer",
     "chinese-hubert-base_bin",
     "chinese-hubert-base_config",
     "chinese-hubert-base_preprocessor_config",
-    "bigvgan_v2_24khz_100band_256x_bigvgan_generator_pt",
-    "bigvgan_v2_24khz_100band_256x_config.json",
-    "v4_vocoder.pth",
 ]
 
 INITIAL_MODELS = [
     "GPT-SoVITS_icon_v2pro",
     "GPT-SoVITS_icon_v2proplus",
-    "GPT-SoVITS_icon_v3",
-    "GPT-SoVITS_icon_v4",
     "GPT-SoVITS_FT_JVNV_semantice",
     "GPT-SoVITS_FT_JVNV_synthesizer",
     "GPT-SoVITS_FT_JVNV_icon",
