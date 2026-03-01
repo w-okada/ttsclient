@@ -23,6 +23,9 @@ server/ssl_key/
 server/upload_dir/
 server/voice_characters/
 
+# Logs
+*.log
+
 # Third party
 third_party/
 
