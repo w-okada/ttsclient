@@ -79,17 +79,20 @@ TranscriberComputeType: TypeAlias = Literal[
 # ダウンロード状態
 DownloadState: TypeAlias = Literal["processing", "validating", "done", "error"]
 
+# server/ ディレクトリを基準とする
+_SERVER_DIR = Path(__file__).resolve().parents[2]
+
 # ログ
-LOG_FILE = Path("./ttsclient.log")
+LOG_FILE = _SERVER_DIR / "ttsclient.log"
 
 # ディレクトリ設定
-SSL_KEY_DIR = Path("./ssl_key")
-MODULE_DIR = Path("./modules")
-MODEL_DIR = Path("./models")
-VOICE_CHARACTER_DIR = Path("./voice_characters")
-SETTINGS_DIR = Path("./settings")
+SSL_KEY_DIR = _SERVER_DIR / "ssl_key"
+MODULE_DIR = _SERVER_DIR / "modules"
+MODEL_DIR = _SERVER_DIR / "models"
+VOICE_CHARACTER_DIR = _SERVER_DIR / "voice_characters"
+SETTINGS_DIR = _SERVER_DIR / "settings"
 CONFIG_FILE = SETTINGS_DIR / "tts_conf.json"
-UPLOAD_DIR = Path("./upload_dir")
+UPLOAD_DIR = _SERVER_DIR / "upload_dir"
 
 # スロット設定
 MAX_SLOT_INDEX = 20
