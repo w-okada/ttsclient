@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { FaDownload } from "react-icons/fa";
 import { Button } from "@/components/common/Button/Button";
@@ -18,12 +18,14 @@ const applySinkId = async (audio: AudioElementWithSinkId, deviceId: string) => {
 
 type Props = {
   blob: Blob | null;
+  startTime: number | null;
 };
 
-export const OutputArea = ({ blob }: Props) => {
+export const OutputArea = ({ blob, startTime }: Props) => {
   const { t } = useTranslation();
   const outputDeviceId = useUIStore((s) => s.outputDeviceId);
   const monitorDeviceId = useUIStore((s) => s.monitorDeviceId);
+  const [elapsedMs, setElapsedMs] = useState<number | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const monitorRef = useRef<HTMLAudioElement>(null);
   const urlRef = useRef<string | null>(null);
@@ -46,6 +48,11 @@ export const OutputArea = ({ blob }: Props) => {
       urlRef.current = url;
       if (audioRef.current) {
         applySinkId(audioRef.current as AudioElementWithSinkId, outputDeviceId);
+        audioRef.current.onplay = () => {
+          if (startTime != null) {
+            setElapsedMs(performance.now() - startTime);
+          }
+        };
         audioRef.current.src = url;
         audioRef.current.play();
       }
@@ -72,7 +79,12 @@ export const OutputArea = ({ blob }: Props) => {
 
   return (
     <div className={styles.output}>
-      <span className={styles.label}>{t("text_input_area_generated_voice_label")}</span>
+      <span className={styles.label}>
+        {t("text_input_area_generated_voice_label")}
+        {elapsedMs != null && (
+          <span className={styles.elapsed}> ({(elapsedMs / 1000).toFixed(2)}s)</span>
+        )}
+      </span>
       <audio ref={audioRef} controls className={styles.audio} />
       {monitorDeviceId && <audio ref={monitorRef} style={{ display: "none" }} />}
       <Button variant="icon" onClick={handleDownload} disabled={!blob}>

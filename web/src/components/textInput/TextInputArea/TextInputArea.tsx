@@ -26,6 +26,7 @@ export const TextInputArea = () => {
   const [cutMethod, setCutMethod] = useState<CutMethod>("No slice");
   const [generatedBlob, setGeneratedBlob] = useState<Blob | null>(null);
   const [generating, setGenerating] = useState(false);
+  const [generationStartTime, setGenerationStartTime] = useState<number | null>(null);
 
   const currentSlot = slots.find((s) => s.slot_index === currentSlotIndex);
   const isGPTSoVITS = currentSlot?.tts_type === "GPT-SoVITS";
@@ -38,6 +39,7 @@ export const TextInputArea = () => {
     }
     if (!text.trim()) return;
 
+    setGenerationStartTime(performance.now());
     setGenerating(true);
     openDialog("wait", {
       title: t("wait_dialog_title_generating"),
@@ -90,7 +92,7 @@ export const TextInputArea = () => {
         </div>
         <div className={styles.right}>
           {gptSlot && <ModelSettings slot={gptSlot} />}
-          <OutputArea blob={generatedBlob} />
+          <OutputArea blob={generatedBlob} startTime={generationStartTime} />
         </div>
       </div>
     </div>

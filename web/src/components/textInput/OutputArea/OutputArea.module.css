@@ -13,6 +13,10 @@
   white-space: nowrap;
 }
 
+.elapsed {
+  color: var(--color-text-secondary, #888);
+}
+
 .audio {
   flex: 1;
   height: 32px;
