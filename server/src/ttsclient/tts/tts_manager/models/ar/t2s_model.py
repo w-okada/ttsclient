@@ -1,20 +1,17 @@
 # modified from https://github.com/yangdongchao/SoundStorm/blob/master/soundstorm/s1/AR/models/t2s_model.py
 # reference: https://github.com/lifeiteng/vall-e
 from typing import List, Optional
-import torch
-from tqdm import tqdm
 
-from .utils import make_pad_mask
-from .utils import topk_sampling, sample, dpo_loss, make_reject_y, get_batch_logps
-from .modules.embedding import SinePositionalEmbedding
-from .modules.embedding import TokenEmbedding
-from .modules.transformer import LayerNorm
-from .modules.transformer import TransformerEncoder
-from .modules.transformer import TransformerEncoderLayer
+import torch
+from torch import nn
 from torch.nn import functional as F
 from torchmetrics.classification import MulticlassAccuracy
+from tqdm import tqdm
 
-from torch import nn
+from .modules.embedding import SinePositionalEmbedding, TokenEmbedding
+from .modules.transformer import LayerNorm, TransformerEncoder, TransformerEncoderLayer
+from .t2s_cuda_graph import T2SCudaGraphDecode
+from .utils import dpo_loss, get_batch_logps, make_pad_mask, make_reject_y, sample, topk_sampling
 
 default_config = {
     "embedding_dim": 512,
@@ -451,7 +448,7 @@ class Text2SemanticDecoder(nn.Module):
                 print("use early stop num:", early_stop_num)
                 stop = True
 
-            if torch.argmax(logits, dim=-1)[0] == self.EOS or samples[0, 0] == self.EOS:
+            if torch.argmax(logits, dim=-1)[0].item() == self.EOS or samples[0, 0].item() == self.EOS:
                 # print(torch.argmax(logits, dim=-1)[0] == self.EOS, samples[0, 0] == self.EOS)
                 stop = True
             if stop:
@@ -522,7 +519,6 @@ class Text2SemanticDecoder(nn.Module):
             if idx < 11:  # ##至少预测出10个token不然不给停止（0.4s）
                 logits = logits[:, :-1]
 
-            # print(f"------torch topk:{top_k}")
             samples = sample(logits, y, top_k=top_k, top_p=top_p, repetition_penalty=repetition_penalty, temperature=temperature)[0]
 
             y = torch.concat([y, samples], dim=1)
@@ -531,7 +527,7 @@ class Text2SemanticDecoder(nn.Module):
                 print("use early stop num:", early_stop_num)
                 stop = True
 
-            if torch.argmax(logits, dim=-1)[0] == self.EOS or samples[0, 0] == self.EOS:
+            if torch.argmax(logits, dim=-1)[0].item() == self.EOS or samples[0, 0].item() == self.EOS:
                 stop = True
             if stop:
                 if y.shape[1] == 0:
@@ -547,5 +543,100 @@ class Text2SemanticDecoder(nn.Module):
         print("Second Stage Decoding Done")
         return y[:, :-1], idx - 1
 
+    def infer_panel_cuda_graph(
+        self, x, x_lens, prompts, bert_feature,
+        top_k=-100, top_p=100, early_stop_num=-1,
+        temperature=1.0, repetition_penalty=1.35, **kwargs,
+    ):
+        x = self.ar_text_embedding(x)
+        x = x + self.bert_proj(bert_feature.transpose(1, 2))
+        x = self.ar_text_position(x)
+
+        # AR Decoder
+        y = prompts
+
+        x_len = x.shape[1]
+        x_attn_mask = torch.zeros((x_len, x_len), dtype=torch.bool)
+        stop = False
+
+        y_emb = self.ar_audio_embedding(y)
+        y_len = y_emb.shape[1]
+        prefix_len = y.shape[1]
+        y_pos = self.ar_audio_position(y_emb)
+        xy_pos = torch.concat([x, y_pos], dim=1)
+
+        bsz = x.shape[0]
+        if bsz != 1:
+            raise RuntimeError("CUDA Graph requires batch_size=1")
+
+        prompt_len = x_len + y_len
+
+        # Lazy init
+        if not hasattr(self, "_cuda_graph_runner"):
+            self._cuda_graph_runner = T2SCudaGraphDecode(self)
+
+        src_len = x_len + y_len
+        x_attn_mask_pad = F.pad(
+            x_attn_mask,
+            (0, y_len),
+            value=True,
+        )
+        y_attn_mask = F.pad(
+            torch.triu(torch.ones(y_len, y_len, dtype=torch.bool), diagonal=1),
+            (x_len, 0),
+            value=False,
+        )
+        xy_attn_mask = (
+            torch.concat([x_attn_mask_pad, y_attn_mask], dim=0)
+            .unsqueeze(0)
+            .expand(bsz * self.num_head, -1, -1)
+            .view(bsz, self.num_head, src_len, src_len)
+            .to(device=x.device, dtype=torch.bool)
+        )
+
+        print("Second Stage Decoding (CUDA Graph)")
+        for idx in tqdm(range(1500)):
+            if idx == 0:
+                xy_dec, k_cache, v_cache = self.t2s_transformer.process_prompt(xy_pos, xy_attn_mask, None)
+                logits = self.ar_predict_layer(xy_dec[:, -1])
+            else:
+                y_emb = self.ar_audio_embedding(y[:, -1:])
+                pe_idx = y_len + idx - 1
+                pe = self.ar_audio_position.pe[:, pe_idx].to(dtype=y_emb.dtype, device=y_emb.device)
+                xy_pos = y_emb * self.ar_audio_position.x_scale + self.ar_audio_position.alpha * pe
+                pos = prompt_len + idx - 1
+                logits = self._cuda_graph_runner.decode(xy_pos, pos)
+
+            if idx < 11:
+                logits = logits[:, :-1]
+
+            samples = sample(logits, y, top_k=top_k, top_p=top_p, repetition_penalty=repetition_penalty, temperature=temperature)[0]
+            y = torch.concat([y, samples], dim=1)
+
+            if early_stop_num != -1 and (y.shape[1] - prefix_len) > early_stop_num:
+                print("use early stop num:", early_stop_num)
+                stop = True
+
+            if torch.argmax(logits, dim=-1)[0].item() == self.EOS or samples[0, 0].item() == self.EOS:
+                stop = True
+            if stop:
+                if y.shape[1] == 0:
+                    y = torch.concat([y, torch.zeros_like(samples)], dim=1)
+                    print("bad zero prediction")
+                print(f"T2S Decoding EOS [{prefix_len} -> {y.shape[1]}]")
+                break
+
+            # Setup static KV cache after first step (after EOS check)
+            if idx == 0:
+                self._cuda_graph_runner.setup_from_prompt(k_cache, v_cache)
+
+        print("Second Stage Decoding Done")
+        return y[:, :-1], idx - 1
+
     def infer_panel(self, x: torch.LongTensor, x_lens: torch.LongTensor, prompts: torch.LongTensor, bert_feature: torch.LongTensor, top_k: int = -100, top_p: int = 100, early_stop_num: int = -1, temperature: float = 1.0, repetition_penalty: float = 1.35, **kwargs):  #####全部文本token  ####参考音频token
+        if x.is_cuda:
+            try:
+                return self.infer_panel_cuda_graph(x, x_lens, prompts, bert_feature, top_k, top_p, early_stop_num, temperature, repetition_penalty, **kwargs)
+            except Exception as e:
+                print(f"CUDA Graph failed, falling back to naive: {e}")
         return self.infer_panel_naive(x, x_lens, prompts, bert_feature, top_k, top_p, early_stop_num, temperature, repetition_penalty, **kwargs)

@@ -31,3 +31,6 @@ third_party/
 
 # pnpm
 web/.pnpmrc.json
+
+spec/*improvement.md
+

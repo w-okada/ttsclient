@@ -90,7 +90,7 @@ def topk_sampling(logits, top_k=10, top_p=1.0, temperature=1.0):
     # Top-p/top-k filtering
     logits = top_k_top_p_filtering(logits, top_k=top_k, top_p=top_p)
     # Sample
-    token = torch.multinomial(F.softmax(logits, dim=-1), num_samples=1)
+    token = multinomial_sample_one_no_sync(F.softmax(logits, dim=-1))
     return token
 
 
