@@ -320,6 +320,11 @@ class ResidualCouplingBlock(nn.Module):
                 x = flow(x, x_mask, g=g, reverse=reverse)
         return x
 
+    def remove_weight_norm(self):
+        for flow in self.flows:
+            if hasattr(flow, 'remove_weight_norm'):
+                flow.remove_weight_norm()
+
 
 class PosteriorEncoder(nn.Module):
     def __init__(
@@ -980,6 +985,36 @@ class SynthesizerTrn(nn.Module):
         o = self.dec((z * y_mask)[:, :, :], g=ge)
         return o, y_mask, (z, z_p, m_p, logs_p)
 
+    def _get_decode_rng(self, device):
+        """decode 用 private CUDA generator（CUDA Graph との競合回避）"""
+        if not hasattr(self, '_decode_rng'):
+            self._decode_rng = torch.Generator(device=device)
+            self._decode_rng.manual_seed(torch.randint(2**62, (1,)).item())
+        return self._decode_rng
+
+    def _decode_pipeline(self, codes, text, ge, speed=1.0, noise_scale=0.5):
+        y_lengths = torch.LongTensor([codes.size(2) * 2]).to(codes.device)
+        text_lengths = torch.LongTensor([text.size(-1)]).to(text.device)
+
+        quantized = self.quantizer.decode(codes)
+        if self.semantic_frame_rate == "25hz":
+            quantized = F.interpolate(
+                quantized, size=int(quantized.shape[-1] * 2), mode="nearest"
+            )
+
+        ge_for_enc_p = self.ge_to512(ge.transpose(2, 1)).transpose(2, 1)
+        x, m_p, logs_p, y_mask = self.enc_p(
+            quantized, y_lengths, text, text_lengths, ge_for_enc_p, speed
+        )
+        # private generator でノイズ生成（デフォルト CUDA generator は CUDA Graph が占有するため）
+        noise = torch.empty_like(m_p).normal_(generator=self._get_decode_rng(m_p.device))
+        z_p = m_p + noise * torch.exp(logs_p) * noise_scale
+
+        z = self.flow(z_p, y_mask, g=ge, reverse=True)
+
+        o = self.dec((z * y_mask)[:, :, :], g=ge)
+        return o
+
     @torch.no_grad()
     def decode(self, codes, text, refer, noise_scale=0.5, speed=1, sv_emb=None):
         def get_ge(refer, _sv_emb=None):
@@ -1005,25 +1040,18 @@ class SynthesizerTrn(nn.Module):
         else:
             ge=get_ge(refer, sv_emb)
 
-        y_lengths = torch.LongTensor([codes.size(2) * 2]).to(codes.device)
-        text_lengths = torch.LongTensor([text.size(-1)]).to(text.device)
+        # CUDA Graph パス
+        if codes.is_cuda and speed == 1:
+            try:
+                if not hasattr(self, '_sovits_cuda_graph'):
+                    from .sovits_cuda_graph import SoVITSCudaGraphDecode
+                    self._sovits_cuda_graph = SoVITSCudaGraphDecode(self)
+                return self._sovits_cuda_graph.decode(codes, text, ge)
+            except Exception as e:
+                print(f"SoVITS CUDA Graph failed, falling back: {e}")
 
-        quantized = self.quantizer.decode(codes)
-        if self.semantic_frame_rate == "25hz":
-            quantized = F.interpolate(
-                quantized, size=int(quantized.shape[-1] * 2), mode="nearest"
-            )
-
-        ge_for_enc_p = self.ge_to512(ge.transpose(2, 1)).transpose(2, 1)
-        x, m_p, logs_p, y_mask = self.enc_p(
-            quantized, y_lengths, text, text_lengths, ge_for_enc_p, speed
-        )
-        z_p = m_p + torch.randn_like(m_p) * torch.exp(logs_p) * noise_scale
-
-        z = self.flow(z_p, y_mask, g=ge, reverse=True)
-
-        o = self.dec((z * y_mask)[:, :, :], g=ge)
-        return o
+        # Fallback
+        return self._decode_pipeline(codes, text, ge, speed, noise_scale)
 
     def extract_latent(self, x):
         ssl = self.ssl_proj(x)

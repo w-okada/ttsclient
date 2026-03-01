@@ -155,6 +155,8 @@ class WN(torch.nn.Module):
         self.res_skip_layers = torch.nn.ModuleList()
         self.drop = nn.Dropout(p_dropout)
 
+        self.n_channels_tensor = torch.IntTensor([self.hidden_channels])
+
         if gin_channels != 0:
             cond_layer = torch.nn.Conv1d(
                 gin_channels, 2 * hidden_channels * n_layers, 1
@@ -186,7 +188,6 @@ class WN(torch.nn.Module):
 
     def forward(self, x, x_mask, g=None, **kwargs):
         output = torch.zeros_like(x)
-        n_channels_tensor = torch.IntTensor([self.hidden_channels])
 
         if g is not None:
             g = self.cond_layer(g)
@@ -199,7 +200,7 @@ class WN(torch.nn.Module):
             else:
                 g_l = torch.zeros_like(x_in)
 
-            acts = commons.fused_add_tanh_sigmoid_multiply(x_in, g_l, n_channels_tensor)
+            acts = commons.fused_add_tanh_sigmoid_multiply(x_in, g_l, self.n_channels_tensor)
             acts = self.drop(acts)
 
             res_skip_acts = self.res_skip_layers[i](acts)
@@ -456,6 +457,9 @@ class ResidualCouplingLayer(nn.Module):
             x1 = (x1 - m) * torch.exp(-logs) * x_mask
             x = torch.cat([x0, x1], 1)
             return x
+
+    def remove_weight_norm(self):
+        self.enc.remove_weight_norm()
 
 
 class ConvFlow(nn.Module):

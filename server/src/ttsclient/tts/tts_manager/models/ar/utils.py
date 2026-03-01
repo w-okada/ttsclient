@@ -4,6 +4,18 @@ import torch
 import torch.nn.functional as F
 from typing import Optional, Tuple
 
+# CUDA Graph がデフォルト CUDA generator をロックするため、
+# RNG 操作には device ごとの private generator を使用する
+_cuda_generators: dict[torch.device, torch.Generator] = {}
+
+
+def _get_cuda_generator(device: torch.device) -> torch.Generator:
+    if device not in _cuda_generators:
+        gen = torch.Generator(device=device)
+        gen.manual_seed(torch.randint(2**62, (1,)).item())
+        _cuda_generators[device] = gen
+    return _cuda_generators[device]
+
 
 def sequence_mask(length, max_length=None):
     if max_length is None:
@@ -97,7 +109,11 @@ def topk_sampling(logits, top_k=10, top_p=1.0, temperature=1.0):
 def multinomial_sample_one_no_sync(
     probs_sort,
 ):  # Does multinomial sampling without a cuda synchronization
-    q = torch.empty_like(probs_sort).exponential_(1)
+    q = torch.empty_like(probs_sort)
+    if probs_sort.is_cuda:
+        q.exponential_(1, generator=_get_cuda_generator(probs_sort.device))
+    else:
+        q.exponential_(1)
     return torch.argmax(probs_sort / q, dim=-1, keepdim=True).to(dtype=torch.int)
 
 
