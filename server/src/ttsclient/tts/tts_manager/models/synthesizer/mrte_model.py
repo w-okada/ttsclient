@@ -105,6 +105,7 @@ class WN(torch.nn.Module):
 
         self.in_layers = torch.nn.ModuleList()
         self.res_skip_layers = torch.nn.ModuleList()
+        self.register_buffer('n_channels_tensor', torch.IntTensor([hidden_channels]), persistent=False)
 
         for i in range(n_layers):
             dilation = dilation_rate**i
@@ -131,12 +132,11 @@ class WN(torch.nn.Module):
 
     def forward(self, x):
         output = torch.zeros_like(x)
-        n_channels_tensor = torch.IntTensor([self.hidden_channels])
 
         for i in range(self.n_layers):
             x_in = self.in_layers[i](x)
 
-            acts = fused_add_tanh_sigmoid_multiply2(x_in, n_channels_tensor)
+            acts = fused_add_tanh_sigmoid_multiply2(x_in, self.n_channels_tensor)
 
             res_skip_acts = self.res_skip_layers[i](acts)
             if i < self.n_layers - 1:

@@ -60,6 +60,7 @@ class Encoder(nn.Module):
             self.cond_pre = torch.nn.Conv1d(hidden_channels, 2 * hidden_channels, 1)
             self.cond_layer = weight_norm_modules(cond_layer, name="weight")
             self.gin_channels = kwargs["gin_channels"]
+            self.register_buffer('n_channels_tensor', torch.IntTensor([hidden_channels]), persistent=False)
 
     def forward(self, x, x_mask, g=None):
         attn_mask = x_mask.unsqueeze(2) * x_mask.unsqueeze(-1)
@@ -72,7 +73,7 @@ class Encoder(nn.Module):
                 x = self.cond_pre(x)
                 cond_offset = i * 2 * self.hidden_channels
                 g_l = g[:, cond_offset : cond_offset + 2 * self.hidden_channels, :]
-                x = commons.fused_add_tanh_sigmoid_multiply(x, g_l, torch.IntTensor([self.hidden_channels]))
+                x = commons.fused_add_tanh_sigmoid_multiply(x, g_l, self.n_channels_tensor)
             y = self.attn_layers[i](x, x, attn_mask)
             y = self.drop(y)
             x = self.norm_layers_1[i](x + y)
@@ -514,6 +515,7 @@ class FFT(nn.Module):
             self.cond_pre = torch.nn.Conv1d(hidden_channels, 2 * hidden_channels, 1)
             self.cond_layer = weight_norm_modules(cond_layer, name="weight")
             self.gin_channels = kwargs["gin_channels"]
+            self.register_buffer('n_channels_tensor', torch.IntTensor([hidden_channels]), persistent=False)
         self.drop = nn.Dropout(p_dropout)
         self.self_attn_layers = nn.ModuleList()
         self.norm_layers_0 = nn.ModuleList()
@@ -558,7 +560,7 @@ class FFT(nn.Module):
                 x = self.cond_pre(x)
                 cond_offset = i * 2 * self.hidden_channels
                 g_l = g[:, cond_offset : cond_offset + 2 * self.hidden_channels, :]
-                x = commons.fused_add_tanh_sigmoid_multiply(x, g_l, torch.IntTensor([self.hidden_channels]))
+                x = commons.fused_add_tanh_sigmoid_multiply(x, g_l, self.n_channels_tensor)
             y = self.self_attn_layers[i](x, x, self_attn_mask)
             y = self.drop(y)
             x = self.norm_layers_0[i](x + y)

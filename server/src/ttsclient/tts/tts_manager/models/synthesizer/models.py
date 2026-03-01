@@ -993,8 +993,8 @@ class SynthesizerTrn(nn.Module):
         return self._decode_rng
 
     def _decode_pipeline(self, codes, text, ge, speed=1.0, noise_scale=0.5):
-        y_lengths = torch.LongTensor([codes.size(2) * 2]).to(codes.device)
-        text_lengths = torch.LongTensor([text.size(-1)]).to(text.device)
+        y_lengths = torch.tensor([codes.size(2) * 2], dtype=torch.long, device=codes.device)
+        text_lengths = torch.tensor([text.size(-1)], dtype=torch.long, device=codes.device)
 
         quantized = self.quantizer.decode(codes)
         if self.semantic_frame_rate == "25hz":
@@ -1020,7 +1020,7 @@ class SynthesizerTrn(nn.Module):
         def get_ge(refer, _sv_emb=None):
             ge = None
             if refer is not None:
-                refer_lengths = torch.LongTensor([refer.size(2)]).to(refer.device)
+                refer_lengths = torch.tensor([refer.size(2)], dtype=torch.long, device=refer.device)
                 refer_mask = torch.unsqueeze(
                     commons.sequence_mask(refer_lengths, refer.size(2)), 1
                 ).to(refer.dtype)

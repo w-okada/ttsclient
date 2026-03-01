@@ -155,7 +155,7 @@ class WN(torch.nn.Module):
         self.res_skip_layers = torch.nn.ModuleList()
         self.drop = nn.Dropout(p_dropout)
 
-        self.n_channels_tensor = torch.IntTensor([self.hidden_channels])
+        self.register_buffer('n_channels_tensor', torch.IntTensor([self.hidden_channels]), persistent=False)
 
         if gin_channels != 0:
             cond_layer = torch.nn.Conv1d(
