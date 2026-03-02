@@ -278,7 +278,7 @@ export type GenerateVoiceParam = {
   text: string;
   language: LanguageType;
   speed: number;
-  cutMethod: CutMethod;
+  cutMethod: CutMethod | null;
   sample_steps: number | null;
   phone_symbols: string[] | null;
 };

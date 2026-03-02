@@ -9,7 +9,7 @@ class GenerateVoiceParam(BaseModel):
     text: str
     language: LanguageType
     speed: float
-    cutMethod: CutMethod
+    cutMethod: CutMethod | None = None
     sample_steps: int | None = None
     phone_symbols: list[str] | None = None
 

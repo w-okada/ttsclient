@@ -145,6 +145,8 @@
   "text_input_area_language_label": "言語",
   "text_input_area_speed_label": "速度",
   "text_input_area_cut_method_label": "文分割方法",
+  "text_input_area_silence_duration_label": "無音時間",
+  "text_input_area_max_trim_label": "トリム上限",
   "text_input_area_model_setting_label": "詳細設定",
   "text_input_area_enable faster inference_label": "ファスト",
   "text_input_area_batch_size_label": "バッチサイズ",

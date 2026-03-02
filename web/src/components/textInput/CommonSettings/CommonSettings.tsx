@@ -8,18 +8,26 @@ type Props = {
   language: LanguageType;
   speed: number;
   cutMethod: CutMethod;
+  silenceDuration: number;
+  maxTrim: number;
   onLanguageChange: (v: LanguageType) => void;
   onSpeedChange: (v: number) => void;
   onCutMethodChange: (v: CutMethod) => void;
+  onSilenceDurationChange: (v: number) => void;
+  onMaxTrimChange: (v: number) => void;
 };
 
 export const CommonSettings = ({
   language,
   speed,
   cutMethod,
+  silenceDuration,
+  maxTrim,
   onLanguageChange,
   onSpeedChange,
   onCutMethodChange,
+  onSilenceDurationChange,
+  onMaxTrimChange,
 }: Props) => {
   const { t } = useTranslation();
 
@@ -53,6 +61,36 @@ export const CommonSettings = ({
         value={cutMethod}
         onChange={(e) => onCutMethodChange(e.target.value as CutMethod)}
       />
+      {cutMethod !== "No slice" && (
+        <div className={styles.trimRow}>
+          <label className={styles.trimLabel}>
+            <span>{t("text_input_area_silence_duration_label")}</span>
+            <input
+              type="number"
+              min="0"
+              max="5000"
+              step="50"
+              value={silenceDuration}
+              onChange={(e) => onSilenceDurationChange(Math.max(0, Number(e.target.value)))}
+              className={styles.trimInput}
+            />
+            <span>ms</span>
+          </label>
+          <label className={styles.trimLabel}>
+            <span>{t("text_input_area_max_trim_label")}</span>
+            <input
+              type="number"
+              min="0"
+              max="2000"
+              step="50"
+              value={maxTrim}
+              onChange={(e) => onMaxTrimChange(Math.max(0, Number(e.target.value)))}
+              className={styles.trimInput}
+            />
+            <span>ms</span>
+          </label>
+        </div>
+      )}
     </div>
   );
 };

@@ -145,6 +145,8 @@
   "text_input_area_language_label": "Language",
   "text_input_area_speed_label": "Speed",
   "text_input_area_cut_method_label": "Cut Method",
+  "text_input_area_silence_duration_label": "Silence",
+  "text_input_area_max_trim_label": "Max Trim",
   "text_input_area_model_setting_label": "Settings",
   "text_input_area_enable faster inference_label": "Fast",
   "text_input_area_batch_size_label": "Batch Size",

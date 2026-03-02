@@ -22,3 +22,23 @@
   text-align: right;
   font-size: var(--font-size-sm);
 }
+
+.trimRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.trimLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-title);
+  white-space: nowrap;
+}
+
+.trimInput {
+  width: 70px;
+  text-align: right;
+}

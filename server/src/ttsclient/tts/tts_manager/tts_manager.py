@@ -269,7 +269,7 @@ class TTSManager:
             prompt_language=reference_voice.language,
             text=generarte_voice_param.text,
             text_language=generarte_voice_param.language,
-            how_to_cut=generarte_voice_param.cutMethod,
+            how_to_cut=generarte_voice_param.cutMethod or "No slice",
             speed=generarte_voice_param.speed,
             # slot_infoからの入力
             top_k=slot_info.top_k,
