@@ -12,6 +12,7 @@ def work_dir(tmp_path, monkeypatch):
     from ttsclient.services.sample_manager import SampleManager
     from ttsclient.services.slot_manager import SlotManager
     from ttsclient.services.tts_manager import TTSManager
+    from ttsclient.services.tts_queue import TTSQueue
     from ttsclient.services.voice_character_slot_manager import VoiceCharacterSlotManager
 
     ConfigurationManager._instance = None
@@ -21,6 +22,7 @@ def work_dir(tmp_path, monkeypatch):
     VoiceCharacterSlotManager._instance = None
     SampleManager._instance = None
     TTSManager._instance = None
+    TTSQueue._instance = None
 
     yield tmp_path
 
@@ -31,6 +33,7 @@ def work_dir(tmp_path, monkeypatch):
     VoiceCharacterSlotManager._instance = None
     SampleManager._instance = None
     TTSManager._instance = None
+    TTSQueue._instance = None
 
 
 @pytest.fixture()
