@@ -13,6 +13,7 @@ from ttsclient.models.tts import (
     OpenJTalkUserDictRecord,
 )
 from ttsclient.services.tts_manager import TTSManager
+from ttsclient.services.tts_queue import TTSQueue
 
 router = APIRouter(prefix="/api/tts-manager/operation")
 
@@ -20,7 +21,7 @@ router = APIRouter(prefix="/api/tts-manager/operation")
 @router.post("/generateVoice")
 async def generate_voice(param: GenerateVoiceParam):
     with Timer("generateVoice total"):
-        sample_rate, audio_data = TTSManager.get_instance().run(param)
+        sample_rate, audio_data = await TTSQueue.get_instance().submit(param)
 
         audio_buffer = io.BytesIO()
         with wave.open(audio_buffer, "wb") as wf:
@@ -30,10 +31,16 @@ async def generate_voice(param: GenerateVoiceParam):
             wf.writeframes(audio_data.tobytes())
         audio_buffer.seek(0)
 
+        audio_bytes = len(audio_data.tobytes())
+        duration = audio_bytes / (sample_rate * 2)
+
     return StreamingResponse(
         audio_buffer,
         media_type="audio/wav",
-        headers={"Content-Disposition": "attachment; filename=output.wav"},
+        headers={
+            "Content-Disposition": "attachment; filename=output.wav",
+            "X-Audio-Duration": f"{duration:.6f}",
+        },
     )
 
 

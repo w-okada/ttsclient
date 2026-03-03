@@ -8,9 +8,9 @@ import { ModelSettings } from "@/components/textInput/ModelSettings/ModelSetting
 import { OutputArea } from "@/components/textInput/OutputArea/OutputArea";
 import { useServerStore } from "@/stores/serverStore";
 import { useUIStore } from "@/stores/uiStore";
+import { useStreamingAudioPlayer } from "@/hooks/useStreamingAudioPlayer";
 import * as api from "@/api/endpoints";
 import { splitText } from "@/utils/textSplitter";
-import { concatWavBlobs } from "@/utils/wavConcat";
 import type { LanguageType, CutMethod, GPTSoVITSSlotInfo } from "@/types";
 import styles from "./TextInputArea.module.css";
 
@@ -21,6 +21,8 @@ export const TextInputArea = () => {
   const currentSlotIndex = useUIStore((s) => s.currentSlotIndex);
   const currentVoiceIndexes = useUIStore((s) => s.currentVoiceIndexes);
   const openDialog = useUIStore((s) => s.openDialog);
+  const outputDeviceId = useUIStore((s) => s.outputDeviceId);
+  const monitorDeviceId = useUIStore((s) => s.monitorDeviceId);
 
   const [text, setText] = useState("");
   const [language, setLanguage] = useState<LanguageType>("all_ja");
@@ -28,9 +30,18 @@ export const TextInputArea = () => {
   const [cutMethod, setCutMethod] = useState<CutMethod>("Slice by every punct");
   const [silenceDuration, setSilenceDuration] = useState(200);
   const [maxTrim, setMaxTrim] = useState(500);
-  const [generatedBlob, setGeneratedBlob] = useState<Blob | null>(null);
   const [generating, setGenerating] = useState(false);
   const [generationStartTime, setGenerationStartTime] = useState<number | null>(null);
+
+  const silenceDurationSec = silenceDuration / 1000;
+  const maxTrimSec = maxTrim / 1000;
+
+  const streamingPlayer = useStreamingAudioPlayer({
+    outputDeviceId,
+    monitorDeviceId,
+    silenceDuration: silenceDurationSec,
+    maxTrim: maxTrimSec,
+  });
 
   const currentSlot = slots.find((s) => s.slot_index === currentSlotIndex);
   const isGPTSoVITS = currentSlot?.tts_type === "GPT-SoVITS";
@@ -45,6 +56,7 @@ export const TextInputArea = () => {
 
     setGenerationStartTime(performance.now());
     setGenerating(true);
+    streamingPlayer.reset();
     openDialog("wait", {
       title: t("wait_dialog_title_generating"),
       message: t("wait_dialog_instruction_generating"),
@@ -52,22 +64,52 @@ export const TextInputArea = () => {
 
     try {
       const segments = splitText(text, cutMethod, language);
-      const blobs: Blob[] = [];
-      for (const segment of segments) {
-        const blob = await api.generateVoice({
-          voice_character_slot_index: currentVCIndex,
-          reference_voice_slot_index: currentVoiceIndexes[0],
-          text: segment,
-          language,
-          speed,
-          cutMethod: null,
-          sample_steps: null,
-          phone_symbols: null,
+      const baseParam = {
+        voice_character_slot_index: currentVCIndex,
+        reference_voice_slot_index: currentVoiceIndexes[0],
+        language,
+        speed,
+        cutMethod: null as CutMethod | null,
+        sample_steps: null as number | null,
+        phone_symbols: null as string[] | null,
+      };
+
+      // Phase 1: セグメント0を即時送信
+      const firstResult = await api.generateVoice({
+        ...baseParam,
+        text: segments[0],
+        deadline: Date.now() / 1000,
+      });
+      streamingPlayer.pushSegment(firstResult.blob);
+
+      const firstDuration = parseFloat(firstResult.headers.get("X-Audio-Duration") ?? "0");
+
+      // Phase 2: 残りを並行送信 (deadline付き)
+      if (segments.length > 1) {
+        const firstCharCount = segments[0].length;
+        const durationPerChar = firstCharCount > 0 ? firstDuration / firstCharCount : 0;
+
+        let cumulativeDuration = firstDuration;
+        const now = Date.now() / 1000;
+
+        const promises = segments.slice(1).map((segment, i) => {
+          const deadline = now + cumulativeDuration;
+          cumulativeDuration += durationPerChar * segment.length;
+          return api.generateVoice({
+            ...baseParam,
+            text: segment,
+            deadline,
+          }).then((result) => ({ index: i, result }));
         });
-        blobs.push(blob);
+
+        const results = await Promise.all(promises);
+        // 順番通りに push
+        results
+          .sort((a, b) => a.index - b.index)
+          .forEach(({ result }) => streamingPlayer.pushSegment(result.blob));
       }
-      const merged = await concatWavBlobs(blobs, silenceDuration / 1000, maxTrim / 1000);
-      setGeneratedBlob(merged);
+
+      streamingPlayer.finish();
     } catch (e) {
       toast.error(`Generation failed: ${e}`);
     } finally {
@@ -75,7 +117,7 @@ export const TextInputArea = () => {
       const { closeDialog } = useUIStore.getState();
       closeDialog();
     }
-  }, [currentVCIndex, currentVoiceIndexes, text, language, speed, cutMethod, silenceDuration, maxTrim, openDialog, t]);
+  }, [currentVCIndex, currentVoiceIndexes, text, language, speed, cutMethod, openDialog, t, streamingPlayer]);
 
   return (
     <div className={styles.area}>
@@ -106,7 +148,11 @@ export const TextInputArea = () => {
         </div>
         <div className={styles.right}>
           {gptSlot && <ModelSettings slot={gptSlot} />}
-          <OutputArea blob={generatedBlob} startTime={generationStartTime} />
+          <OutputArea
+            blob={streamingPlayer.mergedBlob}
+            isStreaming={streamingPlayer.isPlaying}
+            startTime={generationStartTime}
+          />
         </div>
       </div>
     </div>

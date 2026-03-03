@@ -12,6 +12,7 @@ class GenerateVoiceParam(BaseModel):
     cutMethod: CutMethod | None = None
     sample_steps: int | None = None
     phone_symbols: list[str] | None = None
+    deadline: float | None = None  # Unix timestamp (秒)。None = 即時優先
 
 
 class OpenJTalkUserDictRecord(BaseModel):

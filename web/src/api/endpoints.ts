@@ -1,4 +1,5 @@
-import { get, post, put, del, postBlob, postFormData, connectSSE } from "./client";
+import { get, post, put, del, postBlob, postBlobWithHeaders, postFormData, connectSSE } from "./client";
+import type { BlobResponse } from "./client";
 import type {
   TTSConfiguration,
   GPUInfo,
@@ -153,8 +154,8 @@ export const addUserDictRecord = (vcIndex: number, record: OpenJTalkUserDictReco
 // TTS
 // =============================================================
 
-export const generateVoice = (param: GenerateVoiceParam) =>
-  postBlob("/api/tts-manager/operation/generateVoice", param);
+export const generateVoice = (param: GenerateVoiceParam): Promise<BlobResponse> =>
+  postBlobWithHeaders("/api/tts-manager/operation/generateVoice", param);
 
 export const getPhones = (param: GetPhonesParam) =>
   post<GetPhonesResponse>("/api/tts-manager/operation/getPhones", param);

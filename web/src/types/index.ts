@@ -281,6 +281,7 @@ export type GenerateVoiceParam = {
   cutMethod: CutMethod | null;
   sample_steps: number | null;
   phone_symbols: string[] | null;
+  deadline: number | null;
 };
 
 export type OpenJTalkUserDictRecord = {

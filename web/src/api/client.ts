@@ -66,6 +66,22 @@ export const postBlob = async (path: string, body?: unknown): Promise<Blob> => {
   return response.blob();
 };
 
+export type BlobResponse = { blob: Blob; headers: Headers };
+
+export const postBlobWithHeaders = async (path: string, body?: unknown): Promise<BlobResponse> => {
+  const response = await fetch(`${BASE_URL}${path}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: body != null ? JSON.stringify(body) : undefined,
+  });
+  if (!response.ok) {
+    const text = await response.text().catch(() => "Unknown error");
+    throw new HttpException(response.status, text);
+  }
+  const blob = await response.blob();
+  return { blob, headers: response.headers };
+};
+
 export const postFormData = async <T>(path: string, formData: FormData): Promise<T> => {
   const response = await fetch(`${BASE_URL}${path}`, {
     method: "POST",

@@ -1,3 +1,4 @@
+import asyncio
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -25,6 +26,7 @@ from ttsclient.services.gpu_device_manager import GPUDeviceManager
 from ttsclient.services.module_manager import ModuleManager
 from ttsclient.services.sample_manager import SampleManager
 from ttsclient.services.slot_manager import SlotManager
+from ttsclient.services.tts_queue import TTSQueue
 from ttsclient.services.voice_character_slot_manager import VoiceCharacterSlotManager
 
 
@@ -36,7 +38,9 @@ async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
     SlotManager.get_instance().reload()
     VoiceCharacterSlotManager.get_instance().reload()
     SampleManager.get_instance().reload()
+    TTSQueue.get_instance().start(asyncio.get_running_loop())
     yield
+    await TTSQueue.get_instance().stop()
 
 
 app = FastAPI(title=APP_NAME, version=VERSION, lifespan=lifespan)
@@ -48,6 +52,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["X-Audio-Duration"],
 )
 
 

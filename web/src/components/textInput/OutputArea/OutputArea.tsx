@@ -18,10 +18,11 @@ const applySinkId = async (audio: AudioElementWithSinkId, deviceId: string) => {
 
 type Props = {
   blob: Blob | null;
+  isStreaming?: boolean;
   startTime: number | null;
 };
 
-export const OutputArea = ({ blob, startTime }: Props) => {
+export const OutputArea = ({ blob, isStreaming = false, startTime }: Props) => {
   const { t } = useTranslation();
   const outputDeviceId = useUIStore((s) => s.outputDeviceId);
   const monitorDeviceId = useUIStore((s) => s.monitorDeviceId);
@@ -29,6 +30,15 @@ export const OutputArea = ({ blob, startTime }: Props) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const monitorRef = useRef<HTMLAudioElement>(null);
   const urlRef = useRef<string | null>(null);
+
+  // ストリーミング再生完了時に elapsed 計測
+  const prevStreamingRef = useRef(false);
+  useEffect(() => {
+    if (prevStreamingRef.current && !isStreaming && startTime != null) {
+      setElapsedMs(performance.now() - startTime);
+    }
+    prevStreamingRef.current = isStreaming;
+  }, [isStreaming, startTime]);
 
   // Apply setSinkId when outputDeviceId changes
   useEffect(() => {
@@ -41,6 +51,7 @@ export const OutputArea = ({ blob, startTime }: Props) => {
       applySinkId(monitorRef.current as AudioElementWithSinkId, monitorDeviceId);
   }, [monitorDeviceId]);
 
+  // mergedBlob が到着したら audio 要素に設定（自動再生はストリーミング再生後なのでしない）
   useEffect(() => {
     if (urlRef.current) URL.revokeObjectURL(urlRef.current);
     if (blob) {
@@ -54,9 +65,12 @@ export const OutputArea = ({ blob, startTime }: Props) => {
           }
         };
         audioRef.current.src = url;
-        audioRef.current.play();
+        // ストリーミング再生中でなければ自動再生
+        if (!isStreaming) {
+          audioRef.current.play();
+        }
       }
-      if (monitorDeviceId && monitorRef.current) {
+      if (!isStreaming && monitorDeviceId && monitorRef.current) {
         applySinkId(monitorRef.current as AudioElementWithSinkId, monitorDeviceId);
         monitorRef.current.src = url;
         monitorRef.current.play();
@@ -81,7 +95,8 @@ export const OutputArea = ({ blob, startTime }: Props) => {
     <div className={styles.output}>
       <span className={styles.label}>
         {t("text_input_area_generated_voice_label")}
-        {elapsedMs != null && (
+        {isStreaming && <span className={styles.elapsed}> (streaming...)</span>}
+        {!isStreaming && elapsedMs != null && (
           <span className={styles.elapsed}> ({(elapsedMs / 1000).toFixed(2)}s)</span>
         )}
       </span>
